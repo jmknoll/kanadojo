@@ -13,6 +13,7 @@ final class ProgressStore {
 
     func updateProgress(characterId: String, correct: Bool, quizType: QuizType) {
         let progress = fetchOrCreate(characterId: characterId)
+
         if correct {
             progress.correctCount += 1
         } else {
@@ -27,23 +28,44 @@ final class ProgressStore {
             if correct { progress.typeBCorrect += 1 } else { progress.typeBIncorrect += 1 }
         }
 
+        applySpacedRepetition(to: progress, correct: correct)
+        StreakStore.shared.recordStudyToday()
+
         try? context.save()
     }
 
     // MARK: - Struggling Characters
+    //
+    // A character is "struggling" if it is due for review OR has been attempted
+    // with accuracy below 70%.
 
-    func getStrugglingIds(kanaType: KanaTypeSelection, group: GroupSelection, threshold: Double = 0.6) -> [String] {
+    func getStrugglingIds(kanaType: KanaTypeSelection, group: GroupSelection) -> [String] {
         let descriptor = FetchDescriptor<CharacterProgress>()
         guard let all = try? context.fetch(descriptor) else { return [] }
 
-        // Get valid character ids for the selection
-        let validChars = KanaData.getCharacters(kanaType: kanaType, group: group)
-        let validIds = Set(validChars.map { $0.id })
+        let validIds = Set(KanaData.getCharacters(kanaType: kanaType, group: group).map { $0.id })
 
         return all
             .filter { validIds.contains($0.characterId) }
-            .filter { $0.totalCount > 0 && $0.accuracy < threshold }
+            .filter { $0.isDue || ($0.totalCount > 0 && $0.accuracy < 0.7) }
             .map { $0.characterId }
+    }
+
+    // MARK: - All Progress Dictionary
+
+    func allProgressDict() -> [String: CharacterProgress] {
+        let descriptor = FetchDescriptor<CharacterProgress>()
+        guard let all = try? context.fetch(descriptor) else { return [:] }
+        return Dictionary(uniqueKeysWithValues: all.map { ($0.characterId, $0) })
+    }
+
+    // MARK: - Single Character Lookup
+
+    func progressFor(characterId: String) -> CharacterProgress? {
+        let descriptor = FetchDescriptor<CharacterProgress>(
+            predicate: #Predicate { $0.characterId == characterId }
+        )
+        return (try? context.fetch(descriptor))?.first
     }
 
     // MARK: - Initialize
@@ -59,15 +81,6 @@ final class ProgressStore {
             }
         }
         try? context.save()
-    }
-
-    // MARK: - Single Character Lookup
-
-    func progressFor(characterId: String) -> CharacterProgress? {
-        let descriptor = FetchDescriptor<CharacterProgress>(
-            predicate: #Predicate { $0.characterId == characterId }
-        )
-        return (try? context.fetch(descriptor))?.first
     }
 
     // MARK: - Private Helpers

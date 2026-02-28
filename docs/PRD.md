@@ -210,6 +210,7 @@ Two primary modes:
 - [ ] Sound effects
 - [x] Dark mode support
 - [ ] Haptic feedback
+- [ ] Some improved version of stroke order in study mode
 
 **5.3 Gamification**
 

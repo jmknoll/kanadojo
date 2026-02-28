@@ -41,19 +41,20 @@ final class QuizViewModel {
         state = .loading
 
         var pool = KanaData.getCharacters(kanaType: config.kanaType, group: config.group)
+        let progressDict = store.allProgressDict()
 
         if config.practiceMode == .struggling {
             let strugglingIds = Set(store.getStrugglingIds(kanaType: config.kanaType, group: config.group))
             pool = pool.filter { strugglingIds.contains($0.id) }
         }
 
-        pool = shuffleArray(pool)
+        // Weighted sampling — weaker characters appear earlier with higher probability.
+        // Struggling mode uses a lower floor (0.01) for a stronger bias toward weak chars.
+        // Full Practice uses 0.1 so mastered characters still surface occasionally.
+        let requestedCount = config.questionCount == .all ? pool.count : config.questionCount.rawValue
+        let weightFloor: Double = config.practiceMode == .struggling ? 0.01 : 0.1
 
-        if config.questionCount != .all {
-            pool = Array(pool.prefix(config.questionCount.rawValue))
-        }
-
-        characters = pool
+        characters = weightedSample(pool, count: requestedCount, progressDict: progressDict, weightFloor: weightFloor)
         currentIndex = 0
         results = []
         hintUsedThisQuestion = false

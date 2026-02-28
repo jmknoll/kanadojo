@@ -1,6 +1,32 @@
 import Foundation
+import SwiftUI
 
 // MARK: - Enums
+
+enum MasteryLevel: Int, CaseIterable {
+    case new       = 0
+    case learning  = 1
+    case reviewing = 2
+    case mastered  = 3
+
+    var displayName: String {
+        switch self {
+        case .new:       return "New"
+        case .learning:  return "Learning"
+        case .reviewing: return "Reviewing"
+        case .mastered:  return "Mastered"
+        }
+    }
+
+    var color: Color {
+        switch self {
+        case .new:       return AppColors.textMuted
+        case .learning:  return AppColors.warning
+        case .reviewing: return Color(hex: "#6B8FA8")  // fixed navy, works in both modes
+        case .mastered:  return AppColors.success
+        }
+    }
+}
 
 enum KanaType: String, Codable, CaseIterable {
     case hiragana

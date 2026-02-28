@@ -5,6 +5,7 @@ enum AppDestination: Hashable {
     case quizSetup
     case quizPlay(config: QuizConfig)
     case study
+    case stats
     case characterDetail(character: KanaCharacter)
 }
 
@@ -42,6 +43,8 @@ struct ContentView: View {
                         QuizPlayView(config: config, path: $path)
                     case .study:
                         StudyView(path: $path)
+                    case .stats:
+                        StatsView(path: $path)
                     case .characterDetail(let character):
                         CharacterDetailView(character: character)
                     }

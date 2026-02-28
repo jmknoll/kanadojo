@@ -37,9 +37,10 @@ struct HomeView: View {
                         title: "Stats",
                         subtitle: "Track your learning progress",
                         icon: "chart.bar.fill",
-                        isEnabled: false,
-                        badge: "Soon"
-                    ) {}
+                        isEnabled: true
+                    ) {
+                        path.append(AppDestination.stats)
+                    }
                 }
                 .padding(.horizontal, AppSpacing.lg)
 
