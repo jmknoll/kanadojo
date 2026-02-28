@@ -3,7 +3,6 @@ import SwiftUI
 struct ChartCellView: View {
     let character: KanaCharacter?
     let progress: CharacterProgress?
-    let cellWidth: CGFloat
     let onTap: () -> Void
 
     private var isCombination: Bool {
@@ -33,7 +32,7 @@ struct ChartCellView: View {
                         .minimumScaleFactor(0.7)
                         .lineLimit(1)
                 }
-                .frame(width: cellWidth, height: cellWidth * 1.1)
+                .frame(maxWidth: .infinity, minHeight: 68)
                 .background(cellBackground)
                 .clipShape(RoundedRectangle(cornerRadius: AppRadius.sm))
                 .overlay(
@@ -45,7 +44,7 @@ struct ChartCellView: View {
         } else {
             // Empty gap cell — preserves grid alignment
             Color.clear
-                .frame(width: cellWidth, height: cellWidth * 1.1)
+                .frame(maxWidth: .infinity, minHeight: 68)
         }
     }
 }

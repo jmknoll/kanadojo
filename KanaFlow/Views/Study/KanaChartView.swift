@@ -6,7 +6,6 @@ struct KanaChartView: View {
     let progressDict: [String: CharacterProgress]
     let onSelect: (KanaCharacter) -> Void
 
-    private let cellWidth: CGFloat = 60
     private let cellSpacing: CGFloat = 4
 
     private var columnCount: Int { group == .combination ? 3 : 5 }
@@ -37,6 +36,15 @@ struct KanaChartView: View {
         }
     }
 
+    // Flatten rows into indexed items for LazyVGrid
+    private var flatItems: [(id: String, char: KanaCharacter?)] {
+        rows.enumerated().flatMap { rowIdx, row in
+            row.enumerated().map { colIdx, char in
+                (id: "\(rowIdx)-\(colIdx)", char: char)
+            }
+        }
+    }
+
     // Map romaji to grid column
     private func columnIndex(for romaji: String) -> Int {
         if group == .combination {
@@ -55,29 +63,18 @@ struct KanaChartView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: cellSpacing) {
-            ForEach(Array(rows.enumerated()), id: \.offset) { _, row in
-                let filled = row.compactMap { $0 }
-                if filled.count == 1, let single = filled.first {
-                    // Single-character row (ん / ン) — don't pad with empty cells
-                    ChartCellView(
-                        character: single,
-                        progress: progressDict[single.id],
-                        cellWidth: cellWidth,
-                        onTap: { onSelect(single) }
-                    )
-                } else {
-                    HStack(spacing: cellSpacing) {
-                        ForEach(Array(row.enumerated()), id: \.offset) { _, char in
-                            ChartCellView(
-                                character: char,
-                                progress: char.flatMap { progressDict[$0.id] },
-                                cellWidth: cellWidth,
-                                onTap: { if let c = char { onSelect(c) } }
-                            )
-                        }
-                    }
-                }
+        let columns = Array(
+            repeating: GridItem(.flexible(), spacing: cellSpacing),
+            count: columnCount
+        )
+
+        LazyVGrid(columns: columns, spacing: cellSpacing) {
+            ForEach(flatItems, id: \.id) { item in
+                ChartCellView(
+                    character: item.char,
+                    progress: item.char.flatMap { progressDict[$0.id] },
+                    onTap: { if let c = item.char { onSelect(c) } }
+                )
             }
         }
     }

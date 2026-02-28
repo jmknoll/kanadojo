@@ -172,13 +172,13 @@ struct CharacterDetailView: View {
                 )
                 Divider()
                 statCell(
-                    label: "Type A",
+                    label: "Recognition",
                     value: "\(p.typeACorrect)/\(p.typeACorrect + p.typeAIncorrect)",
                     color: AppColors.textSecondary
                 )
                 Divider()
                 statCell(
-                    label: "Type B",
+                    label: "Production",
                     value: "\(p.typeBCorrect)/\(p.typeBCorrect + p.typeBIncorrect)",
                     color: AppColors.textSecondary
                 )
