@@ -48,7 +48,7 @@ final class QuizSetupViewModel {
     @MainActor
     func refreshStrugglingCount(store: ProgressStore) async {
         isLoadingStruggling = true
-        strugglingCount = store.getStrugglingIds(kanaType: kanaType, group: group).count
+        strugglingCount = store.getStrugglingIds(kanaType: kanaType, group: group, quizType: quizType).count
         isLoadingStruggling = false
     }
 }

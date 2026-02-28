@@ -164,24 +164,36 @@ struct CharacterDetailView: View {
                 .font(AppFonts.heading3)
                 .foregroundStyle(AppColors.text)
 
-            HStack(spacing: 0) {
-                statCell(
-                    label: "Accuracy",
-                    value: "\(Int(p.accuracy * 100))%",
-                    color: p.accuracy >= 0.7 ? AppColors.success : AppColors.error
-                )
+            VStack(spacing: 0) {
+                HStack(spacing: 0) {
+                    statCell(
+                        label: "Accuracy",
+                        value: "\(Int(p.accuracy * 100))%",
+                        color: p.accuracy >= 0.7 ? AppColors.success : AppColors.error
+                    )
+                    Divider()
+                    statCell(
+                        label: "Recognition",
+                        value: "\(p.typeACorrect)/\(p.typeACorrect + p.typeAIncorrect)",
+                        color: AppColors.textSecondary
+                    )
+                    Divider()
+                    statCell(
+                        label: "Production",
+                        value: "\(p.typeBCorrect)/\(p.typeBCorrect + p.typeBIncorrect)",
+                        color: AppColors.textSecondary
+                    )
+                }
+
                 Divider()
-                statCell(
-                    label: "Recognition",
-                    value: "\(p.typeACorrect)/\(p.typeACorrect + p.typeAIncorrect)",
-                    color: AppColors.textSecondary
-                )
-                Divider()
-                statCell(
-                    label: "Production",
-                    value: "\(p.typeBCorrect)/\(p.typeBCorrect + p.typeBIncorrect)",
-                    color: AppColors.textSecondary
-                )
+
+                HStack(spacing: AppSpacing.xl) {
+                    masteryCell(label: "Recognition", level: p.typeAMasteryLevel)
+                    Divider()
+                    masteryCell(label: "Production", level: p.typeBMasteryLevel)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, AppSpacing.md)
             }
             .frame(maxWidth: .infinity)
             .background(AppColors.cardBackground)
@@ -191,6 +203,16 @@ struct CharacterDetailView: View {
                     .stroke(AppColors.cardBorder, lineWidth: 1)
             )
         }
+    }
+
+    private func masteryCell(label: String, level: MasteryLevel) -> some View {
+        VStack(spacing: AppSpacing.xs) {
+            Text(label)
+                .font(AppFonts.caption)
+                .foregroundStyle(AppColors.textMuted)
+            MasteryBadge(level: level)
+        }
+        .frame(maxWidth: .infinity)
     }
 
     private func statCell(label: String, value: String, color: Color) -> some View {

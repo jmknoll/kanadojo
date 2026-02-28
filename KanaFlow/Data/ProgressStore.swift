@@ -28,7 +28,7 @@ final class ProgressStore {
             if correct { progress.typeBCorrect += 1 } else { progress.typeBIncorrect += 1 }
         }
 
-        applySpacedRepetition(to: progress, correct: correct)
+        applySpacedRepetition(to: progress, correct: correct, quizType: quizType)
         StreakStore.shared.recordStudyToday()
 
         try? context.save()
@@ -37,9 +37,9 @@ final class ProgressStore {
     // MARK: - Struggling Characters
     //
     // A character is "struggling" if it is due for review OR has been attempted
-    // with accuracy below 70%.
+    // with accuracy below 70% — evaluated per quiz type.
 
-    func getStrugglingIds(kanaType: KanaTypeSelection, group: GroupSelection) -> [String] {
+    func getStrugglingIds(kanaType: KanaTypeSelection, group: GroupSelection, quizType: QuizType) -> [String] {
         let descriptor = FetchDescriptor<CharacterProgress>()
         guard let all = try? context.fetch(descriptor) else { return [] }
 
@@ -47,7 +47,16 @@ final class ProgressStore {
 
         return all
             .filter { validIds.contains($0.characterId) }
-            .filter { $0.isDue || ($0.totalCount > 0 && $0.accuracy < 0.7) }
+            .filter { progress in
+                switch quizType {
+                case .typeA:
+                    let attempted = progress.typeACorrect + progress.typeAIncorrect > 0
+                    return attempted && (progress.typeAIsDue || progress.typeAAccuracy < 0.7)
+                case .typeB:
+                    let attempted = progress.typeBCorrect + progress.typeBIncorrect > 0
+                    return attempted && (progress.typeBIsDue || progress.typeBAccuracy < 0.7)
+                }
+            }
             .map { $0.characterId }
     }
 

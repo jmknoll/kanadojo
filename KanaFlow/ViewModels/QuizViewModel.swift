@@ -44,7 +44,7 @@ final class QuizViewModel {
         let progressDict = store.allProgressDict()
 
         if config.practiceMode == .struggling {
-            let strugglingIds = Set(store.getStrugglingIds(kanaType: config.kanaType, group: config.group))
+            let strugglingIds = Set(store.getStrugglingIds(kanaType: config.kanaType, group: config.group, quizType: config.quizType))
             pool = pool.filter { strugglingIds.contains($0.id) }
         }
 
@@ -54,7 +54,7 @@ final class QuizViewModel {
         let requestedCount = config.questionCount == .all ? pool.count : config.questionCount.rawValue
         let weightFloor: Double = config.practiceMode == .struggling ? 0.01 : 0.1
 
-        characters = weightedSample(pool, count: requestedCount, progressDict: progressDict, weightFloor: weightFloor)
+        characters = weightedSample(pool, count: requestedCount, progressDict: progressDict, weightFloor: weightFloor, quizType: config.quizType)
         currentIndex = 0
         results = []
         hintUsedThisQuestion = false

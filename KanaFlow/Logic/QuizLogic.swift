@@ -22,23 +22,44 @@ func shuffleArray<T>(_ array: [T]) -> [T] {
 
 // MARK: - Spaced Repetition (SM-2)
 
-func applySpacedRepetition(to progress: CharacterProgress, correct: Bool) {
-    if correct {
-        switch progress.consecutiveCorrect {
-        case 0:  progress.intervalDays = 1
-        case 1:  progress.intervalDays = 6
-        default: progress.intervalDays = Int((Double(progress.intervalDays) * progress.easeFactor).rounded())
+func applySpacedRepetition(to progress: CharacterProgress, correct: Bool, quizType: QuizType) {
+    switch quizType {
+    case .typeA:
+        if correct {
+            switch progress.typeAConsecutiveCorrect {
+            case 0:  progress.typeAIntervalDays = 1
+            case 1:  progress.typeAIntervalDays = 6
+            default: progress.typeAIntervalDays = Int((Double(progress.typeAIntervalDays) * progress.typeAEaseFactor).rounded())
+            }
+            progress.typeAEaseFactor = max(1.3, progress.typeAEaseFactor + 0.1)
+            progress.typeAConsecutiveCorrect += 1
+        } else {
+            progress.typeAConsecutiveCorrect = 0
+            progress.typeAIntervalDays = 1
+            progress.typeAEaseFactor = max(1.3, progress.typeAEaseFactor - 0.2)
         }
-        progress.easeFactor = max(1.3, progress.easeFactor + 0.1)
-        progress.consecutiveCorrect += 1
-    } else {
-        progress.consecutiveCorrect = 0
-        progress.intervalDays = 1
-        progress.easeFactor = max(1.3, progress.easeFactor - 0.2)
+        progress.typeANextReviewDate = Calendar.current.date(
+            byAdding: .day, value: progress.typeAIntervalDays, to: Date()
+        )
+
+    case .typeB:
+        if correct {
+            switch progress.typeBConsecutiveCorrect {
+            case 0:  progress.typeBIntervalDays = 1
+            case 1:  progress.typeBIntervalDays = 6
+            default: progress.typeBIntervalDays = Int((Double(progress.typeBIntervalDays) * progress.typeBEaseFactor).rounded())
+            }
+            progress.typeBEaseFactor = max(1.3, progress.typeBEaseFactor + 0.1)
+            progress.typeBConsecutiveCorrect += 1
+        } else {
+            progress.typeBConsecutiveCorrect = 0
+            progress.typeBIntervalDays = 1
+            progress.typeBEaseFactor = max(1.3, progress.typeBEaseFactor - 0.2)
+        }
+        progress.typeBNextReviewDate = Calendar.current.date(
+            byAdding: .day, value: progress.typeBIntervalDays, to: Date()
+        )
     }
-    progress.nextReviewDate = Calendar.current.date(
-        byAdding: .day, value: progress.intervalDays, to: Date()
-    )
 }
 
 // MARK: - Weighted Sample
@@ -54,7 +75,8 @@ func weightedSample(
     _ pool: [KanaCharacter],
     count: Int,
     progressDict: [String: CharacterProgress],
-    weightFloor: Double
+    weightFloor: Double,
+    quizType: QuizType
 ) -> [KanaCharacter] {
     guard !pool.isEmpty else { return [] }
     let n = min(count, pool.count)
@@ -64,7 +86,11 @@ func weightedSample(
 
     while result.count < n && !remaining.isEmpty {
         let weights = remaining.map { char -> Double in
-            let strength = progressDict[char.id]?.strength ?? 0
+            let strength: Double
+            switch quizType {
+            case .typeA: strength = progressDict[char.id]?.typeAStrength ?? 0
+            case .typeB: strength = progressDict[char.id]?.typeBStrength ?? 0
+            }
             return max(weightFloor, 1.0 - strength)
         }
         let totalWeight = weights.reduce(0, +)

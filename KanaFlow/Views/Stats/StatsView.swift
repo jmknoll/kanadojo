@@ -5,23 +5,40 @@ struct StatsView: View {
     @Binding var path: NavigationPath
     @Query private var allProgress: [CharacterProgress]
 
+    @State private var selectedType: QuizType = .typeA
+
     private let totalKana = KanaData.allCharacters.count  // 214
 
     // MARK: - Derived data
 
     private var practiced: [CharacterProgress] {
-        allProgress.filter { $0.totalCount > 0 }
+        switch selectedType {
+        case .typeA: return allProgress.filter { $0.typeACorrect + $0.typeAIncorrect > 0 }
+        case .typeB: return allProgress.filter { $0.typeBCorrect + $0.typeBIncorrect > 0 }
+        }
     }
 
     private var overallAccuracy: Int {
-        let total = practiced.reduce(0) { $0 + $1.totalCount }
-        let correct = practiced.reduce(0) { $0 + $1.correctCount }
-        guard total > 0 else { return 0 }
-        return Int(Double(correct) / Double(total) * 100)
+        switch selectedType {
+        case .typeA:
+            let total = practiced.reduce(0) { $0 + $1.typeACorrect + $1.typeAIncorrect }
+            let correct = practiced.reduce(0) { $0 + $1.typeACorrect }
+            guard total > 0 else { return 0 }
+            return Int(Double(correct) / Double(total) * 100)
+        case .typeB:
+            let total = practiced.reduce(0) { $0 + $1.typeBCorrect + $1.typeBIncorrect }
+            let correct = practiced.reduce(0) { $0 + $1.typeBCorrect }
+            guard total > 0 else { return 0 }
+            return Int(Double(correct) / Double(total) * 100)
+        }
     }
 
     private var masteryBreakdown: [(level: MasteryLevel, count: Int)] {
-        let counts = Dictionary(grouping: allProgress) { $0.masteryLevel }
+        let counts: [MasteryLevel: [CharacterProgress]]
+        switch selectedType {
+        case .typeA: counts = Dictionary(grouping: allProgress) { $0.typeAMasteryLevel }
+        case .typeB: counts = Dictionary(grouping: allProgress) { $0.typeBMasteryLevel }
+        }
         return MasteryLevel.allCases.map { level in
             (level: level, count: counts[level]?.count ?? 0)
         }
@@ -29,13 +46,27 @@ struct StatsView: View {
 
     private var needsPractice: [(character: KanaCharacter, progress: CharacterProgress)] {
         let charDict = Dictionary(uniqueKeysWithValues: KanaData.allCharacters.map { ($0.id, $0) })
-        return allProgress
-            .filter { $0.totalCount > 0 && ($0.isDue || $0.accuracy < 0.7) }
-            .sorted { $0.strength < $1.strength }
-            .compactMap { prog in
-                guard let char = charDict[prog.characterId] else { return nil }
-                return (character: char, progress: prog)
-            }
+        let filtered: [CharacterProgress]
+        switch selectedType {
+        case .typeA:
+            filtered = allProgress
+                .filter {
+                    let attempted = $0.typeACorrect + $0.typeAIncorrect > 0
+                    return attempted && ($0.typeAIsDue || $0.typeAAccuracy < 0.7)
+                }
+                .sorted { $0.typeAStrength < $1.typeAStrength }
+        case .typeB:
+            filtered = allProgress
+                .filter {
+                    let attempted = $0.typeBCorrect + $0.typeBIncorrect > 0
+                    return attempted && ($0.typeBIsDue || $0.typeBAccuracy < 0.7)
+                }
+                .sorted { $0.typeBStrength < $1.typeBStrength }
+        }
+        return filtered.compactMap { prog in
+            guard let char = charDict[prog.characterId] else { return nil }
+            return (character: char, progress: prog)
+        }
     }
 
     // MARK: - Body
@@ -43,6 +74,12 @@ struct StatsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: AppSpacing.xxl) {
+                Picker("Quiz Type", selection: $selectedType) {
+                    Text("Recognition").tag(QuizType.typeA)
+                    Text("Production").tag(QuizType.typeB)
+                }
+                .pickerStyle(.segmented)
+
                 summaryStrip
                 masterySection
                 needsPracticeSection
@@ -195,7 +232,21 @@ struct StatsView: View {
     }
 
     private func needsPracticeRow(_ char: KanaCharacter, _ progress: CharacterProgress) -> some View {
-        Button {
+        let isDue: Bool
+        let accuracy: Double
+        let masteryLevel: MasteryLevel
+        switch selectedType {
+        case .typeA:
+            isDue = progress.typeAIsDue
+            accuracy = progress.typeAAccuracy
+            masteryLevel = progress.typeAMasteryLevel
+        case .typeB:
+            isDue = progress.typeBIsDue
+            accuracy = progress.typeBAccuracy
+            masteryLevel = progress.typeBMasteryLevel
+        }
+
+        return Button {
             path.append(AppDestination.characterDetail(character: char))
         } label: {
             HStack(spacing: AppSpacing.md) {
@@ -208,12 +259,12 @@ struct StatsView: View {
                     Text(char.romaji)
                         .font(AppFonts.bodyMedium)
                         .foregroundStyle(AppColors.text)
-                    MasteryBadge(level: progress.masteryLevel)
+                    MasteryBadge(level: masteryLevel)
                 }
 
                 Spacer()
 
-                if progress.isDue {
+                if isDue {
                     Text("Due")
                         .font(AppFonts.small)
                         .foregroundStyle(.white)
@@ -223,9 +274,9 @@ struct StatsView: View {
                         .clipShape(Capsule())
                 }
 
-                Text("\(Int(progress.accuracy * 100))%")
+                Text("\(Int(accuracy * 100))%")
                     .font(AppFonts.bodyMedium)
-                    .foregroundStyle(progress.accuracy >= 0.7 ? AppColors.success : AppColors.error)
+                    .foregroundStyle(accuracy >= 0.7 ? AppColors.success : AppColors.error)
 
                 Image(systemName: "chevron.right")
                     .font(.system(size: 12, weight: .semibold))

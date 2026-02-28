@@ -12,11 +12,17 @@ final class CharacterProgress {
     var typeBCorrect: Int
     var typeBIncorrect: Int
 
-    // SM-2 spaced repetition fields
-    var intervalDays: Int        // days until next review
-    var easeFactor: Double       // SM-2 ease multiplier
-    var consecutiveCorrect: Int  // current correct streak
-    var nextReviewDate: Date?    // nil = never reviewed, always due
+    // SM-2 spaced repetition — Recognition (typeA)
+    var typeAIntervalDays: Int
+    var typeAEaseFactor: Double
+    var typeAConsecutiveCorrect: Int
+    var typeANextReviewDate: Date?
+
+    // SM-2 spaced repetition — Production (typeB)
+    var typeBIntervalDays: Int
+    var typeBEaseFactor: Double
+    var typeBConsecutiveCorrect: Int
+    var typeBNextReviewDate: Date?
 
     init(characterId: String) {
         self.characterId = characterId
@@ -27,36 +33,80 @@ final class CharacterProgress {
         self.typeAIncorrect = 0
         self.typeBCorrect = 0
         self.typeBIncorrect = 0
-        self.intervalDays = 1
-        self.easeFactor = 2.5
-        self.consecutiveCorrect = 0
-        self.nextReviewDate = nil
+        self.typeAIntervalDays = 1
+        self.typeAEaseFactor = 2.5
+        self.typeAConsecutiveCorrect = 0
+        self.typeANextReviewDate = nil
+        self.typeBIntervalDays = 1
+        self.typeBEaseFactor = 2.5
+        self.typeBConsecutiveCorrect = 0
+        self.typeBNextReviewDate = nil
     }
 
+    // Combined totals (for overall display in CharacterDetailView)
     var totalCount: Int { correctCount + incorrectCount }
 
     var accuracy: Double {
         totalCount > 0 ? Double(correctCount) / Double(totalCount) : 0.0
     }
 
-    // 0.0 (unknown/weak) → 1.0 (strong). Scales with attempt count so
-    // 1 lucky correct answer doesn't inflate the score.
-    var strength: Double {
-        guard totalCount > 0 else { return 0 }
-        let confidence = min(Double(totalCount) / 10.0, 1.0)
-        return accuracy * confidence
+    // MARK: - Per-type accuracy
+
+    var typeAAccuracy: Double {
+        let total = typeACorrect + typeAIncorrect
+        return total > 0 ? Double(typeACorrect) / Double(total) : 0.0
     }
 
-    // True when the character is due for review today or earlier
-    var isDue: Bool {
-        guard let next = nextReviewDate else { return true }
+    var typeBAccuracy: Double {
+        let total = typeBCorrect + typeBIncorrect
+        return total > 0 ? Double(typeBCorrect) / Double(total) : 0.0
+    }
+
+    // MARK: - Per-type strength (0.0 weak → 1.0 strong)
+
+    var typeAStrength: Double {
+        let total = typeACorrect + typeAIncorrect
+        guard total > 0 else { return 0 }
+        let confidence = min(Double(total) / 10.0, 1.0)
+        return typeAAccuracy * confidence
+    }
+
+    var typeBStrength: Double {
+        let total = typeBCorrect + typeBIncorrect
+        guard total > 0 else { return 0 }
+        let confidence = min(Double(total) / 10.0, 1.0)
+        return typeBAccuracy * confidence
+    }
+
+    // MARK: - Per-type isDue (only true when the type has been attempted)
+
+    var typeAIsDue: Bool {
+        let attempted = typeACorrect + typeAIncorrect > 0
+        guard let next = typeANextReviewDate else { return attempted }
         return next <= Date()
     }
 
-    var masteryLevel: MasteryLevel {
-        if totalCount == 0     { return .new }
-        if consecutiveCorrect < 2 { return .learning }
-        if intervalDays < 21   { return .reviewing }
+    var typeBIsDue: Bool {
+        let attempted = typeBCorrect + typeBIncorrect > 0
+        guard let next = typeBNextReviewDate else { return attempted }
+        return next <= Date()
+    }
+
+    // MARK: - Per-type mastery level
+
+    var typeAMasteryLevel: MasteryLevel {
+        let total = typeACorrect + typeAIncorrect
+        if total == 0                    { return .new }
+        if typeAConsecutiveCorrect < 2   { return .learning }
+        if typeAIntervalDays < 21        { return .reviewing }
+        return .mastered
+    }
+
+    var typeBMasteryLevel: MasteryLevel {
+        let total = typeBCorrect + typeBIncorrect
+        if total == 0                    { return .new }
+        if typeBConsecutiveCorrect < 2   { return .learning }
+        if typeBIntervalDays < 21        { return .reviewing }
         return .mastered
     }
 }
