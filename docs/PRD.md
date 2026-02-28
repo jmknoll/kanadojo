@@ -82,12 +82,12 @@ Two primary modes:
 
 ### Handwriting Recognition Options
 
-| Approach                               | Pros                   | Cons                         |
-| -------------------------------------- | ---------------------- | ---------------------------- |
-| **ML Model (Core ML / Create ML)**     | Offline, fast, private | Training data, accuracy      |
-| **Cloud API (Google Vision, Apple ML)**| High accuracy          | Requires network, cost       |
-| **Stroke Matching**                    | Simple, educational    | Less forgiving, complex UI   |
-| **Self-Grading**                       | Zero complexity        | Relies on user honesty       |
+| Approach                                | Pros                   | Cons                       |
+| --------------------------------------- | ---------------------- | -------------------------- |
+| **ML Model (Core ML / Create ML)**      | Offline, fast, private | Training data, accuracy    |
+| **Cloud API (Google Vision, Apple ML)** | High accuracy          | Requires network, cost     |
+| **Stroke Matching**                     | Simple, educational    | Less forgiving, complex UI |
+| **Self-Grading**                        | Zero complexity        | Relies on user honesty     |
 
 **Recommendation:** Start with self-grading ("Did you get it right?") + optional reveal, then iterate to ML-based recognition.
 
@@ -188,15 +188,15 @@ Two primary modes:
 
 - [ ] Hiragana chart screen
 - [ ] Katakana chart screen
-- [ ] Tap character for details (stroke order, examples)
-
-**4.2 Learning Flow**
-
-- [ ] Guided introduction to character groups
-- [ ] Stroke order animations
-- [ ] Audio pronunciation (future)
+- [ ] Tap character for details (stroke order, romaji pronunciation)
 
 ### Phase 5: Polish & Enhancements
+
+**5.0 Notifications**
+
+- [ ] Add settings page with ability to enable/disable notifications
+- [ ] Add daily reminder push notification
+- [ ] On first open, add notification permission popup (with text about the importance of daily reminders)
 
 **5.1 ML Handwriting Recognition**
 

@@ -61,6 +61,15 @@ final class ProgressStore {
         try? context.save()
     }
 
+    // MARK: - Single Character Lookup
+
+    func progressFor(characterId: String) -> CharacterProgress? {
+        let descriptor = FetchDescriptor<CharacterProgress>(
+            predicate: #Predicate { $0.characterId == characterId }
+        )
+        return (try? context.fetch(descriptor))?.first
+    }
+
     // MARK: - Private Helpers
 
     private func fetchOrCreate(characterId: String) -> CharacterProgress {

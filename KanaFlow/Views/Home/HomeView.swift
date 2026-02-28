@@ -28,9 +28,10 @@ struct HomeView: View {
                         title: "Study",
                         subtitle: "Browse kana reference tables",
                         icon: "book.pages",
-                        isEnabled: false,
-                        badge: "Soon"
-                    ) {}
+                        isEnabled: true
+                    ) {
+                        path.append(AppDestination.study)
+                    }
 
                     HomeTileView(
                         title: "Stats",

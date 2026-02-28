@@ -3,15 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1BBAEF52BBE6ADE139E9D238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09F41BAD09A472858911241F /* Assets.xcassets */; };
 		1C7D214C16391DAEDCD3B234 /* DrawingCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBEBCF38E97987B332021C8 /* DrawingCanvasView.swift */; };
 		1E4359133219152180927587 /* KanaFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2F7E776CCD86790477457 /* KanaFlowApp.swift */; };
+		285571F760716A9B08D36A0F /* StrokePaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735FF2D3EE4701E10C191DB /* StrokePaths.swift */; };
 		290C2782BA31D782E4022387 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B692CC1A29AA04F480B128F /* HomeView.swift */; };
 		2D958488090BD3CB69F55753 /* QuizSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1437D3462BFABC3EAF762718 /* QuizSummaryView.swift */; };
+		336DFBFE6AC4E5EDBB8452C9 /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30019273FF87382E1A673482 /* CharacterDetailView.swift */; };
 		35323A6EEFF0E3C0A8B0157C /* CharacterProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB0D6572875BA5778A2BED9 /* CharacterProgress.swift */; };
 		4427D626B3F7BC67D2393ACF /* SelfGradeOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7DE831315EB432C14D9A6 /* SelfGradeOverlayView.swift */; };
 		503887A38C28BA8A987E26D7 /* KanaTypeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32C3E24A400D864993BE324 /* KanaTypeSelectorView.swift */; };
@@ -25,6 +27,7 @@
 		94E3BF49374A6259437ABAB1 /* SVGPathParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75650E51770012666BCFA3A /* SVGPathParser.swift */; };
 		A46ACC9E2C6C3F2A8D19C6E7 /* QuizCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CB3E058DB9C29282A690B /* QuizCardView.swift */; };
 		B1AD10F4965727E89E25AAE9 /* QuizLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AD24FEAF03C710AA115065 /* QuizLogic.swift */; };
+		B25AC61D5FABF9E906F145ED /* StudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E839377CEA1B973925C9228A /* StudyView.swift */; };
 		B80CA96C1F2E85CA91238B03 /* StrokeOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711AA86C342A6C0D375DB7F7 /* StrokeOrder.swift */; };
 		BA2E1D04F7DB982197B6E3FF /* KanaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC50F7FBEC4C6A36FECE666 /* KanaData.swift */; };
 		BAC1CC333BF8DF17BFA63A07 /* AnswerInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC0136D6D20551BF7CD5715 /* AnswerInputView.swift */; };
@@ -35,6 +38,8 @@
 		D8EA68CA3F118718FD43DFD2 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E1A7C0C41DC2830DD51323 /* AppTheme.swift */; };
 		D932BF23CA6D37901771C35B /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9506FEE4D59131CA5E5ED91A /* SectionHeaderView.swift */; };
 		EB30EAF15B41629FD35D946A /* GroupChipSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE15C33BF420F76A34CEFD49 /* GroupChipSelectorView.swift */; };
+		ED9FA44C0ACA3F26E0496782 /* KanaChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0317ED4398AF161D45E9DA /* KanaChartView.swift */; };
+		EECD5E483F15D98339A02381 /* ChartCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F798C505DEEDEAFC9C7BFB7 /* ChartCellView.swift */; };
 		F4AFD2634578EFE3A4438762 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4D6C358ACCE1DA14E9A9C8 /* ContentView.swift */; };
 		F60D6A986985AA9FE26DA105 /* QuizSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D372AF06F621E1716C907D /* QuizSetupView.swift */; };
 /* End PBXBuildFile section */
@@ -48,6 +53,8 @@
 		21488D624528C38FBCE5500D /* KanaModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaModels.swift; sourceTree = "<group>"; };
 		27ED0E54852B8888EA9AC64B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2EC50F7FBEC4C6A36FECE666 /* KanaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaData.swift; sourceTree = "<group>"; };
+		30019273FF87382E1A673482 /* CharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
+		4735FF2D3EE4701E10C191DB /* StrokePaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokePaths.swift; sourceTree = "<group>"; };
 		4CC0136D6D20551BF7CD5715 /* AnswerInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerInputView.swift; sourceTree = "<group>"; };
 		588DC65E83535618D82D7BDB /* PracticeModeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeModeSelectorView.swift; sourceTree = "<group>"; };
 		59A2E45B8FF8119726AD543B /* QuizTypeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizTypeSelectorView.swift; sourceTree = "<group>"; };
@@ -58,17 +65,20 @@
 		6EB0D6572875BA5778A2BED9 /* CharacterProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProgress.swift; sourceTree = "<group>"; };
 		711AA86C342A6C0D375DB7F7 /* StrokeOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeOrder.swift; sourceTree = "<group>"; };
 		79DB33B5320C81C81C7B51C6 /* ProgressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStore.swift; sourceTree = "<group>"; };
-		8143B4142DC2EF9841E6FE1D /* KanaFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KanaFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8143B4142DC2EF9841E6FE1D /* KanaFlow.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = KanaFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		887F2910BFC0E1A9752E4DFF /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		88E1A7C0C41DC2830DD51323 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		8BBEBCF38E97987B332021C8 /* DrawingCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvasView.swift; sourceTree = "<group>"; };
+		8F798C505DEEDEAFC9C7BFB7 /* ChartCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCellView.swift; sourceTree = "<group>"; };
 		9506FEE4D59131CA5E5ED91A /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		96AD24FEAF03C710AA115065 /* QuizLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLogic.swift; sourceTree = "<group>"; };
+		AE0317ED4398AF161D45E9DA /* KanaChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaChartView.swift; sourceTree = "<group>"; };
 		C32C3E24A400D864993BE324 /* KanaTypeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaTypeSelectorView.swift; sourceTree = "<group>"; };
 		C85901367625F24A35FA4E26 /* QuizSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSetupViewModel.swift; sourceTree = "<group>"; };
 		D75650E51770012666BCFA3A /* SVGPathParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGPathParser.swift; sourceTree = "<group>"; };
 		DD4D6C358ACCE1DA14E9A9C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E461891B9A3C5A13D70FBAFA /* QuizPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPlayView.swift; sourceTree = "<group>"; };
+		E839377CEA1B973925C9228A /* StudyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyView.swift; sourceTree = "<group>"; };
 		EE15C33BF420F76A34CEFD49 /* GroupChipSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChipSelectorView.swift; sourceTree = "<group>"; };
 		F5D03E254F84D4B694368C92 /* HomeTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTileView.swift; sourceTree = "<group>"; };
 		FBD7DE831315EB432C14D9A6 /* SelfGradeOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfGradeOverlayView.swift; sourceTree = "<group>"; };
@@ -173,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				96AD24FEAF03C710AA115065 /* QuizLogic.swift */,
+				4735FF2D3EE4701E10C191DB /* StrokePaths.swift */,
 				D75650E51770012666BCFA3A /* SVGPathParser.swift */,
 			);
 			path = Logic;
@@ -186,6 +197,7 @@
 				5E335B65355D069FF152AF5B /* Quiz */,
 				45B579257C684A3F10CD8605 /* QuizSetup */,
 				E486167F708769F63BB02926 /* Shared */,
+				E617C6A4F86B00DFB999AD11 /* Study */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -206,6 +218,17 @@
 				9506FEE4D59131CA5E5ED91A /* SectionHeaderView.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		E617C6A4F86B00DFB999AD11 /* Study */ = {
+			isa = PBXGroup;
+			children = (
+				30019273FF87382E1A673482 /* CharacterDetailView.swift */,
+				8F798C505DEEDEAFC9C7BFB7 /* ChartCellView.swift */,
+				AE0317ED4398AF161D45E9DA /* KanaChartView.swift */,
+				E839377CEA1B973925C9228A /* StudyView.swift */,
+			);
+			path = Study;
 			sourceTree = "<group>";
 		};
 		F717128BAA947A56AD3AEA55 = {
@@ -248,6 +271,7 @@
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					F46B528D312F4DB7FD85287B = {
+						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -262,6 +286,7 @@
 			);
 			mainGroup = F717128BAA947A56AD3AEA55;
 			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -288,13 +313,16 @@
 			files = (
 				BAC1CC333BF8DF17BFA63A07 /* AnswerInputView.swift in Sources */,
 				D8EA68CA3F118718FD43DFD2 /* AppTheme.swift in Sources */,
+				336DFBFE6AC4E5EDBB8452C9 /* CharacterDetailView.swift in Sources */,
 				35323A6EEFF0E3C0A8B0157C /* CharacterProgress.swift in Sources */,
+				EECD5E483F15D98339A02381 /* ChartCellView.swift in Sources */,
 				CC523677FD9AB5FDCD9A220B /* ChipView.swift in Sources */,
 				F4AFD2634578EFE3A4438762 /* ContentView.swift in Sources */,
 				1C7D214C16391DAEDCD3B234 /* DrawingCanvasView.swift in Sources */,
 				EB30EAF15B41629FD35D946A /* GroupChipSelectorView.swift in Sources */,
 				5E247A2C18CACB0E989FF52A /* HomeTileView.swift in Sources */,
 				290C2782BA31D782E4022387 /* HomeView.swift in Sources */,
+				ED9FA44C0ACA3F26E0496782 /* KanaChartView.swift in Sources */,
 				BA2E1D04F7DB982197B6E3FF /* KanaData.swift in Sources */,
 				1E4359133219152180927587 /* KanaFlowApp.swift in Sources */,
 				68D4ED844D9E2B7477E65C6A /* KanaModels.swift in Sources */,
@@ -315,6 +343,8 @@
 				D932BF23CA6D37901771C35B /* SectionHeaderView.swift in Sources */,
 				4427D626B3F7BC67D2393ACF /* SelfGradeOverlayView.swift in Sources */,
 				B80CA96C1F2E85CA91238B03 /* StrokeOrder.swift in Sources */,
+				285571F760716A9B08D36A0F /* StrokePaths.swift in Sources */,
+				B25AC61D5FABF9E906F145ED /* StudyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,7 +479,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J58DBXYSS4;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = KanaFlow/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -471,7 +501,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J58DBXYSS4;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = KanaFlow/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (

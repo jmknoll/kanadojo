@@ -35,11 +35,14 @@ struct QuizPlayView: View {
             case .complete:
                 QuizSummaryView(
                     results: vm.results,
-                    quizType: config.quizType
-                ) {
-                    // Pop back to home by removing all destinations
-                    path = NavigationPath()
-                }
+                    quizType: config.quizType,
+                    onRepeat: {
+                        Task { await vm.load(config: config, store: store) }
+                    },
+                    onDone: {
+                        path.removeLast()
+                    }
+                )
             }
         }
         .navigationBarBackButtonHidden(vm.state != .complete)
@@ -49,7 +52,7 @@ struct QuizPlayView: View {
             if vm.state != .complete {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Quit") {
-                        path = NavigationPath()
+                        path.removeLast()
                     }
                     .foregroundStyle(AppColors.textSecondary)
                 }
@@ -92,6 +95,7 @@ struct QuizPlayView: View {
             AnswerInputView(
                 text: $inputText,
                 isCorrect: vm.state == .feedback ? vm.lastAnswerCorrect : nil,
+                correctAnswer: vm.lastAnswerCorrect == false ? vm.currentCharacter?.romaji : nil,
                 onSubmit: {
                     vm.submitAnswer(inputText, store: store)
                     inputText = ""
@@ -118,7 +122,7 @@ struct QuizPlayView: View {
 
             DrawingCanvasView(
                 strokes: $drawingStrokes,
-                hintPaths: parsedHintPaths(for: char),
+                hintPaths: strokePaths(for: char, in: 260.0),
                 onSubmit: { strokes in
                     vm.submitDrawing(strokes)
                     drawingStrokes = []
@@ -154,50 +158,4 @@ struct QuizPlayView: View {
         }
     }
 
-    // MARK: - Hint Paths
-
-    private func parsedHintPaths(for char: KanaCharacter) -> [Path] {
-        let canvasSize: CGFloat = 260.0
-        let kanjivgSize: CGFloat = 109.0
-
-        // Single character: scale to fill the full canvas
-        if char.character.count == 1 {
-            guard let paths = getStrokeOrder(char.character) else { return [] }
-            return paths.map { SVGPathParser.parse($0, scale: canvasSize / kanjivgSize) }
-        }
-
-        // Combination kana: lay out two characters side by side
-        let chars = Array(char.character)
-        guard chars.count == 2 else { return [] }
-
-        // Char 1 (main kana): occupies left ~55% of canvas, vertically centered
-        let size1 = canvasSize * 0.55
-        let scale1 = size1 / kanjivgSize
-        let x1: CGFloat = 0
-        let y1 = (canvasSize - size1) / 2
-
-        // Char 2 (small kana): occupies ~40% of canvas, centered in remaining space
-        let size2 = canvasSize * 0.40
-        let scale2 = size2 / kanjivgSize
-        let x2 = size1 + (canvasSize - size1 - size2) / 2
-        let y2 = (canvasSize - size2) / 2
-
-        var result: [Path] = []
-
-        func append(character: Character, scale: CGFloat, dx: CGFloat, dy: CGFloat) {
-            guard let paths = getStrokeOrder(String(character)) else { return }
-            for pathStr in paths {
-                let parsed = SVGPathParser.parse(pathStr, scale: scale)
-                var t = CGAffineTransform(translationX: dx, y: dy)
-                if let cgp = parsed.cgPath.copy(using: &t) {
-                    result.append(Path(cgp))
-                }
-            }
-        }
-
-        append(character: chars[0], scale: scale1, dx: x1, dy: y1)
-        append(character: chars[1], scale: scale2, dx: x2, dy: y2)
-
-        return result
-    }
 }

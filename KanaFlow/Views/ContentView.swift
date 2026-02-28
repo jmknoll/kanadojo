@@ -4,6 +4,8 @@ import SwiftData
 enum AppDestination: Hashable {
     case quizSetup
     case quizPlay(config: QuizConfig)
+    case study
+    case characterDetail(character: KanaCharacter)
 }
 
 // QuizConfig needs to be Hashable for NavigationStack
@@ -38,6 +40,10 @@ struct ContentView: View {
                         QuizSetupView(path: $path)
                     case .quizPlay(let config):
                         QuizPlayView(config: config, path: $path)
+                    case .study:
+                        StudyView(path: $path)
+                    case .characterDetail(let character):
+                        CharacterDetailView(character: character)
                     }
                 }
         }

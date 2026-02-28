@@ -3,6 +3,7 @@ import SwiftUI
 struct QuizSummaryView: View {
     let results: [QuizResult]
     let quizType: QuizType
+    let onRepeat: () -> Void
     let onDone: () -> Void
 
     var stats: QuizStats { calculateStats(results) }
@@ -12,9 +13,6 @@ struct QuizSummaryView: View {
             VStack(spacing: AppSpacing.xxl) {
                 // Score header
                 VStack(spacing: AppSpacing.md) {
-                    Text(scoreEmoji)
-                        .font(.system(size: 64))
-
                     Text("\(stats.percentage)%")
                         .font(.system(size: 56, weight: .bold))
                         .foregroundStyle(scoreColor)
@@ -55,15 +53,27 @@ struct QuizSummaryView: View {
                     }
                 }
 
-                // Done button
-                Button(action: onDone) {
-                    Text("Done")
-                        .font(AppFonts.bodyMedium)
-                        .foregroundStyle(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, AppSpacing.lg)
-                        .background(AppColors.tint)
-                        .clipShape(RoundedRectangle(cornerRadius: AppRadius.lg))
+                // Actions
+                VStack(spacing: AppSpacing.md) {
+                    Button(action: onRepeat) {
+                        Text("Repeat Quiz")
+                            .font(AppFonts.bodyMedium)
+                            .foregroundStyle(AppColors.tint)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, AppSpacing.lg)
+                            .background(AppColors.tint.opacity(0.12))
+                            .clipShape(RoundedRectangle(cornerRadius: AppRadius.lg))
+                    }
+
+                    Button(action: onDone) {
+                        Text("Done")
+                            .font(AppFonts.bodyMedium)
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, AppSpacing.lg)
+                            .background(AppColors.tint)
+                            .clipShape(RoundedRectangle(cornerRadius: AppRadius.lg))
+                    }
                 }
                 .padding(.horizontal, AppSpacing.lg)
                 .padding(.bottom, AppSpacing.xxxl)
@@ -71,15 +81,6 @@ struct QuizSummaryView: View {
         }
         .background(AppColors.background)
         .navigationBarBackButtonHidden()
-    }
-
-    private var scoreEmoji: String {
-        switch stats.percentage {
-        case 90...100: return "🎉"
-        case 70...89: return "👍"
-        case 50...69: return "📚"
-        default: return "💪"
-        }
     }
 
     private var scoreColor: Color {
