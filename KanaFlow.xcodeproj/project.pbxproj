@@ -1,0 +1,513 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 63;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1BBAEF52BBE6ADE139E9D238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09F41BAD09A472858911241F /* Assets.xcassets */; };
+		1C7D214C16391DAEDCD3B234 /* DrawingCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBEBCF38E97987B332021C8 /* DrawingCanvasView.swift */; };
+		1E4359133219152180927587 /* KanaFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2F7E776CCD86790477457 /* KanaFlowApp.swift */; };
+		290C2782BA31D782E4022387 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B692CC1A29AA04F480B128F /* HomeView.swift */; };
+		2D958488090BD3CB69F55753 /* QuizSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1437D3462BFABC3EAF762718 /* QuizSummaryView.swift */; };
+		35323A6EEFF0E3C0A8B0157C /* CharacterProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB0D6572875BA5778A2BED9 /* CharacterProgress.swift */; };
+		4427D626B3F7BC67D2393ACF /* SelfGradeOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7DE831315EB432C14D9A6 /* SelfGradeOverlayView.swift */; };
+		503887A38C28BA8A987E26D7 /* KanaTypeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32C3E24A400D864993BE324 /* KanaTypeSelectorView.swift */; };
+		5E247A2C18CACB0E989FF52A /* HomeTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D03E254F84D4B694368C92 /* HomeTileView.swift */; };
+		604C1EFA7A49CA51158CAB10 /* QuizTypeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A2E45B8FF8119726AD543B /* QuizTypeSelectorView.swift */; };
+		609A7EC2E40B9E33F51693F5 /* QuestionCountSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B1BE4CD9D651CC02EED9E /* QuestionCountSelectorView.swift */; };
+		65DC6D6A4DD648C67C05361B /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F2910BFC0E1A9752E4DFF /* ProgressBarView.swift */; };
+		68D4ED844D9E2B7477E65C6A /* KanaModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21488D624528C38FBCE5500D /* KanaModels.swift */; };
+		7AD873E350FD1F08899BC3DE /* PracticeModeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588DC65E83535618D82D7BDB /* PracticeModeSelectorView.swift */; };
+		878E7AC086486296B94C22CB /* QuizPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E461891B9A3C5A13D70FBAFA /* QuizPlayView.swift */; };
+		94E3BF49374A6259437ABAB1 /* SVGPathParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75650E51770012666BCFA3A /* SVGPathParser.swift */; };
+		A46ACC9E2C6C3F2A8D19C6E7 /* QuizCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CB3E058DB9C29282A690B /* QuizCardView.swift */; };
+		B1AD10F4965727E89E25AAE9 /* QuizLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AD24FEAF03C710AA115065 /* QuizLogic.swift */; };
+		B80CA96C1F2E85CA91238B03 /* StrokeOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711AA86C342A6C0D375DB7F7 /* StrokeOrder.swift */; };
+		BA2E1D04F7DB982197B6E3FF /* KanaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC50F7FBEC4C6A36FECE666 /* KanaData.swift */; };
+		BAC1CC333BF8DF17BFA63A07 /* AnswerInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC0136D6D20551BF7CD5715 /* AnswerInputView.swift */; };
+		BE2E77CBA7BBC7598E086555 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF51CEFF0BAB22A1A118E04 /* QuizViewModel.swift */; };
+		CA74AA1C47E84DC741D1313A /* QuizSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85901367625F24A35FA4E26 /* QuizSetupViewModel.swift */; };
+		CC523677FD9AB5FDCD9A220B /* ChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6605021C16506D37085B0F49 /* ChipView.swift */; };
+		D426CC3A25D11E8205D52433 /* ProgressStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DB33B5320C81C81C7B51C6 /* ProgressStore.swift */; };
+		D8EA68CA3F118718FD43DFD2 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E1A7C0C41DC2830DD51323 /* AppTheme.swift */; };
+		D932BF23CA6D37901771C35B /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9506FEE4D59131CA5E5ED91A /* SectionHeaderView.swift */; };
+		EB30EAF15B41629FD35D946A /* GroupChipSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE15C33BF420F76A34CEFD49 /* GroupChipSelectorView.swift */; };
+		F4AFD2634578EFE3A4438762 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4D6C358ACCE1DA14E9A9C8 /* ContentView.swift */; };
+		F60D6A986985AA9FE26DA105 /* QuizSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D372AF06F621E1716C907D /* QuizSetupView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		09F41BAD09A472858911241F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0F3CB3E058DB9C29282A690B /* QuizCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCardView.swift; sourceTree = "<group>"; };
+		1437D3462BFABC3EAF762718 /* QuizSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSummaryView.swift; sourceTree = "<group>"; };
+		1BA2F7E776CCD86790477457 /* KanaFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaFlowApp.swift; sourceTree = "<group>"; };
+		1E7B1BE4CD9D651CC02EED9E /* QuestionCountSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCountSelectorView.swift; sourceTree = "<group>"; };
+		21488D624528C38FBCE5500D /* KanaModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaModels.swift; sourceTree = "<group>"; };
+		27ED0E54852B8888EA9AC64B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2EC50F7FBEC4C6A36FECE666 /* KanaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaData.swift; sourceTree = "<group>"; };
+		4CC0136D6D20551BF7CD5715 /* AnswerInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerInputView.swift; sourceTree = "<group>"; };
+		588DC65E83535618D82D7BDB /* PracticeModeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeModeSelectorView.swift; sourceTree = "<group>"; };
+		59A2E45B8FF8119726AD543B /* QuizTypeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizTypeSelectorView.swift; sourceTree = "<group>"; };
+		6605021C16506D37085B0F49 /* ChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipView.swift; sourceTree = "<group>"; };
+		69D372AF06F621E1716C907D /* QuizSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSetupView.swift; sourceTree = "<group>"; };
+		6AF51CEFF0BAB22A1A118E04 /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
+		6B692CC1A29AA04F480B128F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		6EB0D6572875BA5778A2BED9 /* CharacterProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProgress.swift; sourceTree = "<group>"; };
+		711AA86C342A6C0D375DB7F7 /* StrokeOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeOrder.swift; sourceTree = "<group>"; };
+		79DB33B5320C81C81C7B51C6 /* ProgressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStore.swift; sourceTree = "<group>"; };
+		8143B4142DC2EF9841E6FE1D /* KanaFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KanaFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		887F2910BFC0E1A9752E4DFF /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		88E1A7C0C41DC2830DD51323 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		8BBEBCF38E97987B332021C8 /* DrawingCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvasView.swift; sourceTree = "<group>"; };
+		9506FEE4D59131CA5E5ED91A /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
+		96AD24FEAF03C710AA115065 /* QuizLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLogic.swift; sourceTree = "<group>"; };
+		C32C3E24A400D864993BE324 /* KanaTypeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaTypeSelectorView.swift; sourceTree = "<group>"; };
+		C85901367625F24A35FA4E26 /* QuizSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSetupViewModel.swift; sourceTree = "<group>"; };
+		D75650E51770012666BCFA3A /* SVGPathParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGPathParser.swift; sourceTree = "<group>"; };
+		DD4D6C358ACCE1DA14E9A9C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E461891B9A3C5A13D70FBAFA /* QuizPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPlayView.swift; sourceTree = "<group>"; };
+		EE15C33BF420F76A34CEFD49 /* GroupChipSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChipSelectorView.swift; sourceTree = "<group>"; };
+		F5D03E254F84D4B694368C92 /* HomeTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTileView.swift; sourceTree = "<group>"; };
+		FBD7DE831315EB432C14D9A6 /* SelfGradeOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfGradeOverlayView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		026FD101CED07653A69824D3 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				88E1A7C0C41DC2830DD51323 /* AppTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		0C3C8343909353ADCE37FA63 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				27ED0E54852B8888EA9AC64B /* Info.plist */,
+				1BA2F7E776CCD86790477457 /* KanaFlowApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		229F6E802D40741B7626E878 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C85901367625F24A35FA4E26 /* QuizSetupViewModel.swift */,
+				6AF51CEFF0BAB22A1A118E04 /* QuizViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		36F7E8615AA6343078DDE172 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				6EB0D6572875BA5778A2BED9 /* CharacterProgress.swift */,
+				79DB33B5320C81C81C7B51C6 /* ProgressStore.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		3E5878204A297588A0DCDAE1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2EC50F7FBEC4C6A36FECE666 /* KanaData.swift */,
+				21488D624528C38FBCE5500D /* KanaModels.swift */,
+				711AA86C342A6C0D375DB7F7 /* StrokeOrder.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		45B579257C684A3F10CD8605 /* QuizSetup */ = {
+			isa = PBXGroup;
+			children = (
+				EE15C33BF420F76A34CEFD49 /* GroupChipSelectorView.swift */,
+				C32C3E24A400D864993BE324 /* KanaTypeSelectorView.swift */,
+				588DC65E83535618D82D7BDB /* PracticeModeSelectorView.swift */,
+				1E7B1BE4CD9D651CC02EED9E /* QuestionCountSelectorView.swift */,
+				69D372AF06F621E1716C907D /* QuizSetupView.swift */,
+				59A2E45B8FF8119726AD543B /* QuizTypeSelectorView.swift */,
+			);
+			path = QuizSetup;
+			sourceTree = "<group>";
+		};
+		52A5CD06BC75D2ED0AE81034 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8143B4142DC2EF9841E6FE1D /* KanaFlow.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5DE21E6E108D7A840052428D /* KanaFlow */ = {
+			isa = PBXGroup;
+			children = (
+				0C3C8343909353ADCE37FA63 /* App */,
+				36F7E8615AA6343078DDE172 /* Data */,
+				66FFA45CAA112AA188964AA9 /* Logic */,
+				3E5878204A297588A0DCDAE1 /* Models */,
+				026FD101CED07653A69824D3 /* Theme */,
+				229F6E802D40741B7626E878 /* ViewModels */,
+				88ADF086E449D14F1E09DC58 /* Views */,
+			);
+			path = KanaFlow;
+			sourceTree = "<group>";
+		};
+		5E335B65355D069FF152AF5B /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				4CC0136D6D20551BF7CD5715 /* AnswerInputView.swift */,
+				8BBEBCF38E97987B332021C8 /* DrawingCanvasView.swift */,
+				887F2910BFC0E1A9752E4DFF /* ProgressBarView.swift */,
+				0F3CB3E058DB9C29282A690B /* QuizCardView.swift */,
+				E461891B9A3C5A13D70FBAFA /* QuizPlayView.swift */,
+				1437D3462BFABC3EAF762718 /* QuizSummaryView.swift */,
+				FBD7DE831315EB432C14D9A6 /* SelfGradeOverlayView.swift */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
+		66FFA45CAA112AA188964AA9 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				96AD24FEAF03C710AA115065 /* QuizLogic.swift */,
+				D75650E51770012666BCFA3A /* SVGPathParser.swift */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		88ADF086E449D14F1E09DC58 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DD4D6C358ACCE1DA14E9A9C8 /* ContentView.swift */,
+				A5214EF58D565A9F587AFC48 /* Home */,
+				5E335B65355D069FF152AF5B /* Quiz */,
+				45B579257C684A3F10CD8605 /* QuizSetup */,
+				E486167F708769F63BB02926 /* Shared */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A5214EF58D565A9F587AFC48 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				F5D03E254F84D4B694368C92 /* HomeTileView.swift */,
+				6B692CC1A29AA04F480B128F /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		E486167F708769F63BB02926 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				6605021C16506D37085B0F49 /* ChipView.swift */,
+				9506FEE4D59131CA5E5ED91A /* SectionHeaderView.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		F717128BAA947A56AD3AEA55 = {
+			isa = PBXGroup;
+			children = (
+				09F41BAD09A472858911241F /* Assets.xcassets */,
+				5DE21E6E108D7A840052428D /* KanaFlow */,
+				52A5CD06BC75D2ED0AE81034 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F46B528D312F4DB7FD85287B /* KanaFlow */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A99981F7A075117231F62A45 /* Build configuration list for PBXNativeTarget "KanaFlow" */;
+			buildPhases = (
+				0D232C3E4A701DE01C44F163 /* Sources */,
+				325E552D5CF5A3F87407AB02 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KanaFlow;
+			packageProductDependencies = (
+			);
+			productName = KanaFlow;
+			productReference = 8143B4142DC2EF9841E6FE1D /* KanaFlow.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B821863A204457AA6C9E9385 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					F46B528D312F4DB7FD85287B = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 3D356A2A864594FE58A12972 /* Build configuration list for PBXProject "KanaFlow" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = F717128BAA947A56AD3AEA55;
+			minimizedProjectReferenceProxies = 1;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F46B528D312F4DB7FD85287B /* KanaFlow */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		325E552D5CF5A3F87407AB02 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BBAEF52BBE6ADE139E9D238 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0D232C3E4A701DE01C44F163 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAC1CC333BF8DF17BFA63A07 /* AnswerInputView.swift in Sources */,
+				D8EA68CA3F118718FD43DFD2 /* AppTheme.swift in Sources */,
+				35323A6EEFF0E3C0A8B0157C /* CharacterProgress.swift in Sources */,
+				CC523677FD9AB5FDCD9A220B /* ChipView.swift in Sources */,
+				F4AFD2634578EFE3A4438762 /* ContentView.swift in Sources */,
+				1C7D214C16391DAEDCD3B234 /* DrawingCanvasView.swift in Sources */,
+				EB30EAF15B41629FD35D946A /* GroupChipSelectorView.swift in Sources */,
+				5E247A2C18CACB0E989FF52A /* HomeTileView.swift in Sources */,
+				290C2782BA31D782E4022387 /* HomeView.swift in Sources */,
+				BA2E1D04F7DB982197B6E3FF /* KanaData.swift in Sources */,
+				1E4359133219152180927587 /* KanaFlowApp.swift in Sources */,
+				68D4ED844D9E2B7477E65C6A /* KanaModels.swift in Sources */,
+				503887A38C28BA8A987E26D7 /* KanaTypeSelectorView.swift in Sources */,
+				7AD873E350FD1F08899BC3DE /* PracticeModeSelectorView.swift in Sources */,
+				65DC6D6A4DD648C67C05361B /* ProgressBarView.swift in Sources */,
+				D426CC3A25D11E8205D52433 /* ProgressStore.swift in Sources */,
+				609A7EC2E40B9E33F51693F5 /* QuestionCountSelectorView.swift in Sources */,
+				A46ACC9E2C6C3F2A8D19C6E7 /* QuizCardView.swift in Sources */,
+				B1AD10F4965727E89E25AAE9 /* QuizLogic.swift in Sources */,
+				878E7AC086486296B94C22CB /* QuizPlayView.swift in Sources */,
+				F60D6A986985AA9FE26DA105 /* QuizSetupView.swift in Sources */,
+				CA74AA1C47E84DC741D1313A /* QuizSetupViewModel.swift in Sources */,
+				2D958488090BD3CB69F55753 /* QuizSummaryView.swift in Sources */,
+				604C1EFA7A49CA51158CAB10 /* QuizTypeSelectorView.swift in Sources */,
+				BE2E77CBA7BBC7598E086555 /* QuizViewModel.swift in Sources */,
+				94E3BF49374A6259437ABAB1 /* SVGPathParser.swift in Sources */,
+				D932BF23CA6D37901771C35B /* SectionHeaderView.swift in Sources */,
+				4427D626B3F7BC67D2393ACF /* SelfGradeOverlayView.swift in Sources */,
+				B80CA96C1F2E85CA91238B03 /* StrokeOrder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0F24C589AC06BBBE956D3F79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		56B82BE0559792485D54BE4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		76555B27D91C66F08AAB5823 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J58DBXYSS4;
+				INFOPLIST_FILE = KanaFlow/App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jmknoll.KanaFlow;
+				PRODUCT_NAME = KanaFlow;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		877EBCCF8E91642CF3215423 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J58DBXYSS4;
+				INFOPLIST_FILE = KanaFlow/App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jmknoll.KanaFlow;
+				PRODUCT_NAME = KanaFlow;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3D356A2A864594FE58A12972 /* Build configuration list for PBXProject "KanaFlow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56B82BE0559792485D54BE4F /* Debug */,
+				0F24C589AC06BBBE956D3F79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A99981F7A075117231F62A45 /* Build configuration list for PBXNativeTarget "KanaFlow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				877EBCCF8E91642CF3215423 /* Debug */,
+				76555B27D91C66F08AAB5823 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B821863A204457AA6C9E9385 /* Project object */;
+}
