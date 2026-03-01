@@ -186,9 +186,9 @@ Two primary modes:
 
 **4.1 Reference Charts**
 
-- [ ] Hiragana chart screen
-- [ ] Katakana chart screen
-- [ ] Tap character for details (stroke order, romaji pronunciation)
+- [x] Hiragana chart screen
+- [x] Katakana chart screen
+- [x] Tap character for details (stroke order, romaji pronunciation)
 
 ### Phase 5: Polish & Enhancements
 

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,6 +23,7 @@
 		609A7EC2E40B9E33F51693F5 /* QuestionCountSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B1BE4CD9D651CC02EED9E /* QuestionCountSelectorView.swift */; };
 		65DC6D6A4DD648C67C05361B /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F2910BFC0E1A9752E4DFF /* ProgressBarView.swift */; };
 		68D4ED844D9E2B7477E65C6A /* KanaModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21488D624528C38FBCE5500D /* KanaModels.swift */; };
+		76918F36FA24FE3DAD8368D0 /* AppMigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D606BED44CF6733E679B10 /* AppMigrationPlan.swift */; };
 		7AD873E350FD1F08899BC3DE /* PracticeModeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588DC65E83535618D82D7BDB /* PracticeModeSelectorView.swift */; };
 		7EA64936C6F40B0194F27C1E /* MasteryBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBC3C31DA01EE7AED822AA /* MasteryBadge.swift */; };
 		878E7AC086486296B94C22CB /* QuizPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E461891B9A3C5A13D70FBAFA /* QuizPlayView.swift */; };
@@ -69,7 +70,7 @@
 		6EB0D6572875BA5778A2BED9 /* CharacterProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProgress.swift; sourceTree = "<group>"; };
 		711AA86C342A6C0D375DB7F7 /* StrokeOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeOrder.swift; sourceTree = "<group>"; };
 		79DB33B5320C81C81C7B51C6 /* ProgressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStore.swift; sourceTree = "<group>"; };
-		8143B4142DC2EF9841E6FE1D /* KanaFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KanaFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8143B4142DC2EF9841E6FE1D /* KanaFlow.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = KanaFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		887F2910BFC0E1A9752E4DFF /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		88E1A7C0C41DC2830DD51323 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		8BBEBCF38E97987B332021C8 /* DrawingCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvasView.swift; sourceTree = "<group>"; };
@@ -86,6 +87,7 @@
 		E839377CEA1B973925C9228A /* StudyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyView.swift; sourceTree = "<group>"; };
 		EE15C33BF420F76A34CEFD49 /* GroupChipSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChipSelectorView.swift; sourceTree = "<group>"; };
 		F1DBC3C31DA01EE7AED822AA /* MasteryBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteryBadge.swift; sourceTree = "<group>"; };
+		F2D606BED44CF6733E679B10 /* AppMigrationPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMigrationPlan.swift; sourceTree = "<group>"; };
 		F5D03E254F84D4B694368C92 /* HomeTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTileView.swift; sourceTree = "<group>"; };
 		FBD7DE831315EB432C14D9A6 /* SelfGradeOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfGradeOverlayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,6 +122,7 @@
 		36F7E8615AA6343078DDE172 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				F2D606BED44CF6733E679B10 /* AppMigrationPlan.swift */,
 				6EB0D6572875BA5778A2BED9 /* CharacterProgress.swift */,
 				79DB33B5320C81C81C7B51C6 /* ProgressStore.swift */,
 				60980443B77FE81F7CC3FB23 /* StreakStore.swift */,
@@ -288,6 +291,7 @@
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					F46B528D312F4DB7FD85287B = {
+						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -302,6 +306,7 @@
 			);
 			mainGroup = F717128BAA947A56AD3AEA55;
 			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -327,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAC1CC333BF8DF17BFA63A07 /* AnswerInputView.swift in Sources */,
+				76918F36FA24FE3DAD8368D0 /* AppMigrationPlan.swift in Sources */,
 				D8EA68CA3F118718FD43DFD2 /* AppTheme.swift in Sources */,
 				336DFBFE6AC4E5EDBB8452C9 /* CharacterDetailView.swift in Sources */,
 				35323A6EEFF0E3C0A8B0157C /* CharacterProgress.swift in Sources */,
@@ -497,7 +503,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J58DBXYSS4;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = KanaFlow/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -519,7 +525,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J58DBXYSS4;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = KanaFlow/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
