@@ -123,6 +123,7 @@ struct QuizPlayView: View {
             DrawingCanvasView(
                 strokes: $drawingStrokes,
                 hintPaths: strokePaths(for: char, in: 260.0),
+                flashCharacter: char.character,
                 onSubmit: { strokes in
                     vm.submitDrawing(strokes)
                     drawingStrokes = []

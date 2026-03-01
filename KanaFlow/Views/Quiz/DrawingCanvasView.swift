@@ -3,11 +3,13 @@ import SwiftUI
 struct DrawingCanvasView: View {
     @Binding var strokes: [Stroke]
     var hintPaths: [Path]
+    var flashCharacter: String
     var onSubmit: ([Stroke]) -> Void
     var onHintUsed: () -> Void
 
     @State private var currentStroke: Stroke = []
     @State private var revealedHintCount: Int = 0
+    @State private var showingFlash: Bool = false
 
     private let canvasSize: CGFloat = 260
     private let strokeWidth: CGFloat = 4
@@ -49,6 +51,15 @@ struct DrawingCanvasView: View {
                     }
                 }
                 .clipShape(RoundedRectangle(cornerRadius: AppRadius.lg))
+
+                // Flash hint — briefly reveals the full character
+                if showingFlash {
+                    Text(flashCharacter)
+                        .font(.system(size: flashCharacter.count > 1 ? 100 : 160, weight: .medium))
+                        .foregroundStyle(AppColors.text.opacity(0.25))
+                        .allowsHitTesting(false)
+                        .transition(.opacity)
+                }
             }
             .frame(width: canvasSize, height: canvasSize)
             .gesture(
@@ -65,7 +76,7 @@ struct DrawingCanvasView: View {
                     }
             )
 
-            // Toolbar
+            // Toolbar row — drawing tools and hints
             HStack(spacing: AppSpacing.lg) {
                 // Undo
                 Button {
@@ -89,7 +100,23 @@ struct DrawingCanvasView: View {
 
                 Spacer()
 
-                // Hint
+                // Peek — flashes the full character for 2 seconds
+                Button {
+                    guard !showingFlash else { return }
+                    onHintUsed()
+                    withAnimation(.easeIn(duration: 0.15)) { showingFlash = true }
+                    Task {
+                        try? await Task.sleep(for: .seconds(2))
+                        withAnimation(.easeOut(duration: 0.3)) { showingFlash = false }
+                    }
+                } label: {
+                    Label("Peek", systemImage: "eye")
+                        .font(AppFonts.caption)
+                        .foregroundStyle(showingFlash ? AppColors.textMuted : AppColors.warning)
+                }
+                .disabled(showingFlash)
+
+                // Stroke hint
                 if !hintPaths.isEmpty {
                     Button {
                         if revealedHintCount < hintPaths.count {
@@ -106,22 +133,23 @@ struct DrawingCanvasView: View {
                     }
                     .disabled(revealedHintCount >= hintPaths.count)
                 }
-
-                // Submit
-                Button {
-                    onSubmit(strokes)
-                    revealedHintCount = 0
-                } label: {
-                    Text("Submit")
-                        .font(AppFonts.label)
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, AppSpacing.lg)
-                        .padding(.vertical, AppSpacing.sm)
-                        .background(strokes.isEmpty ? AppColors.textMuted : AppColors.tint)
-                        .clipShape(Capsule())
-                }
-                .disabled(strokes.isEmpty)
             }
+            .padding(.horizontal, AppSpacing.xs)
+
+            // Submit row
+            Button {
+                onSubmit(strokes)
+                revealedHintCount = 0
+            } label: {
+                Text("Submit")
+                    .font(AppFonts.label)
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, AppSpacing.sm)
+                    .background(strokes.isEmpty ? AppColors.textMuted : AppColors.tint)
+                    .clipShape(Capsule())
+            }
+            .disabled(strokes.isEmpty)
             .padding(.horizontal, AppSpacing.xs)
         }
     }

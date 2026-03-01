@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -70,7 +70,7 @@
 		6EB0D6572875BA5778A2BED9 /* CharacterProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProgress.swift; sourceTree = "<group>"; };
 		711AA86C342A6C0D375DB7F7 /* StrokeOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeOrder.swift; sourceTree = "<group>"; };
 		79DB33B5320C81C81C7B51C6 /* ProgressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStore.swift; sourceTree = "<group>"; };
-		8143B4142DC2EF9841E6FE1D /* KanaFlow.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = KanaFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8143B4142DC2EF9841E6FE1D /* KanaFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KanaFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		887F2910BFC0E1A9752E4DFF /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		88E1A7C0C41DC2830DD51323 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		8BBEBCF38E97987B332021C8 /* DrawingCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvasView.swift; sourceTree = "<group>"; };
@@ -291,7 +291,6 @@
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					F46B528D312F4DB7FD85287B = {
-						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -306,7 +305,6 @@
 			);
 			mainGroup = F717128BAA947A56AD3AEA55;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -503,7 +501,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = J58DBXYSS4;
 				INFOPLIST_FILE = KanaFlow/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -525,7 +524,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = J58DBXYSS4;
 				INFOPLIST_FILE = KanaFlow/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
