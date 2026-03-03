@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support — Kana Flow</title>
+  <meta name="description" content="Get help with Kana Flow — the Japanese kana learning app for iOS.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy-100: #EBF0F5;
+      --navy-200: #C8D6E3;
+      --navy-400: #6B8FA8;
+      --navy-500: #2D3E50;
+      --navy-700: #1E2A38;
+      --navy-800: #16202B;
+      --coral-400: #EE8573;
+      --coral-500: #E8634B;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      color: var(--navy-500);
+      background: #fff;
+      line-height: 1.7;
+    }
+
+    a { color: var(--coral-500); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Nav */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 60px;
+      background: #fff;
+      border-bottom: 1px solid var(--navy-100);
+    }
+
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy-500);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-logo span { color: var(--coral-500); }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-size: 0.875rem;
+      color: var(--navy-400);
+    }
+
+    .nav-links a { color: var(--navy-400); text-decoration: none; }
+    .nav-links a:hover { color: var(--navy-500); }
+
+    /* Page header */
+    .page-header {
+      background: linear-gradient(180deg, #F7F9FC 0%, #fff 100%);
+      padding: 60px 5% 48px;
+      border-bottom: 1px solid var(--navy-100);
+    }
+
+    .page-header .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--coral-500);
+      margin-bottom: 10px;
+    }
+
+    .page-header h1 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800;
+      color: var(--navy-500);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .page-header p {
+      font-size: 1.05rem;
+      color: var(--navy-400);
+      max-width: 520px;
+    }
+
+    /* Content */
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 5%;
+    }
+
+    /* Contact card */
+    .contact-card {
+      background: var(--navy-500);
+      color: #fff;
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .contact-card h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .contact-card p {
+      font-size: 0.9rem;
+      color: var(--navy-200);
+    }
+
+    .btn-contact {
+      display: inline-block;
+      background: var(--coral-500);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-contact:hover {
+      background: var(--coral-400);
+      text-decoration: none;
+    }
+
+    /* FAQ */
+    .faq-section {
+      margin-bottom: 48px;
+    }
+
+    .faq-section h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy-400);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-size: 0.75rem;
+      border-bottom: 1px solid var(--navy-100);
+      padding-bottom: 10px;
+      margin-bottom: 24px;
+    }
+
+    .faq-item {
+      margin-bottom: 28px;
+    }
+
+    .faq-item h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy-500);
+      margin-bottom: 8px;
+    }
+
+    .faq-item p {
+      font-size: 0.9rem;
+      color: var(--navy-400);
+    }
+
+    .faq-item ul {
+      font-size: 0.9rem;
+      color: var(--navy-400);
+      padding-left: 20px;
+      margin-top: 6px;
+    }
+
+    .faq-item li {
+      margin-bottom: 4px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--navy-800);
+      color: var(--navy-200);
+      padding: 40px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      font-size: 0.875rem;
+    }
+
+    .footer-links a {
+      color: var(--navy-400);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: #fff; }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--navy-400);
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      .contact-card { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">流 <span>Kana Flow</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="section-label">Help Center</div>
+    <h1>Support</h1>
+    <p>Answers to common questions about Kana Flow. Can't find what you need? Reach out directly.</p>
+  </div>
+
+  <div class="content">
+
+    <div class="contact-card">
+      <div>
+        <h2>Need more help?</h2>
+        <p>Send us an email and we'll get back to you as soon as possible.</p>
+      </div>
+      <!-- Replace with your support email -->
+      <a href="mailto:support@kanaflow.app" class="btn-contact">Email Support</a>
+    </div>
+
+    <!-- Getting Started -->
+    <div class="faq-section">
+      <h2>Getting Started</h2>
+
+      <div class="faq-item">
+        <h3>What is Kana Flow?</h3>
+        <p>Kana Flow is a native iOS app for learning Japanese hiragana and katakana through interactive quizzes and handwriting practice. It covers all 46 basic characters plus dakuten (voiced) and yōon (combination) characters.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do I need to create an account?</h3>
+        <p>No. Kana Flow requires no account or sign-in. Your progress is stored locally on your device and is always available offline.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What iOS version do I need?</h3>
+        <p>Kana Flow requires iOS 17 or later.</p>
+      </div>
+    </div>
+
+    <!-- Quiz Modes -->
+    <div class="faq-section">
+      <h2>Quiz Modes</h2>
+
+      <div class="faq-item">
+        <h3>What quiz types are available?</h3>
+        <p>There are two quiz modes:</p>
+        <ul>
+          <li><strong>Recognition (Kana → Romaji):</strong> A kana character is shown and you type the romaji pronunciation.</li>
+          <li><strong>Handwriting (Romaji → Kana):</strong> A romaji syllable is shown and you draw the correct kana character on the canvas.</li>
+        </ul>
+      </div>
+
+      <div class="faq-item">
+        <h3>Which character groups can I quiz on?</h3>
+        <p>You can choose from:</p>
+        <ul>
+          <li><strong>All</strong> — every character in the set</li>
+          <li><strong>Main (Gojūon)</strong> — the 46 core characters</li>
+          <li><strong>Dakuten</strong> — voiced consonant variants (が, ざ, だ…)</li>
+          <li><strong>Combination (Yōon)</strong> — combined sounds (きゃ, しゅ, ちょ…)</li>
+        </ul>
+      </div>
+
+      <div class="faq-item">
+        <h3>My romaji answer was marked wrong but I think it's correct.</h3>
+        <p>Common alternate romanizations are accepted. For example, "si" and "shi" are both valid for し, and "ti" and "chi" for ち. If you believe a valid answer is being rejected, please contact support with the specific character and what you typed.</p>
+      </div>
+    </div>
+
+    <!-- Handwriting & Hints -->
+    <div class="faq-section">
+      <h2>Handwriting &amp; Hints</h2>
+
+      <div class="faq-item">
+        <h3>How does the handwriting quiz work?</h3>
+        <p>Draw the kana character on the canvas using your finger. When you're ready, tap Submit to compare your drawing with the correct character. Then self-assess: tap Correct or Incorrect based on how well your drawing matched.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How do hints work?</h3>
+        <p>Tap the Hint button while on the drawing canvas to reveal the next stroke of the character in red. Each press reveals one additional stroke. The button label shows your progress (e.g., "Hint 2/3"). Using any hints counts the question as incorrect, regardless of your self-assessment.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I undo strokes while drawing?</h3>
+        <p>Yes. Use the undo button on the canvas toolbar to remove your last stroke, or the clear button to erase the entire drawing and start fresh.</p>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="faq-section">
+      <h2>Progress &amp; Data</h2>
+
+      <div class="faq-item">
+        <h3>How is my progress tracked?</h3>
+        <p>Kana Flow records correct and incorrect answers for each individual character, separately for each quiz type (Recognition and Handwriting). Your success rate is displayed at the end of each quiz session.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I reset my progress?</h3>
+        <p>You can reset progress from the Settings screen inside the app. This will clear all recorded correct/incorrect counts.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Is my data backed up?</h3>
+        <p>Progress is stored locally on your device. It is not currently synced to iCloud or any cloud service. Deleting the app will erase your progress.</p>
+      </div>
+    </div>
+
+    <!-- Study Mode -->
+    <div class="faq-section">
+      <h2>Study Mode</h2>
+
+      <div class="faq-item">
+        <h3>What is Study Mode?</h3>
+        <p>Study Mode provides full reference charts for hiragana and katakana. Tap any character in the chart to see its romaji pronunciation and stroke order animation.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-logo">流 Kana Flow</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <div class="footer-copy">&copy; 2025 Kana Flow. All rights reserved.</div>
+  </footer>
+
+</body>
+</html>
