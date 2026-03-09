@@ -39,3 +39,7 @@ project.yml        # XcodeGen project definition
 ## Documentation
 
 - [PRD](docs/PRD.md) - Product requirements and phased task breakdown
+
+---
+
+*This project was updated by [Claude](https://claude.ai) running in the cloud.*
