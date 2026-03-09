@@ -4,6 +4,7 @@ struct DrawingCanvasView: View {
     @Binding var strokes: [Stroke]
     var hintPaths: [Path]
     var flashCharacter: String
+    var canvasSize: CGFloat = 260
     var onSubmit: ([Stroke]) -> Void
     var onHintUsed: () -> Void
 
@@ -11,7 +12,6 @@ struct DrawingCanvasView: View {
     @State private var revealedHintCount: Int = 0
     @State private var showingFlash: Bool = false
 
-    private let canvasSize: CGFloat = 260
     private let strokeWidth: CGFloat = 4
 
     var body: some View {

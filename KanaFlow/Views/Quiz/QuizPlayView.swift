@@ -7,11 +7,14 @@ struct QuizPlayView: View {
 
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @State private var vm = QuizViewModel()
     @State private var inputText = ""
     @State private var drawingStrokes: [Stroke] = []
 
     var store: ProgressStore { ProgressStore(context: modelContext) }
+
+    private var drawingCanvasSize: CGFloat { horizontalSizeClass == .regular ? 380 : 260 }
 
     var body: some View {
         ZStack {
@@ -82,6 +85,8 @@ struct QuizPlayView: View {
                 typeBView(char: char)
             }
         }
+        .adaptiveTopPadding()
+        .adaptiveContentWidth()
     }
 
     // MARK: - Type A (Kana → Romaji)
@@ -122,10 +127,11 @@ struct QuizPlayView: View {
 
             DrawingCanvasView(
                 strokes: $drawingStrokes,
-                hintPaths: strokePaths(for: char, in: 260.0),
+                hintPaths: strokePaths(for: char, in: drawingCanvasSize),
                 flashCharacter: char.character,
+                canvasSize: drawingCanvasSize,
                 onSubmit: { strokes in
-                    vm.submitDrawing(strokes)
+                    vm.submitDrawing(strokes, store: store, canvasSize: drawingCanvasSize)
                     drawingStrokes = []
                 },
                 onHintUsed: {
@@ -145,15 +151,14 @@ struct QuizPlayView: View {
     private func selfGradingView(char: KanaCharacter) -> some View {
         ZStack {
             Color.black.opacity(0.4).ignoresSafeArea()
-            SelfGradeOverlayView(
+            GradingOverlayView(
                 character: char,
                 userStrokes: vm.submittedStrokes,
+                scores: vm.pendingScores,
                 hintUsed: vm.hintUsedThisQuestion,
-                onCorrect: {
-                    vm.submitSelfGrade(true, store: store)
-                },
-                onIncorrect: {
-                    vm.submitSelfGrade(false, store: store)
+                drawingCanvasSize: drawingCanvasSize,
+                onContinue: { wasCorrect in
+                    vm.submitGrade(wasCorrect, store: store)
                 }
             )
         }

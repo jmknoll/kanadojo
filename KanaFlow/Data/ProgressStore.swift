@@ -11,7 +11,7 @@ final class ProgressStore {
 
     // MARK: - Update Progress
 
-    func updateProgress(characterId: String, correct: Bool, quizType: QuizType) {
+    func updateProgress(characterId: String, correct: Bool, quizType: QuizType, scores: StrokeScores? = nil) {
         let progress = fetchOrCreate(characterId: characterId)
 
         if correct {
@@ -26,9 +26,19 @@ final class ProgressStore {
             if correct { progress.typeACorrect += 1 } else { progress.typeAIncorrect += 1 }
         case .typeB:
             if correct { progress.typeBCorrect += 1 } else { progress.typeBIncorrect += 1 }
+            if let s = scores {
+                // Update EMA and latest metric fields
+                let prevEMA = progress.typeBShapeEMA
+                progress.typeBShapeEMA = prevEMA == 0 ? s.shape : 0.3 * s.shape + 0.7 * prevEMA
+                progress.typeBLatestShape = s.shape
+                progress.typeBLatestProportion = s.proportion
+                progress.typeBLatestStrokeOrder = s.strokeOrder
+                progress.typeBLatestConsistency = s.consistency
+                progress.typeBLatestOverall = s.overall
+            }
         }
 
-        applySpacedRepetition(to: progress, correct: correct, quizType: quizType)
+        applySpacedRepetition(to: progress, correct: correct, quizType: quizType, score: scores?.overall)
         StreakStore.shared.recordStudyToday()
 
         try? context.save()
@@ -39,11 +49,11 @@ final class ProgressStore {
     // A character is "struggling" if it is due for review OR has been attempted
     // with accuracy below 70% — evaluated per quiz type.
 
-    func getStrugglingIds(kanaType: KanaTypeSelection, group: GroupSelection, quizType: QuizType) -> [String] {
+    func getStrugglingIds(kanaType: KanaTypeSelection, group: GroupSelection, quizType: QuizType, rows: [String] = []) -> [String] {
         let descriptor = FetchDescriptor<CharacterProgress>()
         guard let all = try? context.fetch(descriptor) else { return [] }
 
-        let validIds = Set(KanaData.getCharacters(kanaType: kanaType, group: group).map { $0.id })
+        let validIds = Set(KanaData.getCharacters(kanaType: kanaType, group: group, rows: rows).map { $0.id })
 
         return all
             .filter { validIds.contains($0.characterId) }

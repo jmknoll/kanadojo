@@ -156,6 +156,27 @@ enum AppRadius {
     static let xl: CGFloat = 24
 }
 
+// MARK: - Layout Helpers
+
+extension View {
+    func adaptiveContentWidth() -> some View {
+        self.frame(maxWidth: 680)
+            .frame(maxWidth: .infinity)
+    }
+
+    func adaptiveTopPadding() -> some View {
+        modifier(AdaptiveTopPaddingModifier())
+    }
+}
+
+private struct AdaptiveTopPaddingModifier: ViewModifier {
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
+    func body(content: Content) -> some View {
+        content.padding(.top, horizontalSizeClass == .regular ? 32 : 0)
+    }
+}
+
 // MARK: - Color Hex Helpers
 
 extension Color {

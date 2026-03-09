@@ -17,6 +17,11 @@
         padding: 0;
       }
 
+      html,
+      body {
+        width: 100%;
+      }
+
       :root {
         --navy-100: #ebf0f5;
         --navy-200: #c8d6e3;
@@ -215,7 +220,7 @@
       }
 
       .screenshots-inner {
-        max-width: 900px;
+        max-width: 1100px;
         margin: 0 auto;
         display: flex;
         gap: 20px;
@@ -247,7 +252,10 @@
       /* Features */
       .features {
         padding: 80px 5%;
-        max-width: 1000px;
+      }
+
+      .features-inner {
+        max-width: 1200px;
         margin: 0 auto;
       }
 
@@ -334,7 +342,7 @@
         flex-wrap: wrap;
         gap: 10px;
         justify-content: center;
-        max-width: 700px;
+        max-width: 900px;
         margin: 0 auto;
       }
 
@@ -503,6 +511,7 @@
 
     <!-- Features -->
     <section class="features" id="features">
+      <div class="features-inner">
       <div class="section-label">Features</div>
       <div class="section-title">Everything you need to learn kana</div>
 
@@ -555,6 +564,7 @@
             anywhere, any time, completely private.
           </p>
         </div>
+      </div>
       </div>
     </section>
 

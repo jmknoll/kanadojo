@@ -24,6 +24,14 @@ final class CharacterProgress {
     var typeBConsecutiveCorrect: Int
     var typeBNextReviewDate: Date?
 
+    // Handwriting quality metrics (typeB) — updated by gradeDrawing()
+    var typeBShapeEMA: Double = 0.0       // exponential moving average of shape scores
+    var typeBLatestShape: Double = 0.0
+    var typeBLatestProportion: Double = 0.0
+    var typeBLatestStrokeOrder: Double = 0.0
+    var typeBLatestConsistency: Double = 0.0
+    var typeBLatestOverall: Double = 0.0
+
     init(characterId: String) {
         self.characterId = characterId
         self.correctCount = 0
@@ -41,6 +49,12 @@ final class CharacterProgress {
         self.typeBEaseFactor = 2.5
         self.typeBConsecutiveCorrect = 0
         self.typeBNextReviewDate = nil
+        self.typeBShapeEMA = 0.0
+        self.typeBLatestShape = 0.0
+        self.typeBLatestProportion = 0.0
+        self.typeBLatestStrokeOrder = 0.0
+        self.typeBLatestConsistency = 0.0
+        self.typeBLatestOverall = 0.0
     }
 
     // Combined totals (for overall display in CharacterDetailView)

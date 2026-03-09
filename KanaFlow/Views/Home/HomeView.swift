@@ -46,6 +46,8 @@ struct HomeView: View {
 
                 Spacer(minLength: AppSpacing.xxxl)
             }
+            .adaptiveTopPadding()
+            .adaptiveContentWidth()
         }
         .background(AppColors.background)
         .navigationBarHidden(true)

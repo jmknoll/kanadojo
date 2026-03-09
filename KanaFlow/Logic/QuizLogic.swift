@@ -22,7 +22,16 @@ func shuffleArray<T>(_ array: [T]) -> [T] {
 
 // MARK: - Spaced Repetition (SM-2)
 
-func applySpacedRepetition(to progress: CharacterProgress, correct: Bool, quizType: QuizType) {
+/// Apply SM-2 spaced repetition.
+/// - Parameter score: For typeB, the continuous overall grade (0–1) from gradeDrawing().
+///   When provided, the ease factor delta is scaled by score quality rather than fixed.
+///   Type A always uses the fixed binary delta (score is ignored).
+func applySpacedRepetition(
+    to progress: CharacterProgress,
+    correct: Bool,
+    quizType: QuizType,
+    score: Double? = nil
+) {
     switch quizType {
     case .typeA:
         if correct {
@@ -44,17 +53,31 @@ func applySpacedRepetition(to progress: CharacterProgress, correct: Bool, quizTy
 
     case .typeB:
         if correct {
+            // Grade-scaled ease delta: score in [0.65, 1.0] → delta in [0.05, 0.15]
+            let delta: Double
+            if let s = score, s >= 0.65 {
+                delta = 0.05 + (s - 0.65) / 0.35 * 0.10
+            } else {
+                delta = 0.1
+            }
             switch progress.typeBConsecutiveCorrect {
             case 0:  progress.typeBIntervalDays = 1
             case 1:  progress.typeBIntervalDays = 6
             default: progress.typeBIntervalDays = Int((Double(progress.typeBIntervalDays) * progress.typeBEaseFactor).rounded())
             }
-            progress.typeBEaseFactor = max(1.3, progress.typeBEaseFactor + 0.1)
+            progress.typeBEaseFactor = max(1.3, progress.typeBEaseFactor + delta)
             progress.typeBConsecutiveCorrect += 1
         } else {
+            // Grade-scaled ease penalty: lower score → larger penalty in [0.20, 0.35]
+            let penalty: Double
+            if let s = score {
+                penalty = 0.20 + max(0, 1.0 - s / 0.65) * 0.15
+            } else {
+                penalty = 0.20
+            }
             progress.typeBConsecutiveCorrect = 0
             progress.typeBIntervalDays = 1
-            progress.typeBEaseFactor = max(1.3, progress.typeBEaseFactor - 0.2)
+            progress.typeBEaseFactor = max(1.3, progress.typeBEaseFactor - penalty)
         }
         progress.typeBNextReviewDate = Calendar.current.date(
             byAdding: .day, value: progress.typeBIntervalDays, to: Date()

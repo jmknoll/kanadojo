@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,19 +16,19 @@
 		2D958488090BD3CB69F55753 /* QuizSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1437D3462BFABC3EAF762718 /* QuizSummaryView.swift */; };
 		336DFBFE6AC4E5EDBB8452C9 /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30019273FF87382E1A673482 /* CharacterDetailView.swift */; };
 		35323A6EEFF0E3C0A8B0157C /* CharacterProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB0D6572875BA5778A2BED9 /* CharacterProgress.swift */; };
-		4427D626B3F7BC67D2393ACF /* SelfGradeOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7DE831315EB432C14D9A6 /* SelfGradeOverlayView.swift */; };
+		457525273FF65888C2672C34 /* StrokeRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4000E40F158DBFCFD958D /* StrokeRecognition.swift */; };
 		503887A38C28BA8A987E26D7 /* KanaTypeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32C3E24A400D864993BE324 /* KanaTypeSelectorView.swift */; };
 		5E247A2C18CACB0E989FF52A /* HomeTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D03E254F84D4B694368C92 /* HomeTileView.swift */; };
 		604C1EFA7A49CA51158CAB10 /* QuizTypeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A2E45B8FF8119726AD543B /* QuizTypeSelectorView.swift */; };
 		609A7EC2E40B9E33F51693F5 /* QuestionCountSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B1BE4CD9D651CC02EED9E /* QuestionCountSelectorView.swift */; };
 		65DC6D6A4DD648C67C05361B /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F2910BFC0E1A9752E4DFF /* ProgressBarView.swift */; };
 		68D4ED844D9E2B7477E65C6A /* KanaModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21488D624528C38FBCE5500D /* KanaModels.swift */; };
-		76918F36FA24FE3DAD8368D0 /* AppMigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D606BED44CF6733E679B10 /* AppMigrationPlan.swift */; };
 		7AD873E350FD1F08899BC3DE /* PracticeModeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588DC65E83535618D82D7BDB /* PracticeModeSelectorView.swift */; };
 		7EA64936C6F40B0194F27C1E /* MasteryBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBC3C31DA01EE7AED822AA /* MasteryBadge.swift */; };
 		878E7AC086486296B94C22CB /* QuizPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E461891B9A3C5A13D70FBAFA /* QuizPlayView.swift */; };
 		94E3BF49374A6259437ABAB1 /* SVGPathParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75650E51770012666BCFA3A /* SVGPathParser.swift */; };
 		97EE79ED598B0DE304E3CBC9 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF660B8D2D716C326FF3A34C /* StatsView.swift */; };
+		99380952BFC770CC2FB6F9AA /* GradingOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557A7D30FD8080760DA6FFD /* GradingOverlayView.swift */; };
 		A46ACC9E2C6C3F2A8D19C6E7 /* QuizCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CB3E058DB9C29282A690B /* QuizCardView.swift */; };
 		B1AD10F4965727E89E25AAE9 /* QuizLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AD24FEAF03C710AA115065 /* QuizLogic.swift */; };
 		B25AC61D5FABF9E906F145ED /* StudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E839377CEA1B973925C9228A /* StudyView.swift */; };
@@ -39,10 +39,12 @@
 		CA74AA1C47E84DC741D1313A /* QuizSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85901367625F24A35FA4E26 /* QuizSetupViewModel.swift */; };
 		CC523677FD9AB5FDCD9A220B /* ChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6605021C16506D37085B0F49 /* ChipView.swift */; };
 		D426CC3A25D11E8205D52433 /* ProgressStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DB33B5320C81C81C7B51C6 /* ProgressStore.swift */; };
+		D55F33F3376BB1C19DFA5351 /* RowSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9E17DD110BB976992E853 /* RowSelectorView.swift */; };
 		D8EA68CA3F118718FD43DFD2 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E1A7C0C41DC2830DD51323 /* AppTheme.swift */; };
 		D932BF23CA6D37901771C35B /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9506FEE4D59131CA5E5ED91A /* SectionHeaderView.swift */; };
 		EB30EAF15B41629FD35D946A /* GroupChipSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE15C33BF420F76A34CEFD49 /* GroupChipSelectorView.swift */; };
 		ED9FA44C0ACA3F26E0496782 /* KanaChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0317ED4398AF161D45E9DA /* KanaChartView.swift */; };
+		EEBB3630C38729384EEF2D44 /* SpiderChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462BE81E8EB21571A71E4D3 /* SpiderChartView.swift */; };
 		EECD5E483F15D98339A02381 /* ChartCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F798C505DEEDEAFC9C7BFB7 /* ChartCellView.swift */; };
 		F4AFD2634578EFE3A4438762 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4D6C358ACCE1DA14E9A9C8 /* ContentView.swift */; };
 		F60D6A986985AA9FE26DA105 /* QuizSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D372AF06F621E1716C907D /* QuizSetupView.swift */; };
@@ -55,9 +57,12 @@
 		1BA2F7E776CCD86790477457 /* KanaFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaFlowApp.swift; sourceTree = "<group>"; };
 		1E7B1BE4CD9D651CC02EED9E /* QuestionCountSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCountSelectorView.swift; sourceTree = "<group>"; };
 		21488D624528C38FBCE5500D /* KanaModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaModels.swift; sourceTree = "<group>"; };
+		2462BE81E8EB21571A71E4D3 /* SpiderChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiderChartView.swift; sourceTree = "<group>"; };
+		2557A7D30FD8080760DA6FFD /* GradingOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingOverlayView.swift; sourceTree = "<group>"; };
 		27ED0E54852B8888EA9AC64B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2EC50F7FBEC4C6A36FECE666 /* KanaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaData.swift; sourceTree = "<group>"; };
 		30019273FF87382E1A673482 /* CharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
+		3EA4000E40F158DBFCFD958D /* StrokeRecognition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeRecognition.swift; sourceTree = "<group>"; };
 		4735FF2D3EE4701E10C191DB /* StrokePaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokePaths.swift; sourceTree = "<group>"; };
 		4CC0136D6D20551BF7CD5715 /* AnswerInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerInputView.swift; sourceTree = "<group>"; };
 		588DC65E83535618D82D7BDB /* PracticeModeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeModeSelectorView.swift; sourceTree = "<group>"; };
@@ -70,7 +75,7 @@
 		6EB0D6572875BA5778A2BED9 /* CharacterProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProgress.swift; sourceTree = "<group>"; };
 		711AA86C342A6C0D375DB7F7 /* StrokeOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeOrder.swift; sourceTree = "<group>"; };
 		79DB33B5320C81C81C7B51C6 /* ProgressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStore.swift; sourceTree = "<group>"; };
-		8143B4142DC2EF9841E6FE1D /* KanaFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KanaFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8143B4142DC2EF9841E6FE1D /* KanaFlow.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = KanaFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		887F2910BFC0E1A9752E4DFF /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		88E1A7C0C41DC2830DD51323 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		8BBEBCF38E97987B332021C8 /* DrawingCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvasView.swift; sourceTree = "<group>"; };
@@ -78,6 +83,7 @@
 		9506FEE4D59131CA5E5ED91A /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		96AD24FEAF03C710AA115065 /* QuizLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLogic.swift; sourceTree = "<group>"; };
 		AE0317ED4398AF161D45E9DA /* KanaChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaChartView.swift; sourceTree = "<group>"; };
+		B9B9E17DD110BB976992E853 /* RowSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowSelectorView.swift; sourceTree = "<group>"; };
 		BF660B8D2D716C326FF3A34C /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		C32C3E24A400D864993BE324 /* KanaTypeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaTypeSelectorView.swift; sourceTree = "<group>"; };
 		C85901367625F24A35FA4E26 /* QuizSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSetupViewModel.swift; sourceTree = "<group>"; };
@@ -87,9 +93,7 @@
 		E839377CEA1B973925C9228A /* StudyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyView.swift; sourceTree = "<group>"; };
 		EE15C33BF420F76A34CEFD49 /* GroupChipSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChipSelectorView.swift; sourceTree = "<group>"; };
 		F1DBC3C31DA01EE7AED822AA /* MasteryBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteryBadge.swift; sourceTree = "<group>"; };
-		F2D606BED44CF6733E679B10 /* AppMigrationPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMigrationPlan.swift; sourceTree = "<group>"; };
 		F5D03E254F84D4B694368C92 /* HomeTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTileView.swift; sourceTree = "<group>"; };
-		FBD7DE831315EB432C14D9A6 /* SelfGradeOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfGradeOverlayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -122,7 +126,6 @@
 		36F7E8615AA6343078DDE172 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				F2D606BED44CF6733E679B10 /* AppMigrationPlan.swift */,
 				6EB0D6572875BA5778A2BED9 /* CharacterProgress.swift */,
 				79DB33B5320C81C81C7B51C6 /* ProgressStore.swift */,
 				60980443B77FE81F7CC3FB23 /* StreakStore.swift */,
@@ -149,6 +152,7 @@
 				1E7B1BE4CD9D651CC02EED9E /* QuestionCountSelectorView.swift */,
 				69D372AF06F621E1716C907D /* QuizSetupView.swift */,
 				59A2E45B8FF8119726AD543B /* QuizTypeSelectorView.swift */,
+				B9B9E17DD110BB976992E853 /* RowSelectorView.swift */,
 			);
 			path = QuizSetup;
 			sourceTree = "<group>";
@@ -180,11 +184,11 @@
 			children = (
 				4CC0136D6D20551BF7CD5715 /* AnswerInputView.swift */,
 				8BBEBCF38E97987B332021C8 /* DrawingCanvasView.swift */,
+				2557A7D30FD8080760DA6FFD /* GradingOverlayView.swift */,
 				887F2910BFC0E1A9752E4DFF /* ProgressBarView.swift */,
 				0F3CB3E058DB9C29282A690B /* QuizCardView.swift */,
 				E461891B9A3C5A13D70FBAFA /* QuizPlayView.swift */,
 				1437D3462BFABC3EAF762718 /* QuizSummaryView.swift */,
-				FBD7DE831315EB432C14D9A6 /* SelfGradeOverlayView.swift */,
 			);
 			path = Quiz;
 			sourceTree = "<group>";
@@ -194,6 +198,7 @@
 			children = (
 				96AD24FEAF03C710AA115065 /* QuizLogic.swift */,
 				4735FF2D3EE4701E10C191DB /* StrokePaths.swift */,
+				3EA4000E40F158DBFCFD958D /* StrokeRecognition.swift */,
 				D75650E51770012666BCFA3A /* SVGPathParser.swift */,
 			);
 			path = Logic;
@@ -217,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				F1DBC3C31DA01EE7AED822AA /* MasteryBadge.swift */,
+				2462BE81E8EB21571A71E4D3 /* SpiderChartView.swift */,
 				BF660B8D2D716C326FF3A34C /* StatsView.swift */,
 			);
 			path = Stats;
@@ -291,6 +297,7 @@
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					F46B528D312F4DB7FD85287B = {
+						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -305,6 +312,7 @@
 			);
 			mainGroup = F717128BAA947A56AD3AEA55;
 			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -330,7 +338,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAC1CC333BF8DF17BFA63A07 /* AnswerInputView.swift in Sources */,
-				76918F36FA24FE3DAD8368D0 /* AppMigrationPlan.swift in Sources */,
 				D8EA68CA3F118718FD43DFD2 /* AppTheme.swift in Sources */,
 				336DFBFE6AC4E5EDBB8452C9 /* CharacterDetailView.swift in Sources */,
 				35323A6EEFF0E3C0A8B0157C /* CharacterProgress.swift in Sources */,
@@ -338,6 +345,7 @@
 				CC523677FD9AB5FDCD9A220B /* ChipView.swift in Sources */,
 				F4AFD2634578EFE3A4438762 /* ContentView.swift in Sources */,
 				1C7D214C16391DAEDCD3B234 /* DrawingCanvasView.swift in Sources */,
+				99380952BFC770CC2FB6F9AA /* GradingOverlayView.swift in Sources */,
 				EB30EAF15B41629FD35D946A /* GroupChipSelectorView.swift in Sources */,
 				5E247A2C18CACB0E989FF52A /* HomeTileView.swift in Sources */,
 				290C2782BA31D782E4022387 /* HomeView.swift in Sources */,
@@ -359,13 +367,15 @@
 				2D958488090BD3CB69F55753 /* QuizSummaryView.swift in Sources */,
 				604C1EFA7A49CA51158CAB10 /* QuizTypeSelectorView.swift in Sources */,
 				BE2E77CBA7BBC7598E086555 /* QuizViewModel.swift in Sources */,
+				D55F33F3376BB1C19DFA5351 /* RowSelectorView.swift in Sources */,
 				94E3BF49374A6259437ABAB1 /* SVGPathParser.swift in Sources */,
 				D932BF23CA6D37901771C35B /* SectionHeaderView.swift in Sources */,
-				4427D626B3F7BC67D2393ACF /* SelfGradeOverlayView.swift in Sources */,
+				EEBB3630C38729384EEF2D44 /* SpiderChartView.swift in Sources */,
 				97EE79ED598B0DE304E3CBC9 /* StatsView.swift in Sources */,
 				270583D4D6B3C7683875AE41 /* StreakStore.swift in Sources */,
 				B80CA96C1F2E85CA91238B03 /* StrokeOrder.swift in Sources */,
 				285571F760716A9B08D36A0F /* StrokePaths.swift in Sources */,
+				457525273FF65888C2672C34 /* StrokeRecognition.swift in Sources */,
 				B25AC61D5FABF9E906F145ED /* StudyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,8 +511,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = J58DBXYSS4;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = KanaFlow/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -513,7 +522,7 @@
 				PRODUCT_NAME = KanaFlow;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -524,8 +533,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = J58DBXYSS4;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = KanaFlow/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -536,7 +544,7 @@
 				PRODUCT_NAME = KanaFlow;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};

@@ -29,6 +29,8 @@ struct StudyView: View {
                 chartSection(title: "Combination · 36", group: .combination)
             }
             .padding(.vertical, AppSpacing.lg)
+            .adaptiveTopPadding()
+            .adaptiveContentWidth()
         }
         .background(AppColors.background)
         .navigationTitle("Study")

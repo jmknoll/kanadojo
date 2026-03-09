@@ -1,5 +1,12 @@
 # Kana Flow Product Requirements Document
 
+## Feature Development Workflow
+
+For every new feature request, before writing any code:
+
+1. **Update this PRD** — add the feature to the relevant section and append a task checklist under the appropriate phase
+2. **Create an implementation plan** in `docs/<feature-name>-plan.md` — files to change, step-by-step approach, edge cases
+
 ## Overview
 
 Kana Flow is a mobile app for learning Japanese kana (hiragana and katakana) through interactive quizzes. The app focuses on active recall and spaced repetition to help users memorize all 46 basic characters plus their variations.
@@ -37,6 +44,25 @@ Two primary modes:
 | Main (Gojūon)      | Basic characters (あ-ん)               | 46    |
 | Dakuten            | Voiced consonants (が, ざ, だ, ば, ぱ) | 25    |
 | Combination (Yōon) | Combined sounds (きゃ, しゅ, ちょ)     | 36    |
+
+#### 2.2.1 Row Selection (optional)
+
+After selecting a subsection, users may optionally narrow the quiz to specific rows within that subsection. This appears on the quiz configuration screen as a collapsible multi-select section.
+
+- **Default**: All rows in the selected subsection (no row filter applied)
+- **Selection**: User can toggle individual rows on/off (e.g., select only "a-row" and "ka-row" from Main)
+- **Row labels**: Displayed as the row's romaji root (e.g., "a", "ka", "sa", "ga", "kya")
+- **Dynamic**: Available rows update automatically when Kana Type or Character Group changes; any active row selection resets on group/type change
+- **Availability**: Only rows that actually contain characters in the current selection are shown
+- **Summary**: The question count summary reflects the filtered character pool
+
+**Example rows by group:**
+
+| Group       | Rows |
+| ----------- | ---- |
+| Main        | a, ka, sa, ta, na, ha, ma, ya, ra, wa, n |
+| Dakuten     | ga, za, da, ba, pa |
+| Combination | kya, sha, cha, nya, hya, mya, rya, gya, ja, dya, bya, pya |
 
 #### 2.3 Quiz Types
 
@@ -123,6 +149,16 @@ Two primary modes:
 - [x] Subsection selection screen (all/main/dakuten/combination)
 - [x] Quiz type selection screen
 
+**1.5 Row Selection Filter**
+
+- [ ] Add `selectedRows` to `QuizConfig` (empty = all rows)
+- [ ] Add `getAvailableRows` helper to `KanaData` returning ordered, deduplicated row keys for a given type+group
+- [ ] Update `KanaData.getCharacters` to accept and apply optional row filter
+- [ ] Update `QuizSetupViewModel` with `selectedRows` state, reset on type/group change, propagate to `config`
+- [ ] Create `RowSelectorView` — collapsible multi-select chip list below Character Group
+- [ ] Wire `RowSelectorView` into `QuizSetupView`
+- [ ] Apply row filter in `QuizViewModel.load` and `ProgressStore.getStrugglingIds`
+
 **1.3 Quiz Type A: Kana → Romaji** ✅
 
 - [x] Quiz card component displaying kana
@@ -190,21 +226,56 @@ Two primary modes:
 - [x] Katakana chart screen
 - [x] Tap character for details (stroke order, romaji pronunciation)
 
-### Phase 5: Polish & Enhancements
+### Phase 5: Handwriting Recognition & Stats Overhaul
 
-**5.0 Notifications**
+See full plan: [docs/handwriting-recognition-plan.md](handwriting-recognition-plan.md)
+
+**5.0 Recognition Engine** (`StrokeRecognition.swift`)
+
+- [ ] Implement stroke normalisation (canvas coords → [0,1]²)
+- [ ] Implement resampling to fixed N=64 points
+- [ ] Implement DTW distance function
+- [ ] Implement greedy stroke matching (user ↔ reference)
+- [ ] Compute shape, proportion, stroke order, consistency scores
+- [ ] Expose `gradeDrawing(userStrokes:character:priorShapeEMA:) -> StrokeScores`
+- [ ] Tune normalisation constants against real drawn characters
+- [ ] Handle fallback (nil) when KanjiVG data is missing for a character
+
+**5.1 Data Model**
+
+- [ ] Add `typeBShapeEMA`, `typeBLatestShape`, `typeBLatestProportion`, `typeBLatestStrokeOrder`, `typeBLatestConsistency`, `typeBLatestOverall` to `CharacterProgress`
+- [ ] Add `SchemaV3` + lightweight migration to `AppMigrationPlan.swift`
+
+**5.2 Graded Quiz Flow**
+
+- [ ] Add `pendingScores: StrokeScores?` and `confirmGrade()` to `QuizViewModel`
+- [ ] Run `gradeDrawing` on drawing submission; respect hint-used override
+- [ ] Create `GradingOverlayView` (side-by-side + score bars + pass/fail + Continue)
+- [ ] Wire `GradingOverlayView` into `QuizPlayView`; remove `SelfGradeOverlayView`
+
+**5.3 Stats Page Overhaul**
+
+- [ ] Add kana type filter (All / Hiragana / Katakana) to `StatsView`
+- [ ] Filter all derived stats data by selected kana type
+- [ ] Add expandable character browser by mastery level (tappable grid → CharacterDetailView)
+- [ ] Create `SpiderChartView` (4-axis radar: shape, proportion, stroke order, consistency)
+- [ ] Add "Production Quality" section with spider chart to `CharacterDetailView`
+
+### Phase 6: Polish & Enhancements
+
+**6.0 Notifications**
 
 - [ ] Add settings page with ability to enable/disable notifications
 - [ ] Add daily reminder push notification
 - [ ] On first open, add notification permission popup (with text about the importance of daily reminders)
 
-**5.1 ML Handwriting Recognition**
+**6.1 ML Handwriting Recognition**
 
 - [ ] Research and select model/API (Core ML or cloud)
 - [ ] Integrate recognition
 - [ ] Confidence threshold tuning
 
-**5.2 UX Improvements**
+**6.2 UX Improvements**
 
 - [ ] Animations and transitions
 - [ ] Sound effects
@@ -212,7 +283,7 @@ Two primary modes:
 - [ ] Haptic feedback
 - [ ] Some improved version of stroke order in study mode
 
-**5.3 Gamification**
+**6.3 Gamification**
 
 - [ ] Daily goals
 - [ ] Achievements/badges

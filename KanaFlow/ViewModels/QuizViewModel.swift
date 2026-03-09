@@ -20,6 +20,7 @@ final class QuizViewModel {
     var lastAnswerCorrect: Bool? = nil
     var submittedStrokes: [Stroke] = []
     var hintUsedThisQuestion: Bool = false
+    var pendingScores: StrokeScores? = nil
 
     var currentCharacter: KanaCharacter? {
         guard currentIndex < characters.count else { return nil }
@@ -40,7 +41,7 @@ final class QuizViewModel {
     func load(config: QuizConfig, store: ProgressStore) async {
         state = .loading
 
-        var pool = KanaData.getCharacters(kanaType: config.kanaType, group: config.group)
+        var pool = KanaData.getCharacters(kanaType: config.kanaType, group: config.group, rows: config.selectedRows)
         let progressDict = store.allProgressDict()
 
         if config.practiceMode == .struggling {
@@ -83,21 +84,39 @@ final class QuizViewModel {
 
     // MARK: - Type B: Submit Drawing
 
-    func submitDrawing(_ strokes: [Stroke]) {
+    /// Run the recognition engine and transition to the grading overlay.
+    /// - Parameters:
+    ///   - store: Used to look up the character's prior shape EMA for consistency scoring.
+    ///   - canvasSize: The pixel size of the canvas the user drew on.
+    @MainActor
+    func submitDrawing(_ strokes: [Stroke], store: ProgressStore, canvasSize: CGFloat) {
         submittedStrokes = strokes
+        if let char = currentCharacter {
+            let priorEMA = store.progressFor(characterId: char.id)?.typeBShapeEMA ?? 0.0
+            pendingScores = gradeDrawing(
+                userStrokes: strokes,
+                character: char,
+                priorShapeEMA: priorEMA,
+                canvasSize: canvasSize
+            )
+        }
         state = .selfGrading
     }
 
-    // MARK: - Type B: Self Grade
+    // MARK: - Type B: Confirm Grade
 
+    /// Finalise the grade for the current Type B question.
+    /// - Parameter wasCorrect: For auto-graded questions, pass `pendingScores?.passed`.
+    ///   For self-graded fallback (no reference data), pass the user's choice.
     @MainActor
-    func submitSelfGrade(_ wasCorrect: Bool, store: ProgressStore) {
+    func submitGrade(_ wasCorrect: Bool, store: ProgressStore) {
         guard let char = currentCharacter else { return }
         let effectiveCorrect = hintUsedThisQuestion ? false : wasCorrect
         let result = QuizResult(character: char, userAnswer: "", correct: effectiveCorrect)
         results.append(result)
         lastAnswerCorrect = effectiveCorrect
-        store.updateProgress(characterId: char.id, correct: effectiveCorrect, quizType: .typeB)
+        store.updateProgress(characterId: char.id, correct: effectiveCorrect, quizType: .typeB, scores: pendingScores)
+        pendingScores = nil
         nextQuestion()
     }
 
@@ -106,6 +125,7 @@ final class QuizViewModel {
     func nextQuestion() {
         hintUsedThisQuestion = false
         submittedStrokes = []
+        pendingScores = nil
         let next = currentIndex + 1
         if next >= characters.count {
             state = .complete

@@ -8,22 +8,31 @@ final class QuizSetupViewModel {
     var quizType: QuizType = .typeA
     var practiceMode: PracticeMode = .full
     var questionCount: QuestionCount = .ten
+    var selectedRows: Set<String> = []
 
     var strugglingCount: Int = 0
     var isLoadingStruggling: Bool = false
 
+    var availableRows: [String] {
+        KanaData.getAvailableRows(kanaType: kanaType, group: group)
+    }
+
+    private var filteredCharacters: [KanaCharacter] {
+        KanaData.getCharacters(kanaType: kanaType, group: group, rows: Array(selectedRows))
+    }
+
     var availableCount: Int {
-        let chars = KanaData.getCharacters(kanaType: kanaType, group: group)
         if practiceMode == .struggling {
             return min(strugglingCount, questionCount == .all ? Int.max : questionCount.rawValue)
         }
+        let chars = filteredCharacters
         if questionCount == .all { return chars.count }
         return min(chars.count, questionCount.rawValue)
     }
 
     var canStart: Bool {
         if practiceMode == .struggling { return strugglingCount > 0 }
-        return KanaData.getCharacters(kanaType: kanaType, group: group).count > 0
+        return filteredCharacters.count > 0
     }
 
     var summaryText: String {
@@ -41,14 +50,15 @@ final class QuizSetupViewModel {
             group: group,
             quizType: quizType,
             practiceMode: practiceMode,
-            questionCount: questionCount
+            questionCount: questionCount,
+            selectedRows: Array(selectedRows)
         )
     }
 
     @MainActor
     func refreshStrugglingCount(store: ProgressStore) async {
         isLoadingStruggling = true
-        strugglingCount = store.getStrugglingIds(kanaType: kanaType, group: group, quizType: quizType).count
+        strugglingCount = store.getStrugglingIds(kanaType: kanaType, group: group, quizType: quizType, rows: Array(selectedRows)).count
         isLoadingStruggling = false
     }
 }

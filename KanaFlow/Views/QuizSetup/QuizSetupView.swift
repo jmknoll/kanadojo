@@ -4,11 +4,12 @@ import SwiftData
 struct QuizSetupView: View {
     @Binding var path: NavigationPath
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @State private var vm = QuizSetupViewModel()
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: AppSpacing.xxl) {
+            VStack(alignment: .leading, spacing: horizontalSizeClass == .regular ? 36 : AppSpacing.xxl) {
 
                 // Kana Type
                 VStack(alignment: .leading, spacing: AppSpacing.md) {
@@ -20,6 +21,12 @@ struct QuizSetupView: View {
                 VStack(alignment: .leading, spacing: AppSpacing.md) {
                     SectionHeaderView(title: "Character Group")
                     GroupChipSelectorView(selection: $vm.group)
+                }
+
+                // Row filter (optional)
+                VStack(alignment: .leading, spacing: AppSpacing.md) {
+                    SectionHeaderView(title: "Rows")
+                    RowSelectorView(selectedRows: $vm.selectedRows, availableRows: vm.availableRows)
                 }
 
                 // Quiz Type
@@ -64,6 +71,8 @@ struct QuizSetupView: View {
                 }
             }
             .padding(AppSpacing.lg)
+            .adaptiveTopPadding()
+            .adaptiveContentWidth()
         }
         .background(AppColors.background)
         .navigationTitle("Quiz Setup")
@@ -73,12 +82,20 @@ struct QuizSetupView: View {
             await vm.refreshStrugglingCount(store: store)
         }
         .onChange(of: vm.kanaType) {
+            vm.selectedRows = []
             Task {
                 let store = ProgressStore(context: modelContext)
                 await vm.refreshStrugglingCount(store: store)
             }
         }
         .onChange(of: vm.group) {
+            vm.selectedRows = []
+            Task {
+                let store = ProgressStore(context: modelContext)
+                await vm.refreshStrugglingCount(store: store)
+            }
+        }
+        .onChange(of: vm.selectedRows) {
             Task {
                 let store = ProgressStore(context: modelContext)
                 await vm.refreshStrugglingCount(store: store)

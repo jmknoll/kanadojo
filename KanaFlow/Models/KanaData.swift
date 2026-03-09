@@ -291,4 +291,19 @@ enum KanaData {
         case .combination: return base.filter { $0.group == .combination }
         }
     }
+
+    static func getCharacters(kanaType: KanaTypeSelection, group: GroupSelection, rows: [String]) -> [KanaCharacter] {
+        let base = getCharacters(kanaType: kanaType, group: group)
+        if rows.isEmpty { return base }
+        let rowSet = Set(rows)
+        return base.filter { rowSet.contains($0.row) }
+    }
+
+    static func getAvailableRows(kanaType: KanaTypeSelection, group: GroupSelection) -> [String] {
+        var seen = Set<String>()
+        return getCharacters(kanaType: kanaType, group: group).compactMap { char in
+            guard seen.insert(char.row).inserted else { return nil }
+            return char.row
+        }
+    }
 }

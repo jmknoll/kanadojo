@@ -40,6 +40,14 @@ project.yml        # XcodeGen project definition
 
 - [PRD](docs/PRD.md) - Product requirements and phased task breakdown
 
+## Feature Development Workflow
+
+For every new feature request:
+
+1. **Update `docs/PRD.md`** — add the feature to the relevant section and mark it with a task checklist under the appropriate phase
+2. **Create an implementation plan** in `docs/<feature-name>-plan.md` — covering files to change, step-by-step approach, and edge cases
+3. **Implement** — follow the plan, regenerating the Xcode project with `xcodegen generate` if new files are added
+
 ## Data Persistence & Migration
 
 Progress data is stored with SwiftData in `CharacterProgress` (one record per kana character).

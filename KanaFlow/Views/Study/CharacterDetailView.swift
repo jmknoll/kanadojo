@@ -6,7 +6,8 @@ struct CharacterDetailView: View {
 
     @Query private var progressRecords: [CharacterProgress]
 
-    private let canvasSize: CGFloat = 220
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    private var canvasSize: CGFloat { horizontalSizeClass == .regular ? 320 : 220 }
     @State private var revealedCount: Int = 0
 
     init(character: KanaCharacter) {
@@ -29,9 +30,14 @@ struct CharacterDetailView: View {
                 if let p = progress, p.totalCount > 0 {
                     progressSection(p)
                 }
+                if let p = progress, p.typeBLatestOverall > 0 {
+                    typeBMetricsSection(p)
+                }
             }
             .padding(AppSpacing.lg)
             .padding(.bottom, AppSpacing.xxxl)
+            .adaptiveTopPadding()
+            .adaptiveContentWidth()
         }
         .background(AppColors.background)
         .navigationTitle(character.character)
@@ -213,6 +219,24 @@ struct CharacterDetailView: View {
             MasteryBadge(level: level)
         }
         .frame(maxWidth: .infinity)
+    }
+
+    // MARK: - Type B Metrics
+
+    private func typeBMetricsSection(_ p: CharacterProgress) -> some View {
+        VStack(alignment: .leading, spacing: AppSpacing.md) {
+            Text("Production Quality")
+                .font(AppFonts.heading3)
+                .foregroundStyle(AppColors.text)
+
+            SpiderChartView(axes: [
+                .init(label: "Shape",        value: p.typeBLatestShape),
+                .init(label: "Proportion",   value: p.typeBLatestProportion),
+                .init(label: "Stroke Order", value: p.typeBLatestStrokeOrder),
+                .init(label: "Consistency",  value: p.typeBLatestConsistency),
+            ])
+            .frame(maxWidth: .infinity)
+        }
     }
 
     private func statCell(label: String, value: String, color: Color) -> some View {

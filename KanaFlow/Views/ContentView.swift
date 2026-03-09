@@ -16,7 +16,8 @@ extension QuizConfig: Hashable {
         lhs.group == rhs.group &&
         lhs.quizType == rhs.quizType &&
         lhs.practiceMode == rhs.practiceMode &&
-        lhs.questionCount == rhs.questionCount
+        lhs.questionCount == rhs.questionCount &&
+        lhs.selectedRows == rhs.selectedRows
     }
 
     func hash(into hasher: inout Hasher) {
@@ -25,6 +26,7 @@ extension QuizConfig: Hashable {
         hasher.combine(quizType.rawValue)
         hasher.combine(practiceMode.rawValue)
         hasher.combine(questionCount.rawValue)
+        hasher.combine(selectedRows)
     }
 }
 

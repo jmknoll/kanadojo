@@ -78,6 +78,8 @@ struct QuizSummaryView: View {
                 .padding(.horizontal, AppSpacing.lg)
                 .padding(.bottom, AppSpacing.xxxl)
             }
+            .adaptiveTopPadding()
+            .adaptiveContentWidth()
         }
         .background(AppColors.background)
         .navigationBarBackButtonHidden()

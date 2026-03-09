@@ -164,4 +164,5 @@ struct QuizConfig {
     let quizType: QuizType
     let practiceMode: PracticeMode
     let questionCount: QuestionCount
+    let selectedRows: [String]  // empty = all rows
 }
