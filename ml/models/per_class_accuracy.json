@@ -1,0 +1,462 @@
+[
+  {
+    "label": "あ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "い",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "う",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "え",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "お",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "か",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "き",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "く",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "け",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "こ",
+    "accuracy": 0.9881,
+    "n": 84
+  },
+  {
+    "label": "さ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "し",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "す",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "せ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "そ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "た",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ち",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "つ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "て",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "と",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "な",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "に",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ぬ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ね",
+    "accuracy": 0.9881,
+    "n": 84
+  },
+  {
+    "label": "の",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "は",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ひ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ふ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "へ",
+    "accuracy": 0.631,
+    "n": 84
+  },
+  {
+    "label": "ほ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ま",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "み",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "む",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "め",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "も",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "や",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ゆ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "よ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ら",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "り",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "る",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "れ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ろ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "わ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "を",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ん",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ア",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "イ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ウ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "エ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "オ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "カ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "キ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ク",
+    "accuracy": 0.9881,
+    "n": 84
+  },
+  {
+    "label": "ケ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "コ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "サ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "シ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ス",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "セ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ソ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "タ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "チ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ツ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "テ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ト",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ナ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ニ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ヌ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ネ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ノ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ハ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ヒ",
+    "accuracy": 0.9881,
+    "n": 84
+  },
+  {
+    "label": "フ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ヘ",
+    "accuracy": 0.5595,
+    "n": 84
+  },
+  {
+    "label": "ホ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "マ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ミ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ム",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "メ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "モ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ヤ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ユ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ヨ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ラ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "リ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ル",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "レ",
+    "accuracy": 0.9881,
+    "n": 84
+  },
+  {
+    "label": "ロ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ワ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ヲ",
+    "accuracy": 1.0,
+    "n": 84
+  },
+  {
+    "label": "ン",
+    "accuracy": 1.0,
+    "n": 84
+  }
+]

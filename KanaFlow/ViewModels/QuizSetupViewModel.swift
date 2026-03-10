@@ -13,12 +13,17 @@ final class QuizSetupViewModel {
     var strugglingCount: Int = 0
     var isLoadingStruggling: Bool = false
 
+    /// Writing quiz (typeB) is restricted to main kana — the ML model only covers those 92 classes.
+    var effectiveGroup: GroupSelection {
+        quizType == .typeB ? .main : group
+    }
+
     var availableRows: [String] {
-        KanaData.getAvailableRows(kanaType: kanaType, group: group)
+        KanaData.getAvailableRows(kanaType: kanaType, group: effectiveGroup)
     }
 
     private var filteredCharacters: [KanaCharacter] {
-        KanaData.getCharacters(kanaType: kanaType, group: group, rows: Array(selectedRows))
+        KanaData.getCharacters(kanaType: kanaType, group: effectiveGroup, rows: Array(selectedRows))
     }
 
     var availableCount: Int {
@@ -47,7 +52,7 @@ final class QuizSetupViewModel {
     var config: QuizConfig {
         QuizConfig(
             kanaType: kanaType,
-            group: group,
+            group: effectiveGroup,
             quizType: quizType,
             practiceMode: practiceMode,
             questionCount: questionCount,
@@ -58,7 +63,7 @@ final class QuizSetupViewModel {
     @MainActor
     func refreshStrugglingCount(store: ProgressStore) async {
         isLoadingStruggling = true
-        strugglingCount = store.getStrugglingIds(kanaType: kanaType, group: group, quizType: quizType, rows: Array(selectedRows)).count
+        strugglingCount = store.getStrugglingIds(kanaType: kanaType, group: effectiveGroup, quizType: quizType, rows: Array(selectedRows)).count
         isLoadingStruggling = false
     }
 }

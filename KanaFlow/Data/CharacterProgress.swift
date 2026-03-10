@@ -24,7 +24,7 @@ final class CharacterProgress {
     var typeBConsecutiveCorrect: Int
     var typeBNextReviewDate: Date?
 
-    // Handwriting quality metrics (typeB) — updated by gradeDrawing()
+    // Handwriting quality metrics (typeB) — updated by KanaRecognizer
     var typeBShapeEMA: Double = 0.0       // exponential moving average of shape scores
     var typeBLatestShape: Double = 0.0
     var typeBLatestProportion: Double = 0.0

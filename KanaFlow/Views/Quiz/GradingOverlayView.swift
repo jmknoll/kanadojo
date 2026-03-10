@@ -2,24 +2,27 @@ import SwiftUI
 
 /// Grading overlay shown after the user submits a Type B drawing.
 ///
-/// - When `scores` is non-nil: shows the automatically computed score breakdown
-///   and a "Continue" button. The user has no choice — the grade is final.
-/// - When `scores` is nil: no reference stroke data was available for this character;
-///   falls back to the original self-grading buttons.
+/// - When `mlScore` is non-nil: shows the ML legibility score and a Continue button.
+///   The grade is determined automatically (score ≥ 0.65 = pass).
+/// - When `mlScore` is nil: model unavailable; falls back to self-grading buttons.
 struct GradingOverlayView: View {
     let character: KanaCharacter
     let userStrokes: [Stroke]
-    let scores: StrokeScores?
+    let mlScore: Float?
     let hintUsed: Bool
     let drawingCanvasSize: CGFloat
     let onContinue: (Bool) -> Void  // passes wasCorrect
 
+    private static let passingThreshold: Float = 0.65
     private let displaySize: CGFloat = 140
 
-    // The effective result accounting for hint penalty
+    private var passed: Bool {
+        guard let s = mlScore else { return false }
+        return s >= GradingOverlayView.passingThreshold
+    }
+
     private var effectivePassed: Bool {
-        guard let s = scores else { return false }
-        return hintUsed ? false : s.passed
+        hintUsed ? false : passed
     }
 
     var body: some View {
@@ -27,8 +30,8 @@ struct GradingOverlayView: View {
             titleRow
             if hintUsed { hintWarning }
             comparisonRow
-            if let s = scores {
-                scoreSection(s)
+            if let s = mlScore {
+                legibilitySection(s)
                 continueButton(s)
             } else {
                 selfGradeButtons
@@ -45,7 +48,7 @@ struct GradingOverlayView: View {
 
     private var titleRow: some View {
         Group {
-            if scores != nil {
+            if mlScore != nil {
                 Text(effectivePassed ? "Nice work!" : "Keep practicing")
                     .font(AppFonts.heading2)
                     .foregroundStyle(AppColors.text)
@@ -111,24 +114,39 @@ struct GradingOverlayView: View {
     }
 
     @ViewBuilder
-    private func scoreSection(_ s: StrokeScores) -> some View {
+    private func legibilitySection(_ score: Float) -> some View {
         VStack(spacing: AppSpacing.md) {
-            // Overall pass/fail badge
+            // Pass/fail badge
             HStack(spacing: AppSpacing.sm) {
                 Image(systemName: effectivePassed ? "checkmark.circle.fill" : "xmark.circle.fill")
                     .foregroundStyle(effectivePassed ? AppColors.success : AppColors.error)
                     .font(.system(size: 20))
-                Text("Overall: \(Int(s.overall * 100))%")
+                Text("Legibility: \(Int(score * 100))%")
                     .font(AppFonts.bodyMedium)
                     .foregroundStyle(effectivePassed ? AppColors.success : AppColors.error)
             }
 
-            // Score bars
-            VStack(spacing: AppSpacing.sm) {
-                scoreBar(label: "Shape",        value: s.shape)
-                scoreBar(label: "Proportion",   value: s.proportion)
-                scoreBar(label: "Stroke Order", value: s.strokeOrder)
-                scoreBar(label: "Consistency",  value: s.consistency)
+            // Single legibility bar
+            HStack(spacing: AppSpacing.sm) {
+                Text("Score")
+                    .font(AppFonts.caption)
+                    .foregroundStyle(AppColors.textSecondary)
+                    .frame(width: 44, alignment: .leading)
+
+                GeometryReader { geo in
+                    ZStack(alignment: .leading) {
+                        RoundedRectangle(cornerRadius: 3).fill(AppColors.border)
+                        RoundedRectangle(cornerRadius: 3)
+                            .fill(barColor(score))
+                            .frame(width: geo.size.width * CGFloat(score))
+                    }
+                }
+                .frame(height: 8)
+
+                Text("\(Int(score * 100))%")
+                    .font(AppFonts.captionBold)
+                    .foregroundStyle(AppColors.textSecondary)
+                    .frame(width: 36, alignment: .trailing)
             }
             .padding(AppSpacing.md)
             .background(AppColors.backgroundSecondary)
@@ -136,37 +154,13 @@ struct GradingOverlayView: View {
         }
     }
 
-    private func scoreBar(label: String, value: Double) -> some View {
-        HStack(spacing: AppSpacing.sm) {
-            Text(label)
-                .font(AppFonts.caption)
-                .foregroundStyle(AppColors.textSecondary)
-                .frame(width: 88, alignment: .leading)
-
-            GeometryReader { geo in
-                ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 3).fill(AppColors.border)
-                    RoundedRectangle(cornerRadius: 3)
-                        .fill(barColor(value))
-                        .frame(width: geo.size.width * CGFloat(value))
-                }
-            }
-            .frame(height: 6)
-
-            Text("\(Int(value * 100))%")
-                .font(AppFonts.captionBold)
-                .foregroundStyle(AppColors.textSecondary)
-                .frame(width: 36, alignment: .trailing)
-        }
+    private func barColor(_ score: Float) -> Color {
+        score >= 0.65 ? AppColors.success : score >= 0.45 ? AppColors.warning : AppColors.error
     }
 
-    private func barColor(_ v: Double) -> Color {
-        v >= 0.7 ? AppColors.success : v >= 0.5 ? AppColors.warning : AppColors.error
-    }
-
-    private func continueButton(_ s: StrokeScores) -> some View {
+    private func continueButton(_ score: Float) -> some View {
         Button {
-            onContinue(s.passed)
+            onContinue(passed)
         } label: {
             Text("Continue")
                 .font(AppFonts.bodyMedium)

@@ -29,3 +29,9 @@ Podfile.lock
 
 # Trashes
 .Trashes
+
+# ML — Python virtual environment and large data files
+ml/.venv/
+ml/data/
+ml/models/*.pt
+ml/models/confusion_matrix.png

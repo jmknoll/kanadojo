@@ -17,13 +17,22 @@ struct QuizSetupView: View {
                     KanaTypeSelectorView(selection: $vm.kanaType)
                 }
 
-                // Group
-                VStack(alignment: .leading, spacing: AppSpacing.md) {
-                    SectionHeaderView(title: "Character Group")
-                    GroupChipSelectorView(selection: $vm.group)
+                // Group (locked to main for typeB — writing quiz only covers main kana)
+                if vm.quizType == .typeA {
+                    VStack(alignment: .leading, spacing: AppSpacing.md) {
+                        SectionHeaderView(title: "Character Group")
+                        GroupChipSelectorView(selection: $vm.group)
+                    }
+                } else {
+                    VStack(alignment: .leading, spacing: AppSpacing.sm) {
+                        SectionHeaderView(title: "Character Group")
+                        Text("Writing quiz uses main kana only")
+                            .font(AppFonts.caption)
+                            .foregroundStyle(AppColors.textMuted)
+                    }
                 }
 
-                // Row filter (optional)
+                // Row filter (available for both quiz types)
                 VStack(alignment: .leading, spacing: AppSpacing.md) {
                     SectionHeaderView(title: "Rows")
                     RowSelectorView(selectedRows: $vm.selectedRows, availableRows: vm.availableRows)
@@ -89,6 +98,13 @@ struct QuizSetupView: View {
             }
         }
         .onChange(of: vm.group) {
+            vm.selectedRows = []
+            Task {
+                let store = ProgressStore(context: modelContext)
+                await vm.refreshStrugglingCount(store: store)
+            }
+        }
+        .onChange(of: vm.quizType) {
             vm.selectedRows = []
             Task {
                 let store = ProgressStore(context: modelContext)

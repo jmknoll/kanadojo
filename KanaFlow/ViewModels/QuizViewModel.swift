@@ -20,7 +20,7 @@ final class QuizViewModel {
     var lastAnswerCorrect: Bool? = nil
     var submittedStrokes: [Stroke] = []
     var hintUsedThisQuestion: Bool = false
-    var pendingScores: StrokeScores? = nil
+    var mlScore: Float? = nil
 
     var currentCharacter: KanaCharacter? {
         guard currentIndex < characters.count else { return nil }
@@ -84,19 +84,14 @@ final class QuizViewModel {
 
     // MARK: - Type B: Submit Drawing
 
-    /// Run the recognition engine and transition to the grading overlay.
-    /// - Parameters:
-    ///   - store: Used to look up the character's prior shape EMA for consistency scoring.
-    ///   - canvasSize: The pixel size of the canvas the user drew on.
+    /// Classify the user's drawing with the on-device ML model and transition to the grading overlay.
     @MainActor
     func submitDrawing(_ strokes: [Stroke], store: ProgressStore, canvasSize: CGFloat) {
         submittedStrokes = strokes
         if let char = currentCharacter {
-            let priorEMA = store.progressFor(characterId: char.id)?.typeBShapeEMA ?? 0.0
-            pendingScores = gradeDrawing(
-                userStrokes: strokes,
+            mlScore = KanaRecognizer.shared.classify(
+                strokes: strokes,
                 character: char,
-                priorShapeEMA: priorEMA,
                 canvasSize: canvasSize
             )
         }
@@ -106,8 +101,8 @@ final class QuizViewModel {
     // MARK: - Type B: Confirm Grade
 
     /// Finalise the grade for the current Type B question.
-    /// - Parameter wasCorrect: For auto-graded questions, pass `pendingScores?.passed`.
-    ///   For self-graded fallback (no reference data), pass the user's choice.
+    /// - Parameter wasCorrect: True when the ML score meets the passing threshold,
+    ///   or the user self-grades as correct (fallback when model is unavailable).
     @MainActor
     func submitGrade(_ wasCorrect: Bool, store: ProgressStore) {
         guard let char = currentCharacter else { return }
@@ -115,8 +110,8 @@ final class QuizViewModel {
         let result = QuizResult(character: char, userAnswer: "", correct: effectiveCorrect)
         results.append(result)
         lastAnswerCorrect = effectiveCorrect
-        store.updateProgress(characterId: char.id, correct: effectiveCorrect, quizType: .typeB, scores: pendingScores)
-        pendingScores = nil
+        store.updateProgress(characterId: char.id, correct: effectiveCorrect, quizType: .typeB, mlScore: mlScore)
+        mlScore = nil
         nextQuestion()
     }
 
@@ -125,7 +120,7 @@ final class QuizViewModel {
     func nextQuestion() {
         hintUsedThisQuestion = false
         submittedStrokes = []
-        pendingScores = nil
+        mlScore = nil
         let next = currentIndex + 1
         if next >= characters.count {
             state = .complete

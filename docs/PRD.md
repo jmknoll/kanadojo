@@ -106,16 +106,24 @@ After selecting a subsection, users may optionally narrow the quiz to specific r
 
 ## Technical Considerations
 
-### Handwriting Recognition Options
+### Handwriting Recognition
 
-| Approach                                | Pros                   | Cons                       |
-| --------------------------------------- | ---------------------- | -------------------------- |
-| **ML Model (Core ML / Create ML)**      | Offline, fast, private | Training data, accuracy    |
-| **Cloud API (Google Vision, Apple ML)** | High accuracy          | Requires network, cost     |
-| **Stroke Matching**                     | Simple, educational    | Less forgiving, complex UI |
-| **Self-Grading**                        | Zero complexity        | Relies on user honesty     |
+**Chosen approach: On-device CNN classifier via Core ML.**
 
-**Recommendation:** Start with self-grading ("Did you get it right?") + optional reveal, then iterate to ML-based recognition.
+A small CNN is trained on the ETL Character Database (AIST) and converted to Core ML. At inference time, the user's strokes are rendered to a 64×64 grayscale bitmap and classified against all 214 character classes. The probability assigned to the correct class is the legibility score — a well-formed character scores high regardless of stroke order, while a garbled one scores low.
+
+The earlier DTW (stroke-matching) approach in `StrokeRecognition.swift` is retired. It measured geometric path fidelity rather than legibility and produced unreliable scores.
+
+See full plan: [docs/ml-handwriting-recognition-plan.md](ml-handwriting-recognition-plan.md)
+
+**Previous approaches considered:**
+
+| Approach | Status |
+| --- | --- |
+| ML Model (Core ML) | ✅ **Selected** |
+| Cloud API (Google Vision) | Rejected — requires network, cost |
+| DTW Stroke Matching | ❌ Retired — measures path fidelity, not legibility |
+| Self-Grading | Fallback only — shown when ML model unavailable |
 
 ### Hint System for Handwriting
 
@@ -226,40 +234,45 @@ After selecting a subsection, users may optionally narrow the quiz to specific r
 - [x] Katakana chart screen
 - [x] Tap character for details (stroke order, romaji pronunciation)
 
-### Phase 5: Handwriting Recognition & Stats Overhaul
+### Phase 5: ML Handwriting Recognition
 
-See full plan: [docs/handwriting-recognition-plan.md](handwriting-recognition-plan.md)
+See full plan: [docs/ml-handwriting-recognition-plan.md](ml-handwriting-recognition-plan.md)
 
-**5.0 Recognition Engine** (`StrokeRecognition.swift`)
+**Note:** The DTW stroke-matching approach (`StrokeRecognition.swift`) is retired. `GradingOverlayView.swift` exists but was never wired to the quiz flow. `QuizPlayView.swift` references the non-existent `SelfGradeOverlayView`, causing a compile error. This phase fixes all of the above.
 
-- [ ] Implement stroke normalisation (canvas coords → [0,1]²)
-- [ ] Implement resampling to fixed N=64 points
-- [ ] Implement DTW distance function
-- [ ] Implement greedy stroke matching (user ↔ reference)
-- [ ] Compute shape, proportion, stroke order, consistency scores
-- [ ] Expose `gradeDrawing(userStrokes:character:priorShapeEMA:) -> StrokeScores`
-- [ ] Tune normalisation constants against real drawn characters
-- [ ] Handle fallback (nil) when KanjiVG data is missing for a character
+**5.A Python Pipeline**
 
-**5.1 Data Model**
+- [x] ETL4/5 pre-processed to PNG by user (72×76px grayscale, hex-codepoint directories, `.char.txt` identity files) — covers 92 main kana classes
+- [ ] `build_dakuten.py` — overlay rendered ゛/゜ marks onto ETL4/5 base images to synthesise all 50 dakuten classes; one image per base sample with per-sample mark jitter
+- [ ] `build_combinations.py` — composite left + right component images into 64×64 canvas using StrokePaths layout (left at 55%, right at 40%); generate 300 images per combination class; right component uses full-size ETL4/5 equivalent scaled down by compositing
+- [ ] `augmentation.py` — elastic distortion, rotation ±15°, morphological stroke-width variation, scale jitter, perspective warp
+- [ ] `dataset.py` — PyTorch Dataset over processed PNGs with on-the-fly augmentation
+- [ ] `model.py` — 4-block CNN with GlobalAvgPool → 214 softmax classes (~3M params)
+- [ ] `train.py` — Adam + CosineAnnealingLR, 60 epochs, checkpoint on best val loss
+- [ ] `evaluate.py` — top-1 accuracy + per-class breakdown + confusion matrix PNG
 
-- [ ] Add `typeBShapeEMA`, `typeBLatestShape`, `typeBLatestProportion`, `typeBLatestStrokeOrder`, `typeBLatestConsistency`, `typeBLatestOverall` to `CharacterProgress`
-- [ ] Add `SchemaV3` + lightweight migration to `AppMigrationPlan.swift`
+**Gate: ≥95% test-set accuracy before proceeding to Phase 5.B**
 
-**5.2 Graded Quiz Flow**
+**5.B Core ML Conversion**
 
-- [ ] Add `pendingScores: StrokeScores?` and `confirmGrade()` to `QuizViewModel`
-- [ ] Run `gradeDrawing` on drawing submission; respect hint-used override
-- [ ] Create `GradingOverlayView` (side-by-side + score bars + pass/fail + Continue)
-- [ ] Wire `GradingOverlayView` into `QuizPlayView`; remove `SelfGradeOverlayView`
+- [ ] `convert_to_coreml.py` — `torch.jit.trace` → `coremltools.convert` → `.mlmodel` with softmax output, labels embedded in `userDefinedMetadata`
+- [ ] Commit `KanaClassifier.mlmodel` + `kana_labels.json` to `KanaFlow/KanaFlow/Models/`
 
-**5.3 Stats Page Overhaul**
+**5.C iOS Integration**
+
+- [ ] `KanaRecognizer.swift` — singleton service; renders strokes to 64×64 bitmap via `UIGraphicsImageRenderer`; loads `KanaClassifier.mlmodelc` via `MLModel(contentsOf:)`; returns `Float?` probability for target class
+- [ ] Update `GradingOverlayView.swift` — replace `StrokeScores?` with `mlScore: Float?`; single legibility bar instead of 4 sub-score bars
+- [ ] Update `QuizViewModel.swift` — `submitDrawing` calls `KanaRecognizer`, records grade, sets `mlGradeSubmitted`; add `continueAfterGrading(wasCorrect:store:)`
+- [ ] Update `QuizPlayView.swift` — fix compile error (use `GradingOverlayView` not `SelfGradeOverlayView`); wire `continueAfterGrading`
+- [ ] Delete `StrokeRecognition.swift`
+- [ ] Run `xcodegen generate`, build and test on device
+
+**5.D Stats Page Overhaul** *(deferred — does not block 5.C ship)*
 
 - [ ] Add kana type filter (All / Hiragana / Katakana) to `StatsView`
-- [ ] Filter all derived stats data by selected kana type
 - [ ] Add expandable character browser by mastery level (tappable grid → CharacterDetailView)
-- [ ] Create `SpiderChartView` (4-axis radar: shape, proportion, stroke order, consistency)
-- [ ] Add "Production Quality" section with spider chart to `CharacterDetailView`
+- [ ] Add per-character legibility score history to `CharacterProgress` (SchemaV3 migration)
+- [ ] Create `SpiderChartView` (legibility trend chart in `CharacterDetailView`)
 
 ### Phase 6: Polish & Enhancements
 
@@ -269,13 +282,7 @@ See full plan: [docs/handwriting-recognition-plan.md](handwriting-recognition-pl
 - [ ] Add daily reminder push notification
 - [ ] On first open, add notification permission popup (with text about the importance of daily reminders)
 
-**6.1 ML Handwriting Recognition**
-
-- [ ] Research and select model/API (Core ML or cloud)
-- [ ] Integrate recognition
-- [ ] Confidence threshold tuning
-
-**6.2 UX Improvements**
+**6.1 UX Improvements**
 
 - [ ] Animations and transitions
 - [ ] Sound effects

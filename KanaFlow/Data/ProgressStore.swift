@@ -11,7 +11,7 @@ final class ProgressStore {
 
     // MARK: - Update Progress
 
-    func updateProgress(characterId: String, correct: Bool, quizType: QuizType, scores: StrokeScores? = nil) {
+    func updateProgress(characterId: String, correct: Bool, quizType: QuizType, mlScore: Float? = nil) {
         let progress = fetchOrCreate(characterId: characterId)
 
         if correct {
@@ -26,19 +26,16 @@ final class ProgressStore {
             if correct { progress.typeACorrect += 1 } else { progress.typeAIncorrect += 1 }
         case .typeB:
             if correct { progress.typeBCorrect += 1 } else { progress.typeBIncorrect += 1 }
-            if let s = scores {
-                // Update EMA and latest metric fields
+            if let score = mlScore {
+                // Track ML legibility score EMA and latest overall
+                let s = Double(score)
                 let prevEMA = progress.typeBShapeEMA
-                progress.typeBShapeEMA = prevEMA == 0 ? s.shape : 0.3 * s.shape + 0.7 * prevEMA
-                progress.typeBLatestShape = s.shape
-                progress.typeBLatestProportion = s.proportion
-                progress.typeBLatestStrokeOrder = s.strokeOrder
-                progress.typeBLatestConsistency = s.consistency
-                progress.typeBLatestOverall = s.overall
+                progress.typeBShapeEMA = prevEMA == 0 ? s : 0.3 * s + 0.7 * prevEMA
+                progress.typeBLatestOverall = s
             }
         }
 
-        applySpacedRepetition(to: progress, correct: correct, quizType: quizType, score: scores?.overall)
+        applySpacedRepetition(to: progress, correct: correct, quizType: quizType, score: mlScore.map(Double.init))
         StreakStore.shared.recordStudyToday()
 
         try? context.save()

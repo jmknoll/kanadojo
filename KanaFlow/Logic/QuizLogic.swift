@@ -23,7 +23,7 @@ func shuffleArray<T>(_ array: [T]) -> [T] {
 // MARK: - Spaced Repetition (SM-2)
 
 /// Apply SM-2 spaced repetition.
-/// - Parameter score: For typeB, the continuous overall grade (0–1) from gradeDrawing().
+/// - Parameter score: For typeB, the ML legibility score (0–1) from KanaRecognizer.
 ///   When provided, the ease factor delta is scaled by score quality rather than fixed.
 ///   Type A always uses the fixed binary delta (score is ignored).
 func applySpacedRepetition(

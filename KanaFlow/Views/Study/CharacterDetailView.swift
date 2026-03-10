@@ -229,13 +229,38 @@ struct CharacterDetailView: View {
                 .font(AppFonts.heading3)
                 .foregroundStyle(AppColors.text)
 
-            SpiderChartView(axes: [
-                .init(label: "Shape",        value: p.typeBLatestShape),
-                .init(label: "Proportion",   value: p.typeBLatestProportion),
-                .init(label: "Stroke Order", value: p.typeBLatestStrokeOrder),
-                .init(label: "Consistency",  value: p.typeBLatestConsistency),
-            ])
-            .frame(maxWidth: .infinity)
+            if p.typeBLatestOverall > 0 {
+                HStack(spacing: AppSpacing.sm) {
+                    Text("Legibility")
+                        .font(AppFonts.caption)
+                        .foregroundStyle(AppColors.textSecondary)
+                        .frame(width: 72, alignment: .leading)
+
+                    GeometryReader { geo in
+                        ZStack(alignment: .leading) {
+                            RoundedRectangle(cornerRadius: 3).fill(AppColors.border)
+                            RoundedRectangle(cornerRadius: 3)
+                                .fill(p.typeBLatestOverall >= 0.65 ? AppColors.success
+                                      : p.typeBLatestOverall >= 0.45 ? AppColors.warning
+                                      : AppColors.error)
+                                .frame(width: geo.size.width * p.typeBLatestOverall)
+                        }
+                    }
+                    .frame(height: 8)
+
+                    Text("\(Int(p.typeBLatestOverall * 100))%")
+                        .font(AppFonts.captionBold)
+                        .foregroundStyle(AppColors.textSecondary)
+                        .frame(width: 36, alignment: .trailing)
+                }
+                .padding(AppSpacing.md)
+                .background(AppColors.backgroundSecondary)
+                .clipShape(RoundedRectangle(cornerRadius: AppRadius.md))
+            } else {
+                Text("No drawing attempts yet")
+                    .font(AppFonts.caption)
+                    .foregroundStyle(AppColors.textMuted)
+            }
         }
     }
 
