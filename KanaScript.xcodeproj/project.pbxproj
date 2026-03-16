@@ -1,0 +1,605 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 63;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0905BD88D1253E6C89DCC4F1 /* GroupChipSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19D77DA662D361E2841EE0F /* GroupChipSelectorView.swift */; };
+		133CDE607CA7049120AE7567 /* KanaFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2007227D61FCE40967E1ED09 /* KanaFlowApp.swift */; };
+		1D915FFA9E07E35FA76E935C /* KanaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01596BB62783F2C90C38F355 /* KanaData.swift */; };
+		205112A41C901B618791C34A /* KanaTypeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43237E443E0F2DFCBC45CB1 /* KanaTypeSelectorView.swift */; };
+		24E6EA2042C4881D8D1FEBBB /* QuizSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424551E4193FB3213BD77F6A /* QuizSummaryView.swift */; };
+		2CF4EFE927CD60C66A79E40D /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8C3D10189EE1D6E9AE9979 /* ProgressBarView.swift */; };
+		3479DD17B806FBEF003F8465 /* StreakStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C195B69679926EE74319BB85 /* StreakStore.swift */; };
+		3527984D5E0006BAF36591A8 /* StrokeOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1936F9A132BD09F3531840F /* StrokeOrder.swift */; };
+		38AA6B235BC85F04ED8BDB41 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2326E10288597CEEFEDC56 /* StatsView.swift */; };
+		391DD5C0290B2B293A9BE85D /* SVGPathParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E662107BABBC1D16AEF06D /* SVGPathParser.swift */; };
+		3BE1EC405D0620C069B8074E /* StrokePaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1652CA9701444ABF47A4A44 /* StrokePaths.swift */; };
+		3F0221F065F66FFFC7C84138 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202C723C562DEACAD459AC3E /* AppTheme.swift */; };
+		401B3132A462EB125D871207 /* AnswerInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B82A9A9E91CF51560AE6A2 /* AnswerInputView.swift */; };
+		431D792FC46480B5BB263C7A /* QuestionCountSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F0D7FB8B078363BC1A82C /* QuestionCountSelectorView.swift */; };
+		50EC32B00262A2138DF5940D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EB387717EF8A988DAE18E6 /* ContentView.swift */; };
+		5236A4F624FE459CBB2F5D7E /* QuizCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D70329CE14AAF0E37CCB7 /* QuizCardView.swift */; };
+		5A23EAFE4B82C5DAFFCB6FB6 /* SpiderChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1610C297089FC53A7F7E1B /* SpiderChartView.swift */; };
+		605B2F707F398419ED586E61 /* QuizPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F9CE7BC8396A40DB665504 /* QuizPlayView.swift */; };
+		67AB21E34D93C156415E7695 /* HomeTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1402250B62382D4F6BF7F7 /* HomeTileView.swift */; };
+		688F332F2254C0A6DE2AE8BE /* QuizSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908D32DF61234A94E8379B0 /* QuizSetupView.swift */; };
+		6A30FF35AEFBB5C08A7E7193 /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B26A6212B1908CAE13365E7 /* CharacterDetailView.swift */; };
+		7946F76C01806A569131A359 /* kana_prototypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 0BD537236F04E17BF6934864 /* kana_prototypes.json */; };
+		7D1DC0209A157AF404F40745 /* KanaChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425FA3A932E0F5D61FF932B9 /* KanaChartView.swift */; };
+		7DE5AC1740F8B75654B1021D /* ChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7774C57F6290EFB0E934DA5F /* ChipView.swift */; };
+		8375DF9470E020548174C1F1 /* DrawingCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4FEB58194BB9932F97F42E /* DrawingCanvasView.swift */; };
+		83CDAD7603EA4A4A3D0FEB0A /* PracticeModeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DDBCD9439F1BC7A85AC14F /* PracticeModeSelectorView.swift */; };
+		8980D1477A8BBD8BDD0EC44E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4883910C25FB69AED43BEFDE /* HomeView.swift */; };
+		8DE167F0A349112A933440DD /* ProgressStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6260BCDBB0B5291E720DDEFC /* ProgressStore.swift */; };
+		915AFF4AEA7EB9C9302781C7 /* ChartCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFC015846D793FF45FC594D /* ChartCellView.swift */; };
+		97EEEB5D3602A0A084FF1794 /* QuizLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD5EF5409AD22C6DA6BD385 /* QuizLogic.swift */; };
+		9988AD86D4ED7223638EA1C7 /* StudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC335638B0CA05525C6F9C0D /* StudyView.swift */; };
+		A1168FEBFC17950039DB0368 /* QuizTypeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B08BCB038C725E1752206F /* QuizTypeSelectorView.swift */; };
+		B62FDE12BD2B922A8A431FB2 /* KanaEmbedderModel.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 6F537AB58648457E281DB30E /* KanaEmbedderModel.mlpackage */; };
+		BA513CA2D278DF69A45296C7 /* GradingOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7806EEFD9BE30A1DDE67C34 /* GradingOverlayView.swift */; };
+		C183D06813FE0C471E07DFA6 /* kana_labels.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CD924B178430F847C75F30A /* kana_labels.json */; };
+		C289F385091D4E09D8565E3E /* RowSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A642D51A7BC13D7CA7E429 /* RowSelectorView.swift */; };
+		C574A5FFD8D490B4D976F275 /* CharacterProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927DED34DF2B0F95B3961DB /* CharacterProgress.swift */; };
+		CB5EDC3D181C68262EEDEBE3 /* KanaEmbeddingScorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420A4E8056C86058AF63178 /* KanaEmbeddingScorer.swift */; };
+		D4B1FE1363353E3E1E036E7A /* MasteryBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA70172BEA78B53A14CE403 /* MasteryBadge.swift */; };
+		DE4A8AD8C059201A39C0B5A6 /* KanaClassifier.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 3F3B66A42A4337436C4E66DC /* KanaClassifier.mlpackage */; };
+		DE83C2C8380F5108755B3EE7 /* QuizSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D0A2B994331D3705234532 /* QuizSetupViewModel.swift */; };
+		DF220E7B9C0965C43904928B /* KanaModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C5EB461CD19A8370EB7B58 /* KanaModels.swift */; };
+		E2EE65EB7D419B8FD968FF97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB3B8EADAE7B463F7BBCBA2F /* Assets.xcassets */; };
+		E7D89240C03C9F270D600DBA /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB06231E246949B4539DAE25 /* SectionHeaderView.swift */; };
+		EA731BEA9B5002E35E9C80D0 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB39D348FBDC0C6F4873396 /* QuizViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		002D70329CE14AAF0E37CCB7 /* QuizCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCardView.swift; sourceTree = "<group>"; };
+		01596BB62783F2C90C38F355 /* KanaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaData.swift; sourceTree = "<group>"; };
+		0420A4E8056C86058AF63178 /* KanaEmbeddingScorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaEmbeddingScorer.swift; sourceTree = "<group>"; };
+		0BD537236F04E17BF6934864 /* kana_prototypes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = kana_prototypes.json; sourceTree = "<group>"; };
+		17D0A2B994331D3705234532 /* QuizSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSetupViewModel.swift; sourceTree = "<group>"; };
+		1908D32DF61234A94E8379B0 /* QuizSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSetupView.swift; sourceTree = "<group>"; };
+		1927DED34DF2B0F95B3961DB /* CharacterProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProgress.swift; sourceTree = "<group>"; };
+		1EA70172BEA78B53A14CE403 /* MasteryBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteryBadge.swift; sourceTree = "<group>"; };
+		2007227D61FCE40967E1ED09 /* KanaFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaFlowApp.swift; sourceTree = "<group>"; };
+		202C723C562DEACAD459AC3E /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		26EB387717EF8A988DAE18E6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3F3B66A42A4337436C4E66DC /* KanaClassifier.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = KanaClassifier.mlpackage; sourceTree = "<group>"; };
+		424551E4193FB3213BD77F6A /* QuizSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSummaryView.swift; sourceTree = "<group>"; };
+		425FA3A932E0F5D61FF932B9 /* KanaChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaChartView.swift; sourceTree = "<group>"; };
+		4883910C25FB69AED43BEFDE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		4AD5EF5409AD22C6DA6BD385 /* QuizLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLogic.swift; sourceTree = "<group>"; };
+		4CD924B178430F847C75F30A /* kana_labels.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = kana_labels.json; sourceTree = "<group>"; };
+		5A8C3D10189EE1D6E9AE9979 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		5F4FEB58194BB9932F97F42E /* DrawingCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvasView.swift; sourceTree = "<group>"; };
+		6260BCDBB0B5291E720DDEFC /* ProgressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStore.swift; sourceTree = "<group>"; };
+		64DDBCD9439F1BC7A85AC14F /* PracticeModeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeModeSelectorView.swift; sourceTree = "<group>"; };
+		69A642D51A7BC13D7CA7E429 /* RowSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowSelectorView.swift; sourceTree = "<group>"; };
+		6B26A6212B1908CAE13365E7 /* CharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
+		6F537AB58648457E281DB30E /* KanaEmbedderModel.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = KanaEmbedderModel.mlpackage; sourceTree = "<group>"; };
+		70B08BCB038C725E1752206F /* QuizTypeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizTypeSelectorView.swift; sourceTree = "<group>"; };
+		75C5EB461CD19A8370EB7B58 /* KanaModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaModels.swift; sourceTree = "<group>"; };
+		7774C57F6290EFB0E934DA5F /* ChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipView.swift; sourceTree = "<group>"; };
+		825261409AE3EE7C1CE8A492 /* KanaScript.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KanaScript.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		92E662107BABBC1D16AEF06D /* SVGPathParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGPathParser.swift; sourceTree = "<group>"; };
+		9B3F0D7FB8B078363BC1A82C /* QuestionCountSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCountSelectorView.swift; sourceTree = "<group>"; };
+		9E2326E10288597CEEFEDC56 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		AB3B8EADAE7B463F7BBCBA2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AC1610C297089FC53A7F7E1B /* SpiderChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiderChartView.swift; sourceTree = "<group>"; };
+		AEFC015846D793FF45FC594D /* ChartCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCellView.swift; sourceTree = "<group>"; };
+		B6E53605F530C780C42A01F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BC335638B0CA05525C6F9C0D /* StudyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyView.swift; sourceTree = "<group>"; };
+		C195B69679926EE74319BB85 /* StreakStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakStore.swift; sourceTree = "<group>"; };
+		C4B82A9A9E91CF51560AE6A2 /* AnswerInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerInputView.swift; sourceTree = "<group>"; };
+		C7806EEFD9BE30A1DDE67C34 /* GradingOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingOverlayView.swift; sourceTree = "<group>"; };
+		D19D77DA662D361E2841EE0F /* GroupChipSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChipSelectorView.swift; sourceTree = "<group>"; };
+		DCB39D348FBDC0C6F4873396 /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
+		E1652CA9701444ABF47A4A44 /* StrokePaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokePaths.swift; sourceTree = "<group>"; };
+		E1936F9A132BD09F3531840F /* StrokeOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeOrder.swift; sourceTree = "<group>"; };
+		F43237E443E0F2DFCBC45CB1 /* KanaTypeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaTypeSelectorView.swift; sourceTree = "<group>"; };
+		F7F9CE7BC8396A40DB665504 /* QuizPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPlayView.swift; sourceTree = "<group>"; };
+		FB06231E246949B4539DAE25 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
+		FE1402250B62382D4F6BF7F7 /* HomeTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTileView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0442CE29D8328253A7323E06 /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				1EA70172BEA78B53A14CE403 /* MasteryBadge.swift */,
+				AC1610C297089FC53A7F7E1B /* SpiderChartView.swift */,
+				9E2326E10288597CEEFEDC56 /* StatsView.swift */,
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
+		1120DF6756397BAF9E5B4767 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				17D0A2B994331D3705234532 /* QuizSetupViewModel.swift */,
+				DCB39D348FBDC0C6F4873396 /* QuizViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		33B967D9D7B7175E47AD973D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4CD924B178430F847C75F30A /* kana_labels.json */,
+				3F3B66A42A4337436C4E66DC /* KanaClassifier.mlpackage */,
+				01596BB62783F2C90C38F355 /* KanaData.swift */,
+				75C5EB461CD19A8370EB7B58 /* KanaModels.swift */,
+				E1936F9A132BD09F3531840F /* StrokeOrder.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3C31A87E05918CC92A59EF9F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1927DED34DF2B0F95B3961DB /* CharacterProgress.swift */,
+				6260BCDBB0B5291E720DDEFC /* ProgressStore.swift */,
+				C195B69679926EE74319BB85 /* StreakStore.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		4B5006221338D198D14EA16D /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				C4B82A9A9E91CF51560AE6A2 /* AnswerInputView.swift */,
+				5F4FEB58194BB9932F97F42E /* DrawingCanvasView.swift */,
+				C7806EEFD9BE30A1DDE67C34 /* GradingOverlayView.swift */,
+				5A8C3D10189EE1D6E9AE9979 /* ProgressBarView.swift */,
+				002D70329CE14AAF0E37CCB7 /* QuizCardView.swift */,
+				F7F9CE7BC8396A40DB665504 /* QuizPlayView.swift */,
+				424551E4193FB3213BD77F6A /* QuizSummaryView.swift */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
+		54A26D37CCEA5FED9F5BFF96 /* Study */ = {
+			isa = PBXGroup;
+			children = (
+				6B26A6212B1908CAE13365E7 /* CharacterDetailView.swift */,
+				AEFC015846D793FF45FC594D /* ChartCellView.swift */,
+				425FA3A932E0F5D61FF932B9 /* KanaChartView.swift */,
+				BC335638B0CA05525C6F9C0D /* StudyView.swift */,
+			);
+			path = Study;
+			sourceTree = "<group>";
+		};
+		5661709E6D563E7E4C7AFB2F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FE1402250B62382D4F6BF7F7 /* HomeTileView.swift */,
+				4883910C25FB69AED43BEFDE /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		63C24C2031E2D1699A9798ED /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				26EB387717EF8A988DAE18E6 /* ContentView.swift */,
+				5661709E6D563E7E4C7AFB2F /* Home */,
+				4B5006221338D198D14EA16D /* Quiz */,
+				B7BE631FB29AE40330E89BEC /* QuizSetup */,
+				ED776B71A0CB0F9B4395F9BF /* Shared */,
+				0442CE29D8328253A7323E06 /* Stats */,
+				54A26D37CCEA5FED9F5BFF96 /* Study */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6C9CC812A0C83A4480D9724F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0BD537236F04E17BF6934864 /* kana_prototypes.json */,
+				6F537AB58648457E281DB30E /* KanaEmbedderModel.mlpackage */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		74F44B0DA5D7F9D5A23B14FD /* KanaFlow */ = {
+			isa = PBXGroup;
+			children = (
+				E5A00845CDBDC21C375A35C2 /* App */,
+				3C31A87E05918CC92A59EF9F /* Data */,
+				C368EA32F7C6FE2A46785ABF /* KanaFlow */,
+				A447BE8623BC98A526C15617 /* Logic */,
+				33B967D9D7B7175E47AD973D /* Models */,
+				C237ED75CD5AA2BEBEF443B2 /* Theme */,
+				1120DF6756397BAF9E5B4767 /* ViewModels */,
+				63C24C2031E2D1699A9798ED /* Views */,
+			);
+			path = KanaFlow;
+			sourceTree = "<group>";
+		};
+		798FAB9A5DC0ED8BDBA058F5 = {
+			isa = PBXGroup;
+			children = (
+				AB3B8EADAE7B463F7BBCBA2F /* Assets.xcassets */,
+				74F44B0DA5D7F9D5A23B14FD /* KanaFlow */,
+				EC86371B31413C8D36E9CA51 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A447BE8623BC98A526C15617 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				0420A4E8056C86058AF63178 /* KanaEmbeddingScorer.swift */,
+				4AD5EF5409AD22C6DA6BD385 /* QuizLogic.swift */,
+				E1652CA9701444ABF47A4A44 /* StrokePaths.swift */,
+				92E662107BABBC1D16AEF06D /* SVGPathParser.swift */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		B7BE631FB29AE40330E89BEC /* QuizSetup */ = {
+			isa = PBXGroup;
+			children = (
+				D19D77DA662D361E2841EE0F /* GroupChipSelectorView.swift */,
+				F43237E443E0F2DFCBC45CB1 /* KanaTypeSelectorView.swift */,
+				64DDBCD9439F1BC7A85AC14F /* PracticeModeSelectorView.swift */,
+				9B3F0D7FB8B078363BC1A82C /* QuestionCountSelectorView.swift */,
+				1908D32DF61234A94E8379B0 /* QuizSetupView.swift */,
+				70B08BCB038C725E1752206F /* QuizTypeSelectorView.swift */,
+				69A642D51A7BC13D7CA7E429 /* RowSelectorView.swift */,
+			);
+			path = QuizSetup;
+			sourceTree = "<group>";
+		};
+		C237ED75CD5AA2BEBEF443B2 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				202C723C562DEACAD459AC3E /* AppTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		C368EA32F7C6FE2A46785ABF /* KanaFlow */ = {
+			isa = PBXGroup;
+			children = (
+				6C9CC812A0C83A4480D9724F /* Models */,
+			);
+			path = KanaFlow;
+			sourceTree = "<group>";
+		};
+		E5A00845CDBDC21C375A35C2 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B6E53605F530C780C42A01F6 /* Info.plist */,
+				2007227D61FCE40967E1ED09 /* KanaFlowApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		EC86371B31413C8D36E9CA51 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				825261409AE3EE7C1CE8A492 /* KanaScript.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ED776B71A0CB0F9B4395F9BF /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				7774C57F6290EFB0E934DA5F /* ChipView.swift */,
+				FB06231E246949B4539DAE25 /* SectionHeaderView.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EDD98B4AE9D93B969E15156A /* KanaScript */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C991250388EA506BEBB49F4 /* Build configuration list for PBXNativeTarget "KanaScript" */;
+			buildPhases = (
+				0D8FD424E66C1577BE0AA5D4 /* Sources */,
+				97FBE4664ED75F455129A5F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KanaScript;
+			packageProductDependencies = (
+			);
+			productName = KanaScript;
+			productReference = 825261409AE3EE7C1CE8A492 /* KanaScript.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6C2CE1F4D531A665AEBF84A3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					EDD98B4AE9D93B969E15156A = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E886AFA7D02AD0346962304E /* Build configuration list for PBXProject "KanaScript" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 798FAB9A5DC0ED8BDBA058F5;
+			minimizedProjectReferenceProxies = 1;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EDD98B4AE9D93B969E15156A /* KanaScript */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		97FBE4664ED75F455129A5F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2EE65EB7D419B8FD968FF97 /* Assets.xcassets in Resources */,
+				C183D06813FE0C471E07DFA6 /* kana_labels.json in Resources */,
+				7946F76C01806A569131A359 /* kana_prototypes.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0D8FD424E66C1577BE0AA5D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				401B3132A462EB125D871207 /* AnswerInputView.swift in Sources */,
+				3F0221F065F66FFFC7C84138 /* AppTheme.swift in Sources */,
+				6A30FF35AEFBB5C08A7E7193 /* CharacterDetailView.swift in Sources */,
+				C574A5FFD8D490B4D976F275 /* CharacterProgress.swift in Sources */,
+				915AFF4AEA7EB9C9302781C7 /* ChartCellView.swift in Sources */,
+				7DE5AC1740F8B75654B1021D /* ChipView.swift in Sources */,
+				50EC32B00262A2138DF5940D /* ContentView.swift in Sources */,
+				8375DF9470E020548174C1F1 /* DrawingCanvasView.swift in Sources */,
+				BA513CA2D278DF69A45296C7 /* GradingOverlayView.swift in Sources */,
+				0905BD88D1253E6C89DCC4F1 /* GroupChipSelectorView.swift in Sources */,
+				67AB21E34D93C156415E7695 /* HomeTileView.swift in Sources */,
+				8980D1477A8BBD8BDD0EC44E /* HomeView.swift in Sources */,
+				7D1DC0209A157AF404F40745 /* KanaChartView.swift in Sources */,
+				DE4A8AD8C059201A39C0B5A6 /* KanaClassifier.mlpackage in Sources */,
+				1D915FFA9E07E35FA76E935C /* KanaData.swift in Sources */,
+				B62FDE12BD2B922A8A431FB2 /* KanaEmbedderModel.mlpackage in Sources */,
+				CB5EDC3D181C68262EEDEBE3 /* KanaEmbeddingScorer.swift in Sources */,
+				133CDE607CA7049120AE7567 /* KanaFlowApp.swift in Sources */,
+				DF220E7B9C0965C43904928B /* KanaModels.swift in Sources */,
+				205112A41C901B618791C34A /* KanaTypeSelectorView.swift in Sources */,
+				D4B1FE1363353E3E1E036E7A /* MasteryBadge.swift in Sources */,
+				83CDAD7603EA4A4A3D0FEB0A /* PracticeModeSelectorView.swift in Sources */,
+				2CF4EFE927CD60C66A79E40D /* ProgressBarView.swift in Sources */,
+				8DE167F0A349112A933440DD /* ProgressStore.swift in Sources */,
+				431D792FC46480B5BB263C7A /* QuestionCountSelectorView.swift in Sources */,
+				5236A4F624FE459CBB2F5D7E /* QuizCardView.swift in Sources */,
+				97EEEB5D3602A0A084FF1794 /* QuizLogic.swift in Sources */,
+				605B2F707F398419ED586E61 /* QuizPlayView.swift in Sources */,
+				688F332F2254C0A6DE2AE8BE /* QuizSetupView.swift in Sources */,
+				DE83C2C8380F5108755B3EE7 /* QuizSetupViewModel.swift in Sources */,
+				24E6EA2042C4881D8D1FEBBB /* QuizSummaryView.swift in Sources */,
+				A1168FEBFC17950039DB0368 /* QuizTypeSelectorView.swift in Sources */,
+				EA731BEA9B5002E35E9C80D0 /* QuizViewModel.swift in Sources */,
+				C289F385091D4E09D8565E3E /* RowSelectorView.swift in Sources */,
+				391DD5C0290B2B293A9BE85D /* SVGPathParser.swift in Sources */,
+				E7D89240C03C9F270D600DBA /* SectionHeaderView.swift in Sources */,
+				5A23EAFE4B82C5DAFFCB6FB6 /* SpiderChartView.swift in Sources */,
+				38AA6B235BC85F04ED8BDB41 /* StatsView.swift in Sources */,
+				3479DD17B806FBEF003F8465 /* StreakStore.swift in Sources */,
+				3527984D5E0006BAF36591A8 /* StrokeOrder.swift in Sources */,
+				3BE1EC405D0620C069B8074E /* StrokePaths.swift in Sources */,
+				9988AD86D4ED7223638EA1C7 /* StudyView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4565B3170C8A023FA3E03098 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J58DBXYSS4;
+				INFOPLIST_FILE = KanaFlow/App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jmknoll.KanaScript;
+				PRODUCT_NAME = KanaScript;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B7701A8DDE2337A119C6A130 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		E2E646969B14886BD985E340 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J58DBXYSS4;
+				INFOPLIST_FILE = KanaFlow/App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jmknoll.KanaScript;
+				PRODUCT_NAME = KanaScript;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EC78F92F1C68D3F2E0A6119C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8C991250388EA506BEBB49F4 /* Build configuration list for PBXNativeTarget "KanaScript" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4565B3170C8A023FA3E03098 /* Debug */,
+				E2E646969B14886BD985E340 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E886AFA7D02AD0346962304E /* Build configuration list for PBXProject "KanaScript" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC78F92F1C68D3F2E0A6119C /* Debug */,
+				B7701A8DDE2337A119C6A130 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6C2CE1F4D531A665AEBF84A3 /* Project object */;
+}

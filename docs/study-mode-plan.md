@@ -45,7 +45,7 @@ HomeTileView(title: "Study", ..., isEnabled: true) {
 ## New Files
 
 ```
-KanaFlow/Views/Study/
+KanaScript/Views/Study/
 ├── StudyView.swift
 ├── KanaChartView.swift
 ├── ChartCellView.swift

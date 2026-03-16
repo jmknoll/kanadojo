@@ -256,7 +256,7 @@ See full plan: [docs/ml-handwriting-recognition-plan.md](ml-handwriting-recognit
 **5.B Core ML Conversion**
 
 - [ ] `convert_to_coreml.py` — `torch.jit.trace` → `coremltools.convert` → `.mlmodel` with softmax output, labels embedded in `userDefinedMetadata`
-- [ ] Commit `KanaClassifier.mlmodel` + `kana_labels.json` to `KanaFlow/KanaFlow/Models/`
+- [ ] Commit `KanaClassifier.mlmodel` + `kana_labels.json` to `KanaScript/KanaScript/Models/`
 
 **5.C iOS Integration**
 

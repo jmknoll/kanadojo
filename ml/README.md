@@ -1,4 +1,4 @@
-# KanaFlow ML Pipeline
+# KanaScript ML Pipeline
 
 On-device handwriting grading for Type B (Romaji → Kana) quizzes.
 

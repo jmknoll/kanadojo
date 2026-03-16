@@ -3,7 +3,7 @@ import SwiftData
 import SQLite3
 
 @main
-struct KanaFlowApp: App {
+struct KanaScriptApp: App {
     let container: ModelContainer
 
     init() {

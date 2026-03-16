@@ -12,7 +12,7 @@ A native iOS app for learning Japanese kana (hiragana and katakana).
 ## Project Structure
 
 ```
-KanaFlow/
+KanaScript/
 ├── App/           # App entry point and Info.plist
 ├── Data/          # Progress persistence (UserDefaults)
 ├── Logic/         # Quiz logic and SVG path parsing
@@ -33,7 +33,7 @@ project.yml        # XcodeGen project definition
 
 1. Install XcodeGen if needed: `brew install xcodegen`
 2. Generate the Xcode project: `xcodegen generate`
-3. Open `KanaFlow.xcodeproj` in Xcode
+3. Open `KanaScript.xcodeproj` in Xcode
 4. Build and run on an iOS 17+ simulator or device
 
 ## Documentation
@@ -56,7 +56,7 @@ Progress data is stored with SwiftData in `CharacterProgress` (one record per ka
 
 **Never use the wipe-on-failure pattern.** Instead, use SwiftData's versioned schema migration:
 
-1. **Define a new schema version** in `KanaFlow/Data/AppMigrationPlan.swift`:
+1. **Define a new schema version** in `KanaScript/Data/AppMigrationPlan.swift`:
    - Add a new `SchemaVN` enum (copy the previous version's `CharacterProgress` definition as-is)
    - Add a new `SchemaVN+1` enum pointing at the current top-level `CharacterProgress`
 

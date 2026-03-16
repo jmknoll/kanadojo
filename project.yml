@@ -1,4 +1,4 @@
-name: KanaFlow
+name: KanaScript
 options:
   bundleIdPrefix: com.jmknoll
   deploymentTarget:
@@ -11,7 +11,7 @@ settings:
   ENABLE_PREVIEWS: "YES"
 
 targets:
-  KanaFlow:
+  KanaScript:
     type: application
     platform: iOS
     deploymentTarget: "17.0"
@@ -22,8 +22,8 @@ targets:
       - path: Assets.xcassets
     settings:
       base:
-        PRODUCT_NAME: KanaFlow
-        PRODUCT_BUNDLE_IDENTIFIER: com.jmknoll.KanaFlow
+        PRODUCT_NAME: KanaScript
+        PRODUCT_BUNDLE_IDENTIFIER: com.jmknoll.KanaScript
         INFOPLIST_FILE: KanaFlow/App/Info.plist
         DEVELOPMENT_TEAM: ""
         CODE_SIGN_STYLE: Automatic
