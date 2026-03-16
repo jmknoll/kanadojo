@@ -299,11 +299,11 @@ enum KanaData {
         return base.filter { rowSet.contains($0.row) }
     }
 
-    static func getAvailableRows(kanaType: KanaTypeSelection, group: GroupSelection) -> [String] {
+    static func getAvailableRows(kanaType: KanaTypeSelection, group: GroupSelection) -> [(key: String, kana: String)] {
         var seen = Set<String>()
         return getCharacters(kanaType: kanaType, group: group).compactMap { char in
             guard seen.insert(char.row).inserted else { return nil }
-            return char.row
+            return (key: char.row, kana: char.character)
         }
     }
 }

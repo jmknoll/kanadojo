@@ -2,7 +2,7 @@ import SwiftUI
 
 struct RowSelectorView: View {
     @Binding var selectedRows: Set<String>
-    let availableRows: [String]
+    let availableRows: [(key: String, kana: String)]
 
     @State private var isExpanded: Bool = false
 
@@ -43,9 +43,9 @@ struct RowSelectorView: View {
             // Chip grid — shown when expanded
             if isExpanded {
                 FlowLayout(spacing: AppSpacing.sm) {
-                    ForEach(availableRows, id: \.self) { row in
-                        ChipView(label: row, isSelected: selectedRows.contains(row)) {
-                            toggleRow(row)
+                    ForEach(availableRows, id: \.key) { row in
+                        ChipView(label: row.kana, isSelected: selectedRows.contains(row.key)) {
+                            toggleRow(row.key)
                         }
                     }
                 }

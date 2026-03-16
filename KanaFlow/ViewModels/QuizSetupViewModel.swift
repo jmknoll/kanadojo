@@ -18,7 +18,7 @@ final class QuizSetupViewModel {
         quizType == .typeB ? .main : group
     }
 
-    var availableRows: [String] {
+    var availableRows: [(key: String, kana: String)] {
         KanaData.getAvailableRows(kanaType: kanaType, group: effectiveGroup)
     }
 

@@ -1,12 +1,12 @@
 {
     "fileFormatVersion": "1.0.0",
     "itemInfoEntries": {
-        "B5125A4D-2B1B-43F6-A21F-16D5EB482010": {
+        "6E95CFA1-3715-4F37-A156-332F03295348": {
             "author": "com.apple.CoreML",
             "description": "CoreML Model Specification",
             "name": "model.mlmodel",
             "path": "com.apple.CoreML/model.mlmodel"
         }
     },
-    "rootModelIdentifier": "B5125A4D-2B1B-43F6-A21F-16D5EB482010"
+    "rootModelIdentifier": "6E95CFA1-3715-4F37-A156-332F03295348"
 }

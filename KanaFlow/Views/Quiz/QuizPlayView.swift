@@ -154,7 +154,7 @@ struct QuizPlayView: View {
             GradingOverlayView(
                 character: char,
                 userStrokes: vm.submittedStrokes,
-                mlScore: vm.mlScore,
+                qualityResult: vm.qualityResult,
                 hintUsed: vm.hintUsedThisQuestion,
                 drawingCanvasSize: drawingCanvasSize,
                 onContinue: { wasCorrect in

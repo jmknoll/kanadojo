@@ -20,7 +20,7 @@ final class QuizViewModel {
     var lastAnswerCorrect: Bool? = nil
     var submittedStrokes: [Stroke] = []
     var hintUsedThisQuestion: Bool = false
-    var mlScore: Float? = nil
+    var qualityResult: QualityResult? = nil
 
     var currentCharacter: KanaCharacter? {
         guard currentIndex < characters.count else { return nil }
@@ -84,25 +84,26 @@ final class QuizViewModel {
 
     // MARK: - Type B: Submit Drawing
 
-    /// Classify the user's drawing with the on-device ML model and transition to the grading overlay.
+    /// Grades the drawing using the embedding model. Falls back to self-grading (qualityResult = nil)
+    /// if the model files are not present in the bundle.
     @MainActor
     func submitDrawing(_ strokes: [Stroke], store: ProgressStore, canvasSize: CGFloat) {
         submittedStrokes = strokes
-        if let char = currentCharacter {
-            mlScore = KanaRecognizer.shared.classify(
-                strokes: strokes,
-                character: char,
-                canvasSize: canvasSize
-            )
-        }
+        guard let char = currentCharacter else { return }
+
+        qualityResult = KanaEmbeddingScorer.shared.qualityScore(
+            strokes: strokes,
+            character: char,
+            canvasSize: canvasSize
+        )
+
         state = .selfGrading
     }
 
     // MARK: - Type B: Confirm Grade
 
-    /// Finalise the grade for the current Type B question.
-    /// - Parameter wasCorrect: True when the ML score meets the passing threshold,
-    ///   or the user self-grades as correct (fallback when model is unavailable).
+    /// Finalises the grade for the current Type B question.
+    /// `wasCorrect` is determined by the grading overlay (two-phase result or user self-grade).
     @MainActor
     func submitGrade(_ wasCorrect: Bool, store: ProgressStore) {
         guard let char = currentCharacter else { return }
@@ -110,8 +111,8 @@ final class QuizViewModel {
         let result = QuizResult(character: char, userAnswer: "", correct: effectiveCorrect)
         results.append(result)
         lastAnswerCorrect = effectiveCorrect
-        store.updateProgress(characterId: char.id, correct: effectiveCorrect, quizType: .typeB, mlScore: mlScore)
-        mlScore = nil
+        // Pass embedding quality score to spaced-repetition for grade-scaled ease adjustments.
+        store.updateProgress(characterId: char.id, correct: effectiveCorrect, quizType: .typeB, mlScore: qualityResult?.score)
         nextQuestion()
     }
 
@@ -120,7 +121,7 @@ final class QuizViewModel {
     func nextQuestion() {
         hintUsedThisQuestion = false
         submittedStrokes = []
-        mlScore = nil
+        qualityResult = nil
         let next = currentIndex + 1
         if next >= characters.count {
             state = .complete
