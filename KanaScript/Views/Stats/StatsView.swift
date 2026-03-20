@@ -4,6 +4,7 @@ import SwiftData
 struct StatsView: View {
     @Binding var path: NavigationPath
     @Query private var allProgress: [CharacterProgress]
+    @Query private var allWordProgress: [WordProgress]
 
     @State private var selectedType: QuizType = .typeA
     @State private var selectedKanaType: KanaType? = nil  // nil = All
@@ -132,6 +133,7 @@ struct StatsView: View {
                 masterySection
                 characterBrowserSection
                 needsPracticeSection
+                wordStatsSection
             }
             .padding(AppSpacing.lg)
             .padding(.bottom, AppSpacing.xxxl)
@@ -369,6 +371,109 @@ struct StatsView: View {
                 RoundedRectangle(cornerRadius: AppRadius.lg)
                     .stroke(AppColors.cardBorder, lineWidth: 1)
             )
+    }
+
+    // MARK: - Word Stats
+
+    @ViewBuilder
+    private var wordStatsSection: some View {
+        let practiced = allWordProgress.filter { $0.totalCount > 0 }
+        let totalAttempts = practiced.reduce(0) { $0 + $1.totalCount }
+        let totalCorrect = practiced.reduce(0) { $0 + $1.correctCount }
+        let wordAccuracy = totalAttempts > 0 ? Int(Double(totalCorrect) / Double(totalAttempts) * 100) : 0
+        let wordDict = Dictionary(uniqueKeysWithValues: allWordProgress.map { ($0.wordID, $0) })
+
+        VStack(alignment: .leading, spacing: AppSpacing.md) {
+            Text("Word Writing")
+                .font(AppFonts.heading3)
+                .foregroundStyle(AppColors.text)
+
+            if practiced.isEmpty {
+                Text("Complete a word writing session to see your progress here.")
+                    .font(AppFonts.body)
+                    .foregroundStyle(AppColors.textMuted)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(AppSpacing.lg)
+                    .background(AppColors.cardBackground)
+                    .clipShape(RoundedRectangle(cornerRadius: AppRadius.lg))
+                    .overlay(RoundedRectangle(cornerRadius: AppRadius.lg).stroke(AppColors.cardBorder, lineWidth: 1))
+            } else {
+                // Summary chips
+                HStack(spacing: AppSpacing.sm) {
+                    wordSummaryCard(value: "\(practiced.count)", label: "Practiced", color: AppColors.tint)
+                    wordSummaryCard(value: "\(wordAccuracy)%", label: "Accuracy", color: wordAccuracy >= 70 ? AppColors.success : AppColors.error)
+                }
+
+                // Word list (collapsed, sorted by strength ascending)
+                let sortedWords = WordData.allWords
+                    .compactMap { entry -> (entry: WordEntry, progress: WordProgress)? in
+                        guard let prog = wordDict[entry.id], prog.totalCount > 0 else { return nil }
+                        return (entry: entry, progress: prog)
+                    }
+                    .sorted { $0.progress.strength < $1.progress.strength }
+
+                VStack(spacing: AppSpacing.sm) {
+                    ForEach(sortedWords.prefix(10), id: \.entry.id) { item in
+                        wordProgressRow(item.entry, item.progress)
+                    }
+                    if sortedWords.count > 10 {
+                        Text("+ \(sortedWords.count - 10) more words practiced")
+                            .font(AppFonts.caption)
+                            .foregroundStyle(AppColors.textMuted)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(.top, AppSpacing.xs)
+                    }
+                }
+            }
+        }
+    }
+
+    private func wordSummaryCard(value: String, label: String, color: Color) -> some View {
+        VStack(spacing: AppSpacing.xs) {
+            Text(value)
+                .font(AppFonts.heading2)
+                .foregroundStyle(color)
+                .minimumScaleFactor(0.7)
+                .lineLimit(1)
+            Text(label)
+                .font(AppFonts.caption)
+                .foregroundStyle(AppColors.textMuted)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, AppSpacing.md)
+        .background(AppColors.cardBackground)
+        .clipShape(RoundedRectangle(cornerRadius: AppRadius.md))
+        .overlay(RoundedRectangle(cornerRadius: AppRadius.md).stroke(AppColors.cardBorder, lineWidth: 1))
+    }
+
+    private func wordProgressRow(_ entry: WordEntry, _ progress: WordProgress) -> some View {
+        HStack(spacing: AppSpacing.md) {
+            // Kana display — prefer hiragana, fall back to katakana
+            let displayKana = entry.hiragana.isEmpty ? entry.katakana : entry.hiragana
+            Text(displayKana)
+                .font(.system(size: 22, weight: .medium))
+                .foregroundStyle(AppColors.text)
+                .frame(width: 72, alignment: .leading)
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(entry.romaji)
+                    .font(AppFonts.bodyMedium)
+                    .foregroundStyle(AppColors.text)
+                Text(entry.english)
+                    .font(AppFonts.caption)
+                    .foregroundStyle(AppColors.textMuted)
+            }
+
+            Spacer()
+
+            Text("\(Int(progress.accuracy * 100))%")
+                .font(AppFonts.bodyMedium)
+                .foregroundStyle(progress.accuracy >= 0.7 ? AppColors.success : AppColors.error)
+        }
+        .padding(AppSpacing.md)
+        .background(AppColors.cardBackground)
+        .clipShape(RoundedRectangle(cornerRadius: AppRadius.md))
+        .overlay(RoundedRectangle(cornerRadius: AppRadius.md).stroke(AppColors.cardBorder, lineWidth: 0.5))
     }
 
     private func needsPracticeRow(_ char: KanaCharacter, _ progress: CharacterProgress) -> some View {

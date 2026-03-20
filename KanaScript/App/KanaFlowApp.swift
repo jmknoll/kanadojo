@@ -9,7 +9,7 @@ struct KanaScriptApp: App {
     init() {
         migrateStoreIfNeeded()
         do {
-            container = try ModelContainer(for: CharacterProgress.self)
+            container = try ModelContainer(for: CharacterProgress.self, WordProgress.self)
         } catch {
             fatalError("Failed to create ModelContainer: \(error)")
 		}

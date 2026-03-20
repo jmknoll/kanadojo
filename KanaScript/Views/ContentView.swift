@@ -7,6 +7,8 @@ enum AppDestination: Hashable {
     case study
     case stats
     case characterDetail(character: KanaCharacter)
+    case wordWriting
+    case wordQuiz(config: WordQuizConfig)
 }
 
 // QuizConfig needs to be Hashable for NavigationStack
@@ -49,6 +51,10 @@ struct ContentView: View {
                         StatsView(path: $path)
                     case .characterDetail(let character):
                         CharacterDetailView(character: character)
+                    case .wordWriting:
+                        WordSetupView(path: $path)
+                    case .wordQuiz(let config):
+                        WordQuizPlayView(config: config, path: $path)
                     }
                 }
         }
