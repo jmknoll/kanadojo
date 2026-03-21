@@ -41,6 +41,15 @@ struct HomeView: View {
                     ) {
                         path.append(AppDestination.stats)
                     }
+
+                    HomeTileView(
+                        title: "Words",
+                        subtitle: "Write complete words in kana",
+                        icon: "character.book.closed",
+                        isEnabled: true
+                    ) {
+                        path.append(AppDestination.wordWriting)
+                    }
                 }
                 .padding(.horizontal, AppSpacing.lg)
 

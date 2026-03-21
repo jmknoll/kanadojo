@@ -9,7 +9,7 @@ For every new feature request, before writing any code:
 
 ## Overview
 
-Kana Flow is a mobile app for learning Japanese kana (hiragana and katakana) through interactive quizzes. The app focuses on active recall and spaced repetition to help users memorize all 46 basic characters plus their variations.
+Kana Flow is a mobile app for learning Japanese kana (hiragana and katakana) through interactive quizzes. The app focuses on active recall and spaced repetition to help users memorize all 46 basic characters plus their variations. An advanced Word Writing mode builds on this foundation by asking users to write complete words, reinforcing multi-character muscle memory and connecting kana knowledge to real vocabulary.
 
 ## Target Users
 
@@ -23,10 +23,11 @@ Kana Flow is a mobile app for learning Japanese kana (hiragana and katakana) thr
 
 ### 1. Top-Level Navigation
 
-Two primary modes:
+Three primary modes:
 
-- **Study Mode** (Phase 2) - Reference charts and learning materials
-- **Quiz Mode** (Phase 1) - Active recall testing
+- **Study Mode** (Phase 4) - Reference charts and learning materials
+- **Quiz Mode** (Phase 1) - Active recall testing of individual kana characters
+- **Word Writing Mode** (Phase 7) - Advanced handwriting practice using complete Japanese words
 
 ### 2. Quiz Flow
 
@@ -78,6 +79,44 @@ After selecting a subsection, users may optionally narrow the quiz to specific r
 - Input: User draws kana on canvas
 - Validation: Handwriting recognition (see Technical Considerations)
 - Hints: Show stroke order, first stroke, or ghost outline
+
+### 2.4 Word Writing Mode
+
+An advanced mode unlocked after Quiz Mode. Instead of individual characters, users write complete Japanese words from memory, building multi-character muscle memory.
+
+#### 2.4.1 Mode Entry
+
+- Accessible from the home screen as a distinct top-level destination (not nested under Quiz Mode)
+- Displays a brief onboarding prompt on first launch explaining the advanced nature of the mode
+- No row/subsection selection — the word pool is curated independently of the kana character groups
+
+#### 2.4.2 Word Set Configuration
+
+- **Kana Type**: Hiragana words, Katakana words, or Mixed
+- **Category Filter** (optional, multi-select): Food & Drink, Body, Time & Calendar, People & Relationships, Nature, Places, Daily Life, Adjectives, Verbs, Other
+- **Session Length**: 10 / 20 / 30 words (default: 20)
+- The word pool for a session is drawn from the filtered set, weighted by spaced-repetition weakness score (same algorithm as Phase 3)
+
+#### 2.4.3 Word Writing Quiz Flow
+
+1. **Prompt screen**: Display the word's English meaning and romaji reading (e.g., "water — mizu"). A "Show kana" hint is available but counts the word as incorrect if used.
+2. **Canvas**: Full-screen drawing canvas (same component as Type B). The user writes the entire word sequentially across the canvas without character boundaries marked.
+3. **Submit**: User taps "Done" when finished writing.
+4. **Self-grade overlay**: Show the correct kana spelling (e.g., みず) alongside the user's drawing. User selects "Correct" or "Incorrect". Hint usage forces "Incorrect" automatically.
+5. **Advance**: Next word loads immediately; canvas clears between words.
+6. **Session summary**: Accuracy rate, words attempted, and a breakdown of correct vs. incorrect words with their kana spellings shown.
+
+#### 2.4.4 Grading
+
+- **Phase 7**: Self-graded (user compares their drawing to the displayed correct kana)
+- **Future enhancement**: Embedding-based ML grading — compare the drawn word holistically to a reference using the same CNN pipeline from Phase 5, extended to multi-character inputs
+
+#### 2.4.5 Progress Tracking
+
+- Progress tracked per word entry (separate from per-character kana progress)
+- Stored in a new `WordProgress` model: word ID, correct count, incorrect count, last practiced date
+- Success rate and weakness weighting computed the same way as `CharacterProgress`
+- Word-level progress displayed in a dedicated section of the Stats page (Phase 5.D / future)
 
 ### 3. Progress Tracking & Spaced Repetition
 
@@ -274,6 +313,38 @@ See full plan: [docs/ml-handwriting-recognition-plan.md](ml-handwriting-recognit
 - [ ] Add per-character legibility score history to `CharacterProgress` (SchemaV3 migration)
 - [ ] Create `SpiderChartView` (legibility trend chart in `CharacterDetailView`)
 
+### Phase 7: Word Writing Mode
+
+**7.1 Word Data Layer**
+
+- [ ] Define `WordEntry` model: `id`, `hiragana`, `katakana`, `romaji`, `english`, `category` (enum), `jlptLevel` (N5/N4 tag for future filtering)
+- [ ] Curate initial word list of ~200 common Japanese words (see Word Reference Data below); minimum 3 kana characters per word; exclude standalone particles (は, が, を, に, etc.) and single-mora words
+- [ ] Implement `WordData.swift` — static array of all `WordEntry` values, organised by category
+- [ ] Add `WordProgress` SwiftData model: `wordID: String`, `correctCount: Int`, `incorrectCount: Int`, `lastPracticed: Date?`; add lightweight schema migration (SchemaV4)
+- [ ] Implement `WordProgressStore` — CRUD mirroring `ProgressStore`; exposes weakness-weighted word selection for session building
+
+**7.2 Configuration UI**
+
+- [ ] Add "Word Writing" entry to the home screen alongside Quiz Mode
+- [ ] Create `WordSetupView` — kana type picker (Hiragana / Katakana / Mixed), category multi-select chip list, session length picker (10 / 20 / 30)
+- [ ] Create `WordSetupViewModel` — holds config state, filters `WordData` by type + category, returns randomised session pool weighted by weakness score
+- [ ] First-launch onboarding sheet (shown once via `AppStorage` flag): brief explanation of the advanced mode
+
+**7.3 Word Writing Quiz Flow**
+
+- [ ] Create `WordQuizConfig` — kana type, selected categories, session length, word pool
+- [ ] Create `WordQuizViewModel` — session state machine (prompt → drawing → grading → next/summary); tracks hint usage per word; records results to `WordProgressStore`
+- [ ] Create `WordPromptView` — displays English meaning + romaji; "Show kana" hint button (marks word incorrect); "Start Writing" button transitions to canvas
+- [ ] Reuse `DrawingCanvasView` (existing) with no per-character dividers; canvas clears on word advance
+- [ ] Create `WordGradingOverlayView` — shows correct kana spelling at top, user's canvas drawing below, "Correct" / "Incorrect" buttons; hint-used notice if applicable
+- [ ] Create `WordQuizSummaryView` — session accuracy, word-by-word result list (kana spelling + correct/incorrect indicator)
+- [ ] Wire navigation: `WordSetupView` → `WordPromptView` → canvas → `WordGradingOverlayView` → next word or `WordQuizSummaryView`
+
+**7.4 Progress & Stats Integration**
+
+- [ ] Surface word-level stats in `StatsView`: total words practiced, overall word accuracy, per-word breakdown (collapsed by default, expandable)
+- [ ] Apply weakness weighting from `WordProgressStore` in session word selection (words with lower success rates appear more often)
+
 ### Phase 6: Polish & Enhancements
 
 **6.0 Notifications**
@@ -295,6 +366,273 @@ See full plan: [docs/ml-handwriting-recognition-plan.md](ml-handwriting-recognit
 - [ ] Daily goals
 - [ ] Achievements/badges
 - [ ] Streak rewards
+
+---
+
+## Word Reference Data
+
+### Word Writing Mode — Curated Word List (~200 words)
+
+Selection criteria: common N5–N4 vocabulary, minimum 3 kana characters, no standalone particles, no single-mora words. Hiragana and katakana forms are both listed where a word has a natural katakana counterpart (loanwords appear in katakana only).
+
+**Food & Drink (25 words)**
+
+| English | Hiragana | Katakana (if applicable) | Romaji |
+| --- | --- | --- | --- |
+| rice / meal | ごはん | — | gohan |
+| water | みず | — | mizu |
+| tea | おちゃ | — | ocha |
+| fish | さかな | — | sakana |
+| vegetables | やさい | — | yasai |
+| fruit | くだもの | — | kudamono |
+| egg | たまご | — | tamago |
+| meat | にく | — | niku |
+| bread | — | パン | pan |
+| coffee | — | コーヒー | koohii |
+| juice | — | ジュース | juusu |
+| milk | — | ミルク | miruku |
+| beer | — | ビール | biiru |
+| salt | しお | — | shio |
+| sugar | さとう | — | satou |
+| soy sauce | しょうゆ | — | shouyu |
+| noodles | うどん | — | udon |
+| sushi | すし | — | sushi |
+| tempura | てんぷら | — | tenpura |
+| ramen | — | ラーメン | raamen |
+| cake | — | ケーキ | keeki |
+| ice cream | — | アイスクリーム | aisukuriimu |
+| restaurant | — | レストラン | resutoran |
+| menu | — | メニュー | menyuu |
+| fork | — | フォーク | fooku |
+
+**Body (15 words)**
+
+| English | Hiragana | Katakana | Romaji |
+| --- | --- | --- | --- |
+| body | からだ | — | karada |
+| head | あたま | — | atama |
+| hand / arm | て | — | te |
+| eye | め | — | me |
+| ear | みみ | — | mimi |
+| nose | はな | — | hana |
+| mouth | くち | — | kuchi |
+| leg / foot | あし | — | ashi |
+| heart / mind | こころ | — | kokoro |
+| stomach | おなか | — | onaka |
+| back | せなか | — | senaka |
+| face | かお | — | kao |
+| hair | かみ | — | kami |
+| tooth | は | — | ha |
+| throat | のど | — | nodo |
+
+*(Note: words under 3 kana such as て、め、は are included for completeness but the quiz pool should weight longer words higher. Words of 2 kana or fewer will be excluded from the initial release pool.)*
+
+**Time & Calendar (15 words)**
+
+| English | Hiragana | Romaji |
+| --- | --- | --- |
+| every day | まいにち | mainichi |
+| today | きょう | kyou |
+| tomorrow | あした | ashita |
+| yesterday | きのう | kinou |
+| morning | あさ | asa |
+| evening | ゆうがた | yuugata |
+| night | よる | yoru |
+| week | しゅうかん | shuukan |
+| month | つき / げつ | tsuki |
+| year | とし / ねん | toshi |
+| now | いま | ima |
+| time | じかん | jikan |
+| Monday | げつようび | getsuyoubi |
+| weekend | しゅうまつ | shuumatsu |
+| holiday | やすみ | yasumi |
+
+**People & Relationships (15 words)**
+
+| English | Hiragana | Romaji |
+| --- | --- | --- |
+| friend | ともだち | tomodachi |
+| family | かぞく | kazoku |
+| person | ひと | hito |
+| man | おとこ | otoko |
+| woman | おんな | onna |
+| child | こども | kodomo |
+| teacher | せんせい | sensei |
+| student | がくせい | gakusei |
+| mother | おかあさん | okaasan |
+| father | おとうさん | otousan |
+| older sister | おねえさん | oneesan |
+| older brother | おにいさん | oniisan |
+| husband | おっと | otto |
+| wife | つま | tsuma |
+| foreigner | がいじん | gaijin |
+
+**Nature (15 words)**
+
+| English | Hiragana | Romaji |
+| --- | --- | --- |
+| sky | そら | sora |
+| sea / ocean | うみ | umi |
+| mountain | やま | yama |
+| river | かわ | kawa |
+| tree | き | ki |
+| flower | はな | hana |
+| moon | つき | tsuki |
+| star | ほし | hoshi |
+| sun | たいよう | taiyou |
+| rain | あめ | ame |
+| snow | ゆき | yuki |
+| wind | かぜ | kaze |
+| cloud | くも | kumo |
+| forest | もり | mori |
+| island | しま | shima |
+
+**Places (20 words)**
+
+| English | Hiragana | Katakana | Romaji |
+| --- | --- | --- | --- |
+| school | がっこう | — | gakkou |
+| hospital | びょういん | — | byouin |
+| station | えき | — | eki |
+| airport | くうこう | — | kuukou |
+| post office | ゆうびんきょく | — | yuubinkyoku |
+| supermarket | — | スーパー | suupaa |
+| convenience store | — | コンビニ | konbini |
+| department store | — | デパート | depaato |
+| hotel | — | ホテル | hoteru |
+| bank | ぎんこう | — | ginkou |
+| library | としょかん | — | toshokan |
+| park | こうえん | — | kouen |
+| shrine | じんじゃ | — | jinja |
+| temple | おてら | — | otera |
+| museum | はくぶつかん | — | hakubutsukan |
+| road | みち | — | michi |
+| town | まち | — | machi |
+| country | くに | — | kuni |
+| house | いえ | — | ie |
+| room | へや | — | heya |
+
+**Daily Life (20 words)**
+
+| English | Hiragana | Katakana | Romaji |
+| --- | --- | --- | --- |
+| train | でんしゃ | — | densha |
+| car | くるま | — | kuruma |
+| bus | — | バス | basu |
+| taxi | — | タクシー | takushii |
+| bicycle | じてんしゃ | — | jitensha |
+| telephone | でんわ | — | denwa |
+| television | — | テレビ | terebi |
+| computer | — | パソコン | pasokon |
+| smartphone | — | スマホ | sumaho |
+| book | ほん | — | hon |
+| newspaper | しんぶん | — | shinbun |
+| money | おかね | — | okane |
+| clothes | ふく | — | fuku |
+| door | ドア | ドア | doa |
+| window | まど | — | mado |
+| table | — | テーブル | teebu |
+| chair | — | いす | isu |
+| bag | かばん | — | kaban |
+| key | かぎ | — | kagi |
+| umbrella | かさ | — | kasa |
+
+**Adjectives (25 words)**
+
+| English | Hiragana | Romaji |
+| --- | --- | --- |
+| big | おおきい | ookii |
+| small | ちいさい | chiisai |
+| new | あたらしい | atarashii |
+| old | ふるい | furui |
+| expensive / tall | たかい | takai |
+| cheap / low | やすい | yasui |
+| hot (temp) | あつい | atsui |
+| cold (temp) | さむい | samui |
+| good | いい / よい | ii / yoi |
+| bad | わるい | warui |
+| fast / early | はやい | hayai |
+| slow / late | おそい | osoi |
+| long | ながい | nagai |
+| short | みじかい | mijikai |
+| heavy | おもい | omoi |
+| light (weight) | かるい | karui |
+| easy | かんたん | kantan |
+| difficult | むずかしい | muzukashii |
+| interesting | おもしろい | omoshiroi |
+| boring | つまらない | tsumaranai |
+| busy | いそがしい | isogashii |
+| kind | やさしい | yasashii |
+| beautiful | きれい | kirei |
+| delicious | おいしい | oishii |
+| scary | こわい | kowai |
+
+**Verbs (30 words)**
+
+| English | Dictionary Form (hiragana) | Romaji |
+| --- | --- | --- |
+| to eat | たべる | taberu |
+| to drink | のむ | nomu |
+| to see / watch | みる | miru |
+| to listen / hear | きく | kiku |
+| to speak | はなす | hanasu |
+| to read | よむ | yomu |
+| to write | かく | kaku |
+| to go | いく | iku |
+| to come | くる | kuru |
+| to return home | かえる | kaeru |
+| to buy | かう | kau |
+| to sell | うる | uru |
+| to use | つかう | tsukau |
+| to make | つくる | tsukuru |
+| to think | おもう | omou |
+| to know | しる | shiru |
+| to understand | わかる | wakaru |
+| to wait | まつ | matsu |
+| to meet | あう | au |
+| to sleep | ねる | neru |
+| to wake up | おきる | okiru |
+| to work | はたらく | hataraku |
+| to study | べんきょうする | benkyou suru |
+| to play | あそぶ | asobu |
+| to run | はしる | hashiru |
+| to walk | あるく | aruku |
+| to open | あける | akeru |
+| to close | しめる | shimeru |
+| to give | あげる | ageru |
+| to receive | もらう | morau |
+
+**Other Common Words (20 words)**
+
+| English | Hiragana | Katakana | Romaji |
+| --- | --- | --- | --- |
+| language | ことば | — | kotoba |
+| Japanese language | にほんご | — | nihongo |
+| English language | えいご | — | eigo |
+| number | かず | — | kazu |
+| colour | いろ | — | iro |
+| music | おんがく | — | ongaku |
+| movie | えいが | — | eiga |
+| game | — | ゲーム | geemu |
+| sport | — | スポーツ | supootsu |
+| health | けんこう | — | kenkou |
+| dream | ゆめ | — | yume |
+| love | あい | — | ai |
+| thank you | ありがとう | — | arigatou |
+| sorry | ごめんなさい | — | gomennasai |
+| please (request) | おねがい | — | onegai |
+| welcome | ようこそ | — | youkoso |
+| goodbye | さようなら | — | sayounara |
+| congratulations | おめでとう | — | omedetou |
+| let's eat | いただきます | — | itadakimasu |
+| that's all | ごちそうさま | — | gochisousama |
+
+### Word Pool Filtering Rules
+
+- Words with fewer than 3 kana characters are excluded from the initial release pool (they are listed above for completeness only)
+- Katakana loanwords that are the primary form (e.g., パン, コーヒー) appear only in Katakana sessions or Mixed sessions
+- Native Japanese words listed with hiragana appear in Hiragana or Mixed sessions
+- Some words have both hiragana and katakana forms — in Mixed sessions both may appear as separate entries
 
 ---
 
